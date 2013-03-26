@@ -1,4 +1,0 @@
-oophp
-=====
-
-Kurs oophp BTH
