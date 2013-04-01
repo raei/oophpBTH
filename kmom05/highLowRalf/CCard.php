@@ -38,7 +38,6 @@ class CCard {
      * vändas (up, down eller inverse). Up visar kortets framsida. 
      * Down visar kortets baksida. Inverse inverterar nuvarande visningsläge.
      */
-
     public function FlipCard($aAction = 'inverse') {
         switch ($aAction) {
             case 'up': {
@@ -63,7 +62,6 @@ class CCard {
      * hjärter 2 med framsidan upp. Denna funktion visar alltid 
      * kortets värde oavsett om kortets baksida eller framsida är upp.
      */
-
     public function GetCardAsId() {
         return "{$this->iCardPattern}{$this->iCardValue} {$this->iFaceUpOrDown}";
     }
@@ -72,7 +70,6 @@ class CCard {
      * Visa en text-baserad representation av kortet. Visa siffran och 
      * specialtecken (? ? ? ?). Visa ? för joker. Visa XXX om baksidan är upp.
      */
-
     public function GetCardAsText() {
         $token = Array(
             'H' => '&hearts;',
@@ -93,7 +90,6 @@ class CCard {
      * Visar kortet i en div med enkel CSS för att skapa ramar och färger. 
      * Använder sig av GetCardAsText() för att visa själva kortets värde.
      */
-
     public function GetCardAsBox() {
         $text = $this->GetCardAsText();
         $style = <<<EOD

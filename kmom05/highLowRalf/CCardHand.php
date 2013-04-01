@@ -17,7 +17,6 @@ class CCardHand {
     //
     // Member variables
     //
-    // http://php.net/manual/en/language.oop5.constants.php
     //
     private $iCards;  // The picked cards in an array
 
@@ -42,8 +41,7 @@ class CCardHand {
     // Add a card to the hand
     //	
     //
-	public function AddCard($aCard) {
-        //$this->iCards[] = $aCard;
+	public function AddCard($aCard) {      
         array_push($this->iCards, $aCard);
     }
 
@@ -60,7 +58,7 @@ class CCardHand {
     // Show all cards on the hand using HTML and CSS.
     //
 	public function GetCardsAsBox() {
-        $html = "<p><div style='float: left; background: green;'>";
+        $html = "<p><div style='float: left; background: black;'>";
         foreach ($this->iCards as $card) {
             $html .= $card->GetCardAsBox();
         }

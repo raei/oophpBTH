@@ -40,20 +40,20 @@ class CHighCardLowCard {
 
     // -------------------------------------------------------------------------------------------
     //
-	// Start the game.
+    // Start the game.
     //
     public function StartGame() {
         $this->iDeck->InitAndShuffle();
         $this->iHand->DropAllCards();
         $card = $this->iDeck->DealFromTop();
         $card->FlipCard();
-        $this->iHand->AddCard($card);
-        //$this->iHand->AddCard($this->iDeck->DealFromTop()); // Add next card faced down, looks nicer
+        //$this->iHand->AddCard($card);
+        $this->iHand->AddCard($this->iDeck->DealFromTop()); // Add next card faced down, looks nicer
     }
 
     // -------------------------------------------------------------------------------------------
     //
-	// Guess and pick a card. Check if card value is higher or lower.
+    // Guess and pick a card. Check if card value is higher or lower.
     // Take argument to check wether new card is to be higher or lower.
     // Check according to argument and return TRUE or FALSE
     //

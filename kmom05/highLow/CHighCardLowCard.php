@@ -49,7 +49,7 @@ class CHighCardLowCard {
 		$card = $this->iDeck->DealFromTop();
 		$card->FlipCard();
 		$this->iHand->AddCard($card);
-		//$this->iHand->AddCard($this->iDeck->DealFromTop()); // Add next card faced down, looks nicer
+		$this->iHand->AddCard($this->iDeck->DealFromTop()); // Add next card faced down, looks nicer
 	}
 
 

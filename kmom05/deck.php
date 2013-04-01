@@ -36,7 +36,7 @@ $deck1 = new CDeck();
 
 $html .= "<h1>Hur ser min kortlek ut?</h1>";
 
-$html .= "<h2>Visa kort i en oblandad lek</h2><p><div style='float: left; background: green;'>";
+$html .= "<h2>Visa kort i en oblandad lek</h2><p><div style='float: left; background: black;'>";
 while($card = $deck1->DealFromTop()) {
 	$card->FlipCard();
 	$html .= $card->GetCardAsBox();
@@ -45,7 +45,7 @@ while($card = $deck1->DealFromTop()) {
 $divClear = "<div style='height: 0; clear: both;'>&nbsp;</div>";
 $html .= "</div>{$divClear}</p>";
 
-$html .= "<h2>Initiera och blanda leken, plocka 5 kort.</h2><p><div style='float: left; background: green;'>";
+$html .= "<h2>Initiera och blanda leken, plocka 5 kort.</h2><p><div style='float: left; background: black;'>";
 $deck1->InitAndShuffle();
 for($i=0; $i<5; $i++) {
 	$card = $deck1->DealFromTop();

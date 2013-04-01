@@ -50,7 +50,7 @@
 
 
     // Show as box
-    $html .= "<h2>Som box</h2><p><div style='float: left; background: green;'>";
+    $html .= "<h2>Som box</h2><p><div style='float: left; background: black;'>";
     foreach($hand as $card) {
             $html .= $card->GetCardAsBox();
     }
@@ -60,7 +60,7 @@
 
 
     // Flip all and show as box
-    $html .= "<h2>Vänd korten och visa som box</h2><p><div style='float: left; background: green;'>";
+    $html .= "<h2>Vänd korten och visa som box</h2><p><div style='float: left; background: black;'>";
     foreach($hand as $card) {
             $card->FlipCard();
             $html .= $card->GetCardAsBox();
