@@ -5,7 +5,7 @@
 //
 // Description: A class for playing the game of High Card Low Card
 //
-// Author: Mikael Roos
+// Author: Ralf Eriksson
 //
 
 require_once("CDeck.php");
@@ -25,23 +25,19 @@ class CHighCardLowCard {
 	// -------------------------------------------------------------------------------------------
 	//
 	// Constructor
-	// http://www.php.net/manual/en/language.oop5.decon.php
 	//
 	function __construct() {
 		$this->iDeck = new CDeck(); 
 		$this->iHand = new CCardHand();
 	}
 
-
 	// -------------------------------------------------------------------------------------------
 	//
 	// Destructor
-	// http://www.php.net/manual/en/language.oop5.decon.php
 	//
 	function __destruct() {
 		;
 	}
-
 
 	// -------------------------------------------------------------------------------------------
 	//
@@ -91,18 +87,16 @@ class CHighCardLowCard {
 		}
 		
 		return $success;
-	}
+	}//end function GuessAndPickCard
 
 
 	// -------------------------------------------------------------------------------------------
 	//
 	// Return the points which is equal to the number of cards in the cardhand.
 	//
-	//
 	public function GetPoints() {
 		return $this->iHand->GetNoCards() - 1;
 	}
-
 
 	// -------------------------------------------------------------------------------------------
 	//

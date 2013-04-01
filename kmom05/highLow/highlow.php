@@ -7,7 +7,7 @@
 // Used to show off that it works as expected.
 //
 //
-// Author: Mikael Roos
+// Author: Ralf Eriksson
 //
 
 
@@ -45,9 +45,7 @@ switch($doGame) {
 		require('ISessionDestroy.php');
 		//
 		// Initiating a session and storing an object in the session variable
-		//
-		// http://php.net/manual/en/function.session-start.php
-		// http://php.net/manual/en/function.session-regenerate-id.php
+		//		
 		//
 		session_start();          // Must call again if we just destroyed
  			                        // the session.
@@ -60,7 +58,6 @@ switch($doGame) {
 		$debug .= 'Current session id is: ' . session_id() . '<br />';
 	}
 	break;
-
 	case 'high':
 	case 'low':   { // Guess next card is high/low card
 		if($_SESSION['game']->GuessAndPickCard($doGame) == FALSE) {
@@ -69,8 +66,7 @@ switch($doGame) {
 
 		$debug .= 'Made a guess. <br />';
 	}
-	break;
-	
+	break;	
 	case 'destroy': { // Only destroy the session
 		require('ISessionDestroy.php');
 		$debug .= 'Session destroyed.';
@@ -162,5 +158,4 @@ EOD;
 header("Content-Type: application/xhtml+xml; charset={$charset}");
 echo $html;
 exit;
-
 ?>

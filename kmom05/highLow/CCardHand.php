@@ -5,7 +5,7 @@
 //
 // Description: A class for holding a hand of cards
 //
-// Author: Mikael Roos
+//  Author: Ralf Eriksson
 //
 
 require_once("CDeck.php");
@@ -15,52 +15,42 @@ class CCardHand {
 	// -------------------------------------------------------------------------------------------
 	//
 	// Member variables
+	//	
 	//
-	// http://php.net/manual/en/language.oop5.constants.php
-	//
-	private $iCards;		// The picked cards in an array
-
+	private $iCards; // The picked cards in an array
 
 	// -------------------------------------------------------------------------------------------
 	//
-	// Constructor
-	// http://www.php.net/manual/en/language.oop5.decon.php
+	// Constructor	
 	//
 	function __construct() {
 		$this->iCards = Array();
 	}
 
-
 	// -------------------------------------------------------------------------------------------
 	//
-	// Destructor
-	// http://www.php.net/manual/en/language.oop5.decon.php
+	// Destructor	
 	//
 	function __destruct() {
 		;
 	}
 
-
 	// -------------------------------------------------------------------------------------------
 	//
 	// Add a card to the hand
-	//
-	// http://php.net/manual/en/function.array-push.php
+	//	
 	//
 	public function AddCard($aCard) {
-		//$this->iCards[] = $aCard;
-		array_push($this->iCards, $aCard);
+            array_push($this->iCards, $aCard);
 	}
-
 
 	// -------------------------------------------------------------------------------------------
 	//
 	// Drop all cards from the hand.
 	//
 	public function DropAllCards() {
-		$this->iCard = Array();
+            $this->iCard = Array();
 	}
-
 	
 	// -------------------------------------------------------------------------------------------
 	//
@@ -76,7 +66,7 @@ class CCardHand {
 		$html .= "</div>{$divClear}</p>";		
 		
 		return $html;
-	}
+	}//end function GetCardsAsBox
         
         // -------------------------------------------------------------------------------------------
 	//
@@ -86,14 +76,12 @@ class CCardHand {
 		return $this->iCards[count($this->iCards)-1];
 	}
 
-
 	// -------------------------------------------------------------------------------------------
 	//
 	// Get the number of cards on the hand.
 	//
 	public function GetNoCards() {
-		return count($this->iCards);
-	}
+		return count($this->iCards);	}
 
 	
 } // End of class

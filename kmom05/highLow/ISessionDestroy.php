@@ -5,14 +5,11 @@
 //
 // Description: Code for destroying a session, copied from the PHP manual.
 //
-//
-// Author: Mikael Roos
+// Author: Ralf Eriksson
 //
 
 //
-// Destroy a session.
-//
-// http://php.net/manual/en/function.session-destroy.php
+// Destroy a session.//
 //
 
 // Unset all of the session variables.
@@ -26,5 +23,4 @@ if (isset($_COOKIE[session_name()])) {
 
 // Finally, destroy the session.
 session_destroy();
-
 ?>
