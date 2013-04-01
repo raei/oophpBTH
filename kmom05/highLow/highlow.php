@@ -102,8 +102,13 @@ EOD;
 	} else {
 		$html .= <<<EOD
 <p>
-<a href='highlow.php?game=high'>Nästa kort är högre...</a><br/>
-<a href='highlow.php?game=low'>Nästa kort är lägre...</a>
+<table>    
+    <tr>
+        <td style="padding-right:5px; font-weight:bold; color:black;"><a style="color:black;" href='highlow.php?game=high'>HIGH</a></td>
+        <td>||</td>
+        <td style="padding-left:5px;font-weight:bold;"><a style="color:black;" href='highlow.php?game=low'>LOW</a></td>
+    </tr>
+ </table>                   
 </p>
 EOD;
 	}
