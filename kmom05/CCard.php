@@ -7,6 +7,7 @@
 // Description: A class for a gamecard
 //
 // Author: Ralf Eriksson
+// Card background pattern is from http://www.squidfingers.com/
 //
 
 class CCard {  
@@ -107,7 +108,7 @@ EOD;
 
         if($this->iFaceUpOrDown == 0) {
             $text = "&nbsp;";
-            $style.= "background: white url(images/cardbackNew.png) repeat;"; 
+            $style.= "background: white url(images/pattern_057.gif) repeat;"; 
         }
 
         if($this->iCardPattern == 'H' ||
