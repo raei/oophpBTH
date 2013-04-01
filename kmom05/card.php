@@ -18,8 +18,7 @@
     //
     // Create and test the CCard-class
     //
-    // Showing foreach-loop
-    // http://php.net/manual/en/control-structures.foreach.php
+    // Showing foreach-loop  
     //
     require_once('CCard.php');
     $c1 = new CCard('H', 1, 1);

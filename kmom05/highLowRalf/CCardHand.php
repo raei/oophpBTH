@@ -5,7 +5,7 @@
 //
 // Description: A class for holding a hand of cards
 //
-// Author: Mikael Roos
+// Author: Ralf Eriksson
 //
 
 require_once("CDeck.php");
@@ -20,21 +20,17 @@ class CCardHand {
 	//
 	private $iCards;		// The picked cards in an array
 
-
 	// -------------------------------------------------------------------------------------------
 	//
-	// Constructor
-	// http://www.php.net/manual/en/language.oop5.decon.php
+	// Constructor	
 	//
 	function __construct() {
 		$this->iCards = Array();
 	}
 
-
 	// -------------------------------------------------------------------------------------------
 	//
-	// Destructor
-	// http://www.php.net/manual/en/language.oop5.decon.php
+	// Destructor	
 	//
 	function __destruct() {
 		;
@@ -44,14 +40,12 @@ class CCardHand {
 	// -------------------------------------------------------------------------------------------
 	//
 	// Add a card to the hand
-	//
-	// http://php.net/manual/en/function.array-push.php
+	//	
 	//
 	public function AddCard($aCard) {
 		//$this->iCards[] = $aCard;
 		array_push($this->iCards, $aCard);
 	}
-
 
 	// -------------------------------------------------------------------------------------------
 	//
@@ -60,7 +54,6 @@ class CCardHand {
 	public function DropAllCards() {
 		$this->iCard = Array();
 	}
-
 	
 	// -------------------------------------------------------------------------------------------
 	//
@@ -76,25 +69,7 @@ class CCardHand {
 		$html .= "</div>{$divClear}</p>";		
 		
 		return $html;
-	}
-        
-        // -------------------------------------------------------------------------------------------
-	//
-	// Return the last card dealed to the hand.
-	//
-	public function GetLastCard() {
-		return $this->iCards[count($this->iCards)-1];
-	}
-
-
-	// -------------------------------------------------------------------------------------------
-	//
-	// Get the number of cards on the hand.
-	//
-	public function GetNoCards() {
-		return count($this->iCards);
-	}
-
+	}//end function GetCardsAsBox
 	
 } // End of class
 

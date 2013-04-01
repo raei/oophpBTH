@@ -7,7 +7,7 @@
 // Used to show off that it works as expected.
 //
 //
-// Author: Mikael Roos
+// Author: Ralf Eriksson
 //
 
 
@@ -95,5 +95,4 @@ EOD;
 header("Content-Type: application/xhtml+xml; charset={$charset}");
 echo $html;
 exit;
-
 ?>

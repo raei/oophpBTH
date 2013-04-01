@@ -7,7 +7,7 @@
 // Used to show off that it works as expected.
 //
 //
-// Author: Mikael Roos
+// Author: Ralf Eriksson
 //
 
 
@@ -44,10 +44,7 @@ switch($doGame) {
 	case 'init': { // Destroy and then initiate the session
 		require('ISessionDestroy.php');
 		//
-		// Initiating a session and storing an object in the session variable
-		//
-		// http://php.net/manual/en/function.session-start.php
-		// http://php.net/manual/en/function.session-regenerate-id.php
+		// Initiating a session and storing an object in the session variable		
 		//
 		session_start();          // Must call again if we just destroyed
  			                        // the session.

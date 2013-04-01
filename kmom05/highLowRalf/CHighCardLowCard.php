@@ -5,7 +5,7 @@
 //
 // Description: A class for playing the game of High Card Low Card
 //
-// Author: Mikael Roos
+// Author: Ralf Eriksson
 //
 
 require_once("CDeck.php");
@@ -15,8 +15,7 @@ class CHighCardLowCard {
 
 	// -------------------------------------------------------------------------------------------
 	//
-	// Member variables
-	//
+	// Member variables	
 	//
 	private $iDeck;		// An instance of CDeck
 	private $iHand;		// An instance of CCardHand
@@ -24,8 +23,7 @@ class CHighCardLowCard {
 
 	// -------------------------------------------------------------------------------------------
 	//
-	// Constructor
-	// http://www.php.net/manual/en/language.oop5.decon.php
+	// Constructor	
 	//
 	function __construct() {
 		$this->iDeck = new CDeck(); 
@@ -35,13 +33,11 @@ class CHighCardLowCard {
 
 	// -------------------------------------------------------------------------------------------
 	//
-	// Destructor
-	// http://www.php.net/manual/en/language.oop5.decon.php
+	// Destructor	
 	//
 	function __destruct() {
 		;
 	}
-
 
 	// -------------------------------------------------------------------------------------------
 	//
@@ -113,7 +109,5 @@ class CHighCardLowCard {
 		return $this->iHand->GetCardsAsBox();
 	}
 
-
 } // End of class
-
 ?>

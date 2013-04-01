@@ -6,7 +6,7 @@
 // Description: My testprogram for my class deckofcards. Used to show off that it 
 // works as expected.
 //
-// Author: Mikael Roos
+// Author: Ralf Eriksson
 //
 
 

@@ -7,7 +7,7 @@
 // Used to show off that it works as expected.
 //
 //
-// Author: Mikael Roos
+// Author: Ralf Eriksson
 //
 
 
@@ -45,12 +45,10 @@ switch($doSession) {
 		require('ISessionDestroy.php');
 		//
 		// Initiating a session and storing an object in the session variable
-		//
-		// http://php.net/manual/en/function.session-start.php
-		// http://php.net/manual/en/function.session-regenerate-id.php
+		//		
 		//
 		session_start();          // Must call again if we destroyed just destroyed
- 			                        // the session.
+ 			                  // the session.
 		session_regenerate_id();  // To avoid problems
 
 		$_SESSION['hand']   = new CCardHand();
@@ -77,8 +75,6 @@ switch($doSession) {
 // -------------------------------------------------------------------------------------------
 //
 // Using the session variable
-//
-// http://php.net/manual/en/function.isset.php
 //
 if(isset($_SESSION['deck'])) {
 	$card = $_SESSION['deck']->DealFromTop();

@@ -18,27 +18,21 @@ class CCard {
     private $iFaceUpOrDown; // 0 down, 1 up
     
     
-    // Constructor
-    // http://www.php.net/manual/en/language.oop5.decon.php
+    // Constructor  
     // Always start with face down if not stated elsewise
     //
     function __construct($aCardPattern='H', $aCardValue=1, $aFaceUpOrDown=0) {
         $this->iCardPattern = $aCardPattern;
         $this->iCardValue   = $aCardValue;
-        $this->iFaceUpOrDown= $aFaceUpOrDown;
-       // echo "Constructor called: {$aCardPattern}, {$aCardValue}, {$aFaceUpOrDown} <br />";
+        $this->iFaceUpOrDown= $aFaceUpOrDown;       
     }
     
     // 
-    // Destructor
-    // http://www.php.net/manual/en/language.oop5.decon.php
+    // Destructor  
     //
     function __destruct() {
-        ;
-       //echo "Destructor called : {$this->iCardPattern}, {$this->iCardValue}, {$this->iFaceUpOrDown}<br />";
+        ;       
     }
-
-
 
     /* Används för att vända kortet, 1 argument som säger hur kortet skall 
     * vändas (up, down eller inverse). Up visar kortets framsida. 
@@ -93,7 +87,7 @@ class CCard {
         } else {
                 return "XXX";
         }
-    }//end GetCardAsText
+    }//end function GetCardAsText
 
     /*
     * Visar kortet i en div med enkel CSS för att skapa ramar och färger. 
@@ -104,7 +98,7 @@ class CCard {
         $style = <<<EOD
         float: left; 
         margin: 5px 5px 5px 5px;
-        padding: 20px 0px 20px 0px; 
+        padding: 21px 0px 21px 0px; 
         text-align: center;
         background: white;
         width: 40px; 
@@ -113,7 +107,7 @@ EOD;
 
         if($this->iFaceUpOrDown == 0) {
             $text = "&nbsp;";
-            $style.= "background: white url(http://www.student.bth.se/~mos/oophp/mom05/img/cardback.png) repeat;"; 
+            $style.= "background: white url(images/cardbackNew.png) repeat;"; 
         }
 
         if($this->iCardPattern == 'H' ||
@@ -122,7 +116,7 @@ EOD;
         }
 
         return "<div style='{$style}'>{$text}</div>";
-    }//end GetCardAsBox
+    }//end function GetCardAsBox
     
 } // end of Class
 ?>
