@@ -3,10 +3,7 @@
 //
 // highlow.php
 //
-// Description: My testprogram for my class implementing the card game "High Card Low Card".
-// Used to show off that it works as expected.
-//
-//
+// Description: Program for implementing the card game "High Card Low Card".
 // Author: Ralf Eriksson
 //
 
@@ -44,7 +41,8 @@ switch($doGame) {
 	case 'init': { // Destroy and then initiate the session
 		require('ISessionDestroy.php');
 		//
-		// Initiating a session and storing an object in the session variable		
+		// Initiating a session and storing an object in the session variable
+		//		
 		//
 		session_start();          // Must call again if we just destroyed
  			                        // the session.
@@ -57,7 +55,6 @@ switch($doGame) {
 		$debug .= 'Current session id is: ' . session_id() . '<br />';
 	}
 	break;
-
 	case 'high':
 	case 'low':   { // Guess next card is high/low card
 		if($_SESSION['game']->GuessAndPickCard($doGame) == FALSE) {
@@ -66,8 +63,7 @@ switch($doGame) {
 
 		$debug .= 'Made a guess. <br />';
 	}
-	break;
-	
+	break;	
 	case 'destroy': { // Only destroy the session
 		require('ISessionDestroy.php');
 		$debug .= 'Session destroyed.';
@@ -103,8 +99,13 @@ EOD;
 	} else {
 		$html .= <<<EOD
 <p>
-<a href='highlow.php?game=high'>Nästa kort är högre...</a><br/>
-<a href='highlow.php?game=low'>Nästa kort är lägre...</a>
+<table>    
+    <tr>
+        <td style="padding-right:5px; font-weight:bold;"><a style="color:black;" href='highlow.php?game=low'>LOW</a></td>
+        <td>||</td>
+        <td style="padding-left:5px;font-weight:bold;"><a style="color:black;" href='highlow.php?game=high'>HIGH</a></td>
+    </tr>
+ </table>                   
 </p>
 EOD;
 	}
@@ -159,5 +160,4 @@ EOD;
 header("Content-Type: application/xhtml+xml; charset={$charset}");
 echo $html;
 exit;
-
 ?>

@@ -7,70 +7,74 @@
 // Description: A class for a gamecard
 //
 // Author: Ralf Eriksson
+// Card background pattern is from http://www.squidfingers.com/
 //
 
 class CCard {
 
-    // 
+    // -------------------------------------------------------------------------------------------
+    //
     // Member variables
     //
-    private $iCardPattern;  // S (Spade), H (Hearts),C (Club), D (Diamond), X (special card)
-    private $iCardValue;    // 1-13
+    private $iCardPattern; // S (Spade), H (Hearts), C (Club), D (Diamond), X (special card)
+    private $iCardValue;  // 1-13
     private $iFaceUpOrDown; // 0 down, 1 up
 
-    // Constructor  
+    // -------------------------------------------------------------------------------------------
+    //
+    // Constructor	
     // Always start with face down if not stated elsewise
     //
-    function __construct($aCardPattern = 'H', $aCardValue = 1, $aFaceUpOrDown = 0) {
+    function __construct($aCardPattern = 'H', $aCardValue = 1, $aFaceUpOrDown = 0) {       
         $this->iCardPattern = $aCardPattern;
         $this->iCardValue = $aCardValue;
         $this->iFaceUpOrDown = $aFaceUpOrDown;
     }
 
-    // 
-    // Destructor  
+    // -------------------------------------------------------------------------------------------
+    //
+    // Destructor	
     //
     function __destruct() {
         ;
     }
 
-    /* Används för att vända kortet, 1 argument som säger hur kortet skall 
-     * vändas (up, down eller inverse). Up visar kortets framsida. 
-     * Down visar kortets baksida. Inverse inverterar nuvarande visningsläge.
-     */
+    // -------------------------------------------------------------------------------------------
+    //
+    // Flip the cards up/down/inverse.	
+    //
     public function FlipCard($aAction = 'inverse') {
-        switch ($aAction) {
-            case 'up': {
+            switch ($aAction) {
+                case 'up': {
                     $this->iFaceUpOrDown = 1;
-                }
-                break;
-            case 'down': {
+                } break;
+                case 'down': {
                     $this->iFaceUpOrDown = 0;
-                }
-                break;
-            case 'inverse':
-            default: {
+                } break;
+                case 'inverse':
+                default: {
                     $this->iFaceUpOrDown = ($this->iFaceUpOrDown == 1) ? 0 : 1;
-                }
-                break;
-        }//end switch
+                } break;
+           }//end switch
     }//end function FlipCard
-
-    /*
-     * Returnera en sträng som anger vilket id ett kort har, tex ?S13 (0)? för 
-     * spader kung med baksidan upp eller ?H2 (1)? för 
-     * hjärter 2 med framsidan upp. Denna funktion visar alltid 
-     * kortets värde oavsett om kortets baksida eller framsida är upp.
-     */
+     
+    // -------------------------------------------------------------------------------------------
+    //
+    // Show the id of the card.
+    //
     public function GetCardAsId() {
-        return "{$this->iCardPattern}{$this->iCardValue} {$this->iFaceUpOrDown}";
+        return "{$this->iCardPattern}{$this->iCardValue} ({$this->iFaceUpOrDown})";
     }
 
-    /*
-     * Visa en text-baserad representation av kortet. Visa siffran och 
-     * specialtecken (? ? ? ?). Visa ? för joker. Visa XXX om baksidan är upp.
-     */
+    // -------------------------------------------------------------------------------------------
+    //
+    // Show the card as text (but only if faced up).
+    // Use html special chars to make it look nicer.
+    // Google for "html special chars"
+    // Example on sprintf for formatting numbers in text  
+    //
     public function GetCardAsText() {
+
         $token = Array(
             'H' => '&hearts;',
             'S' => '&spades;',
@@ -86,25 +90,27 @@ class CCard {
         }
     }//end function GetCardAsText
 
-    /*
-     * Visar kortet i en div med enkel CSS för att skapa ramar och färger. 
-     * Använder sig av GetCardAsText() för att visa själva kortets värde.
-     */
+    // -------------------------------------------------------------------------------------------
+    //
+    // Show the card as text and some easy css for style.
+    //
+    // Showing off some CSS   
+    //
     public function GetCardAsBox() {
         $text = $this->GetCardAsText();
         $style = <<<EOD
-        float: left; 
-        margin: 5px 5px 5px 5px;
-        padding: 21px 0px 21px 0px; 
-        text-align: center;
-        background: white;
-        width: 40px; 
-        border: solid gray 1px;
+            float: left; 
+            margin: 5px 5px 5px 5px;
+            padding: 21px 0px 21px 0px; 
+            text-align: center;
+            background:	white;
+            width: 40px; 
+            border: solid gray 1px;
 EOD;
 
         if ($this->iFaceUpOrDown == 0) {
             $text = "&nbsp;";
-            $style.= "background: white url(images/cardbackNew.png) repeat;";
+            $style .= "background: white url(images/pattern_057.gif) repeat;";
         }
 
         if ($this->iCardPattern == 'H' ||
@@ -113,6 +119,51 @@ EOD;
         }
 
         return "<div style='{$style}'>{$text}</div>";
-    }//end function GetCardAsBox
-}// end of Class
+    }
+    
+     // -------------------------------------------------------------------------------------------
+    //
+    // Show the card as text and some easy css for style.
+    //
+    // Showing off some CSS   
+    //
+    public function GetStartCardAsBox() {
+        //$text = $this->GetCardAsText();
+        $style = <<<EOD
+            float: left; 
+            margin: 5px 5px 5px 5px;
+            padding: 21px 0px 21px 0px; 
+            text-align: center;
+            background:	white;
+            width: 40px; 
+            border: solid gray 1px;
+EOD;
+
+          $text = "&nbsp;";
+            $style .= "background: white url(images/pattern_057.gif) repeat;"; 
+
+        
+
+        return "<div style='{$style}'>{$text}</div>";
+    }
+
+
+    // -------------------------------------------------------------------------------------------
+    //
+	// Return the value of a card.
+    //
+	public function GetValue() {
+
+        if ($this->iCardPattern == 'X')
+            return 0;
+
+        if ($this->iCardValue == 1)
+            return 14;
+
+        return $this->iCardValue;
+    }
+
+}
+
+// End of class
 ?>

@@ -17,18 +17,18 @@ $header = <<<EOD
 <div id="header"></div>
         <div id ="navigation">
 <ul id="nav">
-	<li><a href="me.php">HEM</a>	</li>	
-	<li><a href="redovisning.php">REDOVISNING</a>	</li>		
+	<li><a href="../me.php">HEM</a>	</li>	
+	<li><a href="../redovisning.php">REDOVISNING</a>	</li>		
 	<li><a href="#">PROJEKT</a>
 		<ul><!-- Begin Sub Level -->			
-			<li><a href="../hangman.php">HANGMAN</a></li>
-			<li><a href="../dice.php">DICE</a></li>
-                        <li><a href="../pigGame/pig.php" target="_blank">PIG</a></li>
-                        <li><a href="../card.php">KORT</a></li>
-                        <li><a href="../hand.php">HAND</a></li>
-                        <li><a href="../deck.php">KORTLEK</a></li>
-                        <li><a href="highlow.php">HIGH LOW</a></li>
-        
+			<li><a href="../hangman.php">Hangman</a></li>
+			<li><a href="../dice.php">Dice</a></li>
+                        <li><a href="../pigGame/pig.php" target="_blank">Pig</a></li>
+                        <li><a href="../card.php">Kort</a></li>
+                        <li><a href="../hand.php">Hand</a></li>
+                        <li><a href="../deck.php">Kortlek</a></li>
+                        <li><a href="../session.php">Sessioner</a></li>  
+                        <li><a href="highlow.php">High Low</a></li>        
 		</ul><!-- End Sub Level -->	</li>	
         <li><a href="source.php">KÄLLKOD</a></li>
 	<li><a href="http://validator.w3.org/check/referer">XHTML</a></li>
