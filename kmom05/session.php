@@ -137,9 +137,9 @@ $html = <<< EOD
                     </div> <!-- END left-col -->
                     <div class="clear"></div>
                 </div> <!-- END main-content -->  
-            </div><!-- END wrapper -->  		
-            {$footer}
-            <div class = "debug">{$debug}</div>
+               <div class = "debug">{$debug}</div>
+            </div><!-- END wrapper -->          
+            {$footer}           
 	</body>
 </html>
 EOD;

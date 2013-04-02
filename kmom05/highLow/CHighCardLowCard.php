@@ -44,12 +44,11 @@ class CHighCardLowCard {
 	// Start the game.
 	//
 	public function StartGame() {
-		$this->iDeck->InitAndShuffle();
-		$this->iHand->DropAllCards();
-		$card = $this->iDeck->DealFromTop();
-		$card->FlipCard();
-		$this->iHand->AddCard($card);
-		$this->iHand->AddCard($this->iDeck->DealFromTop()); // Add next card faced down, looks nicer
+		$this->iDeck->InitAndShuffle();//vaskar kortleken
+		$this->iHand->DropAllCards();//släng bort alla korten på handen
+		$card = $this->iDeck->DealFromTop();//hämtar översta kortet från kortleken
+                $card->FlipCard();//vänder upp det hämtatde kortet
+		$this->iHand->AddCard($card);//lägg in kortet i min hand och lägg ut det på spelbordet		
 	}
 
 
@@ -60,10 +59,11 @@ class CHighCardLowCard {
 	// Check according to argument and return TRUE or FALSE
 	//
 	public function GuessAndPickCard($aGuess) {
-		$card1 = $this->iHand->GetLastCard();
-		$card2 = $this->iDeck->DealFromTop();
-		$card2->FlipCard();
-		$this->iHand->AddCard($card2);
+                
+		$card1 = $this->iHand->GetLastCard();//hämtar sista kortet jag fick               
+		$card2 = $this->iDeck->DealFromTop();//hämtar ett nytt kort från kortleken
+		$card2->FlipCard();//vänder upp det hämtatde kortet
+		$this->iHand->AddCard($card2);////lägg in kortet i min hand och lägg ut det på spelbordet                
 		
 		$value1 = $card1->GetValue();
 		$value2 = $card2->GetValue();
@@ -84,7 +84,7 @@ class CHighCardLowCard {
 				$success = ($value2 <= $value1);
 			}
 			break;
-		}
+		}//end switch
 		
 		return $success;
 	}//end function GuessAndPickCard

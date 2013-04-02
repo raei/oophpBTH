@@ -3,10 +3,7 @@
 //
 // highlow.php
 //
-// Description: My testprogram for my class implementing the card game "High Card Low Card".
-// Used to show off that it works as expected.
-//
-//
+// Description: Program for implementing the card game "High Card Low Card".
 // Author: Ralf Eriksson
 //
 
@@ -104,9 +101,9 @@ EOD;
 <p>
 <table>    
     <tr>
-        <td style="padding-right:5px; font-weight:bold;"><a style="color:black;" href='highlow.php?game=high'>HIGH</a></td>
+        <td style="padding-right:5px; font-weight:bold;"><a style="color:black;" href='highlow.php?game=low'>LOW</a></td>
         <td>||</td>
-        <td style="padding-left:5px;font-weight:bold;"><a style="color:black;" href='highlow.php?game=low'>LOW</a></td>
+        <td style="padding-left:5px;font-weight:bold;"><a style="color:black;" href='highlow.php?game=high'>HIGH</a></td>
     </tr>
  </table>                   
 </p>

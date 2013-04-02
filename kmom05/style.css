@@ -274,6 +274,7 @@ CUSTOM CLASSES
 }
 
 .debug {
+    margin: 10px;
     font-size: small;
 }
 

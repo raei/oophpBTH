@@ -81,7 +81,7 @@ class CDeck {
     // DealFromTop, return the card from top of deck, mark as unpicked.
     // 
     //
-	public function DealFromTop() {
+    public function DealFromTop() {
         return(array_pop($this->iCards));
     }
 

@@ -96,7 +96,7 @@ class CCard {
     //
     // Showing off some CSS   
     //
-	public function GetCardAsBox() {
+    public function GetCardAsBox() {
         $text = $this->GetCardAsText();
         $style = <<<EOD
             float: left; 
@@ -120,6 +120,33 @@ EOD;
 
         return "<div style='{$style}'>{$text}</div>";
     }
+    
+     // -------------------------------------------------------------------------------------------
+    //
+    // Show the card as text and some easy css for style.
+    //
+    // Showing off some CSS   
+    //
+    public function GetStartCardAsBox() {
+        //$text = $this->GetCardAsText();
+        $style = <<<EOD
+            float: left; 
+            margin: 5px 5px 5px 5px;
+            padding: 21px 0px 21px 0px; 
+            text-align: center;
+            background:	white;
+            width: 40px; 
+            border: solid gray 1px;
+EOD;
+
+          $text = "&nbsp;";
+            $style .= "background: white url(images/pattern_057.gif) repeat;"; 
+
+        
+
+        return "<div style='{$style}'>{$text}</div>";
+    }
+
 
     // -------------------------------------------------------------------------------------------
     //

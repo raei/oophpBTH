@@ -57,10 +57,11 @@ class CCardHand {
 	// Show all cards on the hand using HTML and CSS.
 	//
 	public function GetCardsAsBox() {
-		$html = "<p><div style='float: left; background: green;'>";
+		$html = "<p><div style='float: left; background: black;'>";
 		foreach($this->iCards as $card) {
 			$html .= $card->GetCardAsBox();
 		}
+                $html .= $card->GetStartCardAsBox();
 		// divClear used to clearing the float-left state in css.
 		$divClear = "<div style='height: 0; clear: both;'>&nbsp;</div>";
 		$html .= "</div>{$divClear}</p>";		
@@ -81,9 +82,8 @@ class CCardHand {
 	// Get the number of cards on the hand.
 	//
 	public function GetNoCards() {
-		return count($this->iCards);	}
-
-	
+		return count($this->iCards);	                
+        }
 } // End of class
 
 ?>
