@@ -60,8 +60,14 @@ class CHighCardLowCard {
 	//
 	public function GuessAndPickCard($aGuess) {
                 
-		$card1 = $this->iHand->GetLastCard();//hämtar sista kortet jag fick               
+		//$this->iHand->DropAllCards();//släng bort alla korten på handen
+               // $this->iDeck->InitAndShuffle();//vaskar kortleken
+		           
+                $card1 = $this->iHand->GetLastCard();//hämtar sista kortet jag fick     
+                $this->iHand->DropAllCards();//släng bort alla korten på handen för att få en ny hela tiden vill bara visa två kort på bordet
+
 		$card2 = $this->iDeck->DealFromTop();//hämtar ett nytt kort från kortleken
+                             
 		$card2->FlipCard();//vänder upp det hämtatde kortet
 		$this->iHand->AddCard($card2);////lägg in kortet i min hand och lägg ut det på spelbordet                
 		

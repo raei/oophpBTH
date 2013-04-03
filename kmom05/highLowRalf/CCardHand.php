@@ -65,7 +65,6 @@ class CCardHand {
 		// divClear used to clearing the float-left state in css.
 		$divClear = "<div style='height: 0; clear: both;'>&nbsp;</div>";
 		$html .= "</div>{$divClear}</p>";		
-		
 		return $html;
 	}//end function GetCardsAsBox
         
@@ -82,7 +81,7 @@ class CCardHand {
 	// Get the number of cards on the hand.
 	//
 	public function GetNoCards() {
-		return count($this->iCards);	                
+		return count($this->iCards);//count how many cards in cardarray == antal kort som spelas	                
         }
 } // End of class
 

@@ -7,7 +7,7 @@
 // Description: A class for a gamecard
 //
 // Author: Ralf Eriksson
-// Card background pattern is from http://www.squidfingers.com/
+// Card background pattern is from http://www.squidfingers.com/patterns/17/
 //
 
 class CCard {
@@ -82,12 +82,23 @@ class CCard {
             'C' => '&clubs;',
             'X' => '&Theta;',
         );
-
-        if ($this->iFaceUpOrDown == 1) {
-            return sprintf("%s%2d", $token[$this->iCardPattern], $this->iCardValue);
-        } else {
-            return "XXX";
+        
+        
+        $cardText = "";
+    
+        if($this->iCardPattern == 'X'){
+            $cardText.= 'JOKER';
+        }else{          
+            $cardText.= sprintf("%2d",$this->iCardValue);
+            $cardText.= '<br />';
+            $cardText.= "&nbsp;";       
+            $cardText.= sprintf("%s",$token[$this->iCardPattern] );
         }
+            
+        
+        if ($this->iFaceUpOrDown == 1) {
+            return $cardText;
+        } 
     }//end function GetCardAsText
 
     // -------------------------------------------------------------------------------------------
@@ -101,11 +112,14 @@ class CCard {
         $style = <<<EOD
             float: left; 
             margin: 5px 5px 5px 5px;
-            padding: 21px 0px 21px 0px; 
-            text-align: center;
+            padding: 1px 0px 21px 0px; 
+            text-align: justify;
+            text-indent:4px;
             background:	white;
-            width: 40px; 
+            width: 80px; 
+            height:100px;
             border: solid gray 1px;
+            font-size:18px;
 EOD;
 
         if ($this->iFaceUpOrDown == 0) {
@@ -128,20 +142,21 @@ EOD;
     // Showing off some CSS   
     //
     public function GetStartCardAsBox() {
-        //$text = $this->GetCardAsText();
+       
         $style = <<<EOD
             float: left; 
             margin: 5px 5px 5px 5px;
             padding: 21px 0px 21px 0px; 
             text-align: center;
             background:	white;
-            width: 40px; 
+            width: 80px; 
+            height:80px;    
             border: solid gray 1px;
+                
 EOD;
 
           $text = "&nbsp;";
-            $style .= "background: white url(images/pattern_057.gif) repeat;"; 
-
+          $style .= "background: white url(images/pattern_057.gif) repeat;"; 
         
 
         return "<div style='{$style}'>{$text}</div>";
@@ -150,9 +165,9 @@ EOD;
 
     // -------------------------------------------------------------------------------------------
     //
-	// Return the value of a card.
+    // Return the value of a card.
     //
-	public function GetValue() {
+    public function GetValue() {
 
         if ($this->iCardPattern == 'X')
             return 0;
@@ -163,7 +178,5 @@ EOD;
         return $this->iCardValue;
     }
 
-}
-
-// End of class
+}// End of class
 ?>
