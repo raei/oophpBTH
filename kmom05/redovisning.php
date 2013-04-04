@@ -103,7 +103,7 @@ $html = <<<EOD
         implementering.
     </p>
         
-        <h1>Kursmoment 04</h1> 
+   <h1>Kursmoment 04</h1> 
     <h2>Funktioner, klasser och objekt</h2>
         
         <h3>Uppgiften kasta gris</h3>
@@ -146,7 +146,40 @@ $html = <<<EOD
         projektet och ser fram emot att ta tag i nästa
         projekt. Vi får se om det går lättare nu när jag
         börjat komma igång med objektorienterad PHP.
-     </p>       
+     </p>      
+        
+   <h1>Kursmoment 05</h1> 
+    <h2>Objektorienterad programmering i PHP</h2>
+        <p>
+          Jag bestämde mig för att följ Mikaels kod och
+          bygga vidare på den. För att på det viset kunna läsa och försöka förstå
+          hur programmet är uppbyggt. Tycker jag förstår koden bra men att skriva
+        allt själv är jag inte riktigt redo för ännu utan de behövs mer träning
+        och förståelse hur PHP fungerar i den objektorieterade världen. 
+   </p<         
+   <p>Sessioner var det som intresserade mig mest samt hur du kan rita ut kort.
+        Att lagra objekt i sessioner kommer jag att kunna utnyttja mera då jag
+        gillade det upplägget i framförallt spelutvecklingen vi har sysslat med på slutet.
+        Jag letade länge på nätet efter olika sätt att rita upp korten. Jag hittade
+        flera länkar men den sista jag hittade på forumet tyckte jag var bäst http://svg-cards.sourceforge.net/.
+        Det var en SVG variant som jag kommer att använda om jag ska bygga
+        några flera kortspel i framtiden. Det fick räcka med CSS varianten den
+        här gången. Jag gjorde lite design förändringar på high och low spelet.
+        Jag fixade så att ett kort ligger ute med ryggen upp vid start så att det
+        känns mera realistiskt ut vid spel. Ändrade kortdesignen också så att det
+        blev tydligare att se vilket kort du har ute på spelplanen.
+        </p>
+        
+        Skriv redovisningen på din me-sida. Skriv ett stycke (ca 15 meningar) om hur momentet funkade. 
+            Reflektera över svårigheter/problem/lösningar/resultatet, etc. Besvara gärna följande:
+
+    Gick det bra med sessionshanteringen?.
+    Gjorde du några extra grejer på spelet? Beskriv dem.
+    Har du förslag på alternativ lösning och implementation, eller kanske en annan syn på hur klasserna kan hänga ihop?
+
+Kopiera texten och lämna in den på redovisningen (ITs) tillsammans med en länk till din me-sida. Läraren kommer snabbt kolla igenom dem. Betyg är G (godkänd) eller komplettera (komplettera -> gör om -> gör bättre). Betyget baseras på din redovisningstext samt att din me-sida fungerar.
+
+Ta ytterligare en kopia av redovisningstexten och gör ett inlägg i forumet. Visa upp vad du gjort och berätta att du är klar. Lämna en länk till din me-sida.
 
 </div> <!-- END left-col -->			
 <div class="clear"></div>

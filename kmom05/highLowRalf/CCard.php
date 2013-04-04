@@ -72,6 +72,7 @@ class CCard {
     // Use html special chars to make it look nicer.
     // Google for "html special chars"
     // Example on sprintf for formatting numbers in text  
+    // 
     //
     public function GetCardAsText() {
 
@@ -83,23 +84,58 @@ class CCard {
             'X' => '&Theta;',
         );
         
+           
         
         $cardText = "";
+        
     
         if($this->iCardPattern == 'X'){
             $cardText.= 'JOKER';
-        }else{          
-            $cardText.= sprintf("%2d",$this->iCardValue);
+        }else{
+             if($this->iCardValue < 2 || $this->iCardValue > 10 )
+             {
+                $this->newValue =  $this->getPicturedCard($this->iCardValue);//ändrar kortet till ett klätt istället för siffra 
+                $cardText.= sprintf("%s",$this->newValue);                 
+            }else{
+                $cardText.= sprintf("%2d",$this->iCardValue);               
+            }
             $cardText.= '<br />';
             $cardText.= "&nbsp;";       
             $cardText.= sprintf("%s",$token[$this->iCardPattern] );
-        }
+        }//end if else
             
         
         if ($this->iFaceUpOrDown == 1) {
             return $cardText;
         } 
     }//end function GetCardAsText
+    
+    /**----------------------------------------------------------------------------
+    * 
+    * Funktion för att byta ut siffran för klädda kort
+    * 
+    * 
+    */
+    private function getPicturedCard($value) {        
+        
+       switch($value)
+       {
+        case 1;
+         $cardType = 'A';
+         break;
+        case 13;
+         $cardType = 'K';
+         break;
+        case 12;
+         $cardType = 'D';
+         break;
+        case 11;
+         $cardType = 'J';
+         break;
+       }
+      return  $cardType;
+    }//end function getPicturedCard
+  
 
     // -------------------------------------------------------------------------------------------
     //

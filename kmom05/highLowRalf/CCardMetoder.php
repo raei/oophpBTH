@@ -82,6 +82,11 @@ class CCard {
             'C' => '&clubs;',
             'X' => '&Theta;',
         );
+        
+        /*if(!$this->iCardValue > 2 && !$this->iCardValue < 10 )
+        {
+          $this->iCardValue =  getCardAsText2($this->iCardValue);
+        }*/
 
         if($this->iFaceUpOrDown == 1) {
                 return sprintf("%s%2d", $token[$this->iCardPattern], $this->iCardValue);	
@@ -89,6 +94,39 @@ class CCard {
                 return "XXX";
         }
     }//end function GetCardAsText
+    
+    
+    /**----------------------------------------------------------------------------
+ * 
+ * Visa en text-baserad representation av kortet. Visa siffran och special-
+ * tecken (? ? ? ?).
+ * 
+ * @return string
+ */
+/*
+    public function getCardAsText2($value) { 
+        
+       switch($value)
+       {
+        case 1;
+         $value = "A";
+         break;
+
+        case 13;
+         $value = "K";
+         break;
+
+        case 12;
+         $value = "Q";
+         break;
+
+        case 11;
+         $value = "J";
+         break;
+       }
+      return  $value;
+    }
+    */
 
     /*
     * Visar kortet i en div med enkel CSS för att skapa ramar och färger. 
