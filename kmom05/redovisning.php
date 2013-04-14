@@ -151,35 +151,41 @@ $html = <<<EOD
    <h1>Kursmoment 05</h1> 
     <h2>Objektorienterad programmering i PHP</h2>
         <p>
-          Jag bestämde mig för att följ Mikaels kod och
-          bygga vidare på den. För att på det viset kunna läsa och försöka förstå
-          hur programmet är uppbyggt. Tycker jag förstår koden bra men att skriva
-        allt själv är jag inte riktigt redo för ännu utan de behövs mer träning
-        och förståelse hur PHP fungerar i den objektorieterade världen. 
-   </p<         
-   <p>Sessioner var det som intresserade mig mest samt hur du kan rita ut kort.
-        Att lagra objekt i sessioner kommer jag att kunna utnyttja mera då jag
-        gillade det upplägget i framförallt spelutvecklingen vi har sysslat med på slutet.
-        Jag letade länge på nätet efter olika sätt att rita upp korten. Jag hittade
-        flera länkar men den sista jag hittade på forumet tyckte jag var bäst http://svg-cards.sourceforge.net/.
-        Det var en SVG variant som jag kommer att använda om jag ska bygga
-        några flera kortspel i framtiden. Det fick räcka med CSS varianten den
-        här gången. Jag gjorde lite design förändringar på high och low spelet.
-        Jag fixade så att ett kort ligger ute med ryggen upp vid start så att det
-        känns mera realistiskt ut vid spel. Ändrade kortdesignen också så att det
-        blev tydligare att se vilket kort du har ute på spelplanen.
+            Jag bestämde mig för att följa Mikaels kod och
+            bygga vidare på den. För att på det viset kunna läsa och försöka förstå
+            hur programmet är uppbyggt. Tycker jag förstår koden bra men att skriva
+            allt själv är jag inte riktigt redo för ännu utan det behövs mer träning
+            och förståelse hur PHP fungerar i den objektorieterade världen. 
+        </p>       
+        <p>
+            Sessioner var det som intresserade mig mest samt hur du kan rita ut kort.
+            Att lagra objekt i sessioner kommer jag att kunna utnyttja mera då jag
+            tycker det var ett bra upplägg i den spelutvecklingen vi har sysslat med på slutet.
+            Jag letade länge på nätet efter olika sätt att rita upp korten. Jag hittade
+            flera länkar men den sista hittade jag hittade på forumet som jag tyckte 
+            var den som var bäst <a href="http://svg-cards.sourceforge.net/" target="_blank">http://svg-cards.sourceforge.net/</a>
+            Det var en SVG variant som jag kommer att använda om jag ska bygga
+            några flera kortspel i framtiden. Det fick räcka med CSS varianten den
+            här gången. Jag gjorde lite design förändringar på high och low spelet.
+            Jag fixade så att ett kort ligger ute med ryggen upp vid start så att det
+            ser mera realistiskt ut vid spel. Ändrade kortdesignen så att det
+            blev tydligare att se vilket kort som ligger ute på spelplanen.
         </p>
-        
-        Skriv redovisningen på din me-sida. Skriv ett stycke (ca 15 meningar) om hur momentet funkade. 
-            Reflektera över svårigheter/problem/lösningar/resultatet, etc. Besvara gärna följande:
-
-    Gick det bra med sessionshanteringen?.
-    Gjorde du några extra grejer på spelet? Beskriv dem.
-    Har du förslag på alternativ lösning och implementation, eller kanske en annan syn på hur klasserna kan hänga ihop?
-
-Kopiera texten och lämna in den på redovisningen (ITs) tillsammans med en länk till din me-sida. Läraren kommer snabbt kolla igenom dem. Betyg är G (godkänd) eller komplettera (komplettera -> gör om -> gör bättre). Betyget baseras på din redovisningstext samt att din me-sida fungerar.
-
-Ta ytterligare en kopia av redovisningstexten och gör ett inlägg i forumet. Visa upp vad du gjort och berätta att du är klar. Lämna en länk till din me-sida.
+        <p>
+            Det var en hel del att klura på. Jag fick rita upp ett schema över klasserna
+            för att förstå hur de sammarbetade i programmet. Det gjorde att jag enklare 
+            att förstå alla anrop i koden. Har inte kommit på någon
+            annan klasskonstruktion jag tycker att det hela var bra organiserat.
+        </p>
+        <p>
+            Nåt jag skulle vilja vidareutveckla är designen på korten med hjälp av SVG samt
+            att få High och Low att endast visa två kort vid spel det skulle kännas mer realistiskt.
+            Att kunna spela med en insats av något slag samt en highscorelista med  
+            resultat på vem som lyckats göra flest antal rätta gissningar.
+            Dessa tillägg skulle vara kul att fixa vid ett senare tillfälle.        
+        </p>        
+        <p>
+            <a href="http://www.student.bth.se/~raer12/oophp/kmom05/highLow/highlow.php">Spela HighLow</a>        
 
 </div> <!-- END left-col -->			
 <div class="clear"></div>
