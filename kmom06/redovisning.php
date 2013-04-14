@@ -88,7 +88,7 @@ $html = <<<EOD
     
      <h4>Tankenöt 1</h4>   
      <p>
-        Skapade en egen metod DrawHuvud() som gör ett lokalt metodanrop<br>
+        Skapade en egen metod DrawHuvud() som gör ett lokalt metodanrop
         på den befintliga metoden GetHuvud() som redan var skapad i klassen.       
      </p>
 
@@ -185,8 +185,37 @@ $html = <<<EOD
             Dessa tillägg skulle vara kul att fixa vid ett senare tillfälle.        
         </p>        
         <p>
-            <a href="http://www.student.bth.se/~raer12/oophp/kmom05/highLow/highlow.php">Spela HighLow</a>        
-
+            <a href="http://www.student.bth.se/~raer12/oophp/kmom05/highLow/highlow.php">Spela HighLow</a>       
+        </p>
+        
+        <h1>Kursmoment 06</h1> 
+    <h2>Databaser, SQL och PHP</h2>
+        <p>
+            Momentet gick bra känner att den här är ett område jag behärskar
+            ganska bra. Det enda som var lite klurigt var att fixa vänsök så att den visade
+            namnet och utrustning på de personer jag gjorde en sökning på.
+            Den blev bra tillslut och jag känner mig nöjd med uppgiften.
+         </p>
+         <p>
+            En sak som tog lite tid att fixa var inloggning till skolans PHPMyAdmin, men som tur var hade
+            jag gjort det en gång förut så det löste sig. Men det är en hel del fixande med lösen mm innan 
+            allt fungerar. Väl inloggad så är det inga problem med PHPMyAdmin.Jag har jobbat
+            i det tidigare så jag känner mig trygg i den miljön och tycker att det
+            fungerar bra och jag jobbar hellre i det än ute i konsol miljön. Databaskopplingen
+            med mysqli och samt att definera globala konstanter med hjälp av define() 
+            var bra att lära sig. 
+        </p>   
+        <p>
+            Jag har jobbat med databaser förut men mest med Access men på senare tid
+            har MySql tagit över och all utveckling jag gör nu sker i den miljön. 
+            Jag tycker att SQL språket är det enklaste dataspråket du kan jobba med. Enkelt
+            att komma igång och förstå. Det är däremot mer problematiskt att bygga
+            upp en databas med rätt relationer och data.
+        </p>              
+        
+        <p>
+              <a href="http://www.student.bth.se/~raer12/oophp/kmom06/search/friendSearchGoogle.php" target="_blank">Friend Search</a>    
+        </p>
 </div> <!-- END left-col -->			
 <div class="clear"></div>
 </div> <!-- END main-content -->    	

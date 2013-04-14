@@ -2,10 +2,9 @@
 
 // ===========================================================================================
 //
-// friendSearch.php
+// friendSearchGoogle.php
 //
-// Description: A PHP-Mysql implementation that shows how to access a MySQL 
-// database from PHP through mysqli database extension.
+// Description: A PHP-Mysql search for my friends and there computer equipment
 //
 // Author: Ralf Eriksson
 //
@@ -45,11 +44,7 @@ $html .= <<<EOD
     </form>
 </div><!-- end searchBar -->      
 EOD;
-        
-        
-        
-        
-        
+
         
 //---------------------
 // jscript
@@ -90,9 +85,6 @@ EOD;
 //
 // Connect to the database server
 //
-// http://php.net/manual/en/book.mysqli.php
-// http://php.net/manual/en/mysqli.connect-error.php
-//
 
 // Host, database, user and password stored in separate file
 require_once('config.php');
@@ -111,12 +103,9 @@ if (mysqli_connect_error()) {
 //
 // Prepare and perform a SELECT query
 //
-// http://php.net/manual/en/mysqli.query.php
-// http://php.net/manual/en/mysqli.real-escape-string.php
-// http://php.net/manual/en/mysqli-result.num-rows.php
-//
 
-// Sanitize data
+
+// Clean data
 $search = $mysqli->real_escape_string($search);
 
 // Prepare query
@@ -139,43 +128,36 @@ EOD;
 if(!empty($search)) {
     // Execute query
     $res = $mysqli->query($query) 
-                    or die("Could not query database, query =<br/><pre>{$query}</pre><br/>{$mysqli->error}");
-
-    /*$html .= "<div id = 'main'> 
-                <p>Query={$query}</p><p>Number of rows in resultset: " . $res->num_rows . "</p>
-              </div><!-- end main -->";*/
+                    or die("Could not query database, query =<br/><pre>{$query}</pre><br/>{$mysqli->error}");  
 
   
-// **************************************************************************************** 
-// Show the results of the query 
-// **************************************************************************************** 
-if ($res->num_rows > 0) {
-      
-        
-        $runda = true;
-        $tempName = "";
-        $row = $res->fetch_object();
-        
-        do {     
-            if($row->Namn != $tempName ){
-                $html .= "<div id='pInfo'><p><h3>". $row->Namn . "</h3>Född: <h4>" . $row->Fodd . "</h4> Smeknamn: <h4>" . $row->Smeknamn . "</h4></p><p><h5>Utrustning</h5></p></div><div id='pUtrustning'> <h6> - " . $row->Utrustning . "</h6></div>"; 
-            }else{                  
-                  $html .= "<div id='pUtrustning'> <h6> - " . $row->Utrustning . "</h6></div>";  
-            }         
-            $tempName =  $row->Namn;
-            
-        } while ($row = $res->fetch_object());    
-   
-        
-        $res->close();       
-  }
- }
+    // **************************************************************************************** 
+    // Show the results of the query Friends name and all the equipment they have
+    // **************************************************************************************** 
+    if ($res->num_rows > 0) {
+            $runda = true;
+            $tempName = "";
+            $row = $res->fetch_object();
+
+            do {     
+                if($row->Namn != $tempName ){
+                    $html .= "<div id='pInfo'><p><h3>". $row->Namn . "</h3>Född: <h4>" . $row->Fodd . "</h4> Smeknamn: <h4>" . $row->Smeknamn . "</h4></p><p><h5>Utrustning</h5></p></div><div id='pUtrustning'> <h6> - " . $row->Utrustning . "</h6></div>"; 
+                }else{                  
+                      $html .= "<div id='pUtrustning'> <h6> - " . $row->Utrustning . "</h6></div>";  
+                }         
+                $tempName =  $row->Namn;
+
+            } while ($row = $res->fetch_object());
+
+            $res->close();       
+      }//end if inner
+ }//end if outer
 // -------------------------------------------------------------------------------------------
 //
 // Create and print out the html-page
 //
 //require_once('common.php');
-$title       = "FriendSearch";
+$title       = "Ralf's FriendSearch";
 $charset     = "iso-8859-1";
 $language    = "sv";
 
