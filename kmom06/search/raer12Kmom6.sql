@@ -45,7 +45,7 @@ INSERT INTO `Kompis` (`id`, `namn`, `fodd`, `smeknamn`) VALUES
 (4, 'John Larsson', '1971-10-10', 'jonte'),
 (5, 'Lars Pettersson', '1967-01-20', 'lasse'),
 (6, 'Johan Eriksson', '1950-12-24', 'joh'),
-(7, 'Kurt Larsson', '2000-10-10', 'lasse');
+(7, 'Kurt Larsson', '2000-10-10', 'kurre');
 
 -- --------------------------------------------------------
 
@@ -68,12 +68,12 @@ CREATE TABLE IF NOT EXISTS `KompisUtrustning` (
 INSERT INTO `KompisUtrustning` (`id`, `id_Kompis`, `id_Utrustning`) VALUES
 (1, 1, 1),
 (2, 1, 2),
-(3, 3, 4),
+(3, 3, 5),
 (4, 4, 1),
 (5, 4, 2),
 (6, 5, 1),
 (7, 5, 2),
-(8, 5, 4);
+(8, 5, 5);
 
 -- --------------------------------------------------------
 

@@ -52,7 +52,7 @@ EOD;
 //
 // Verify the input variable _GET, no tampering with it
 //
-$currentdir	= isset($_GET['dir']) ? $_GET['dir'] : '';
+$currentdir	= isset($_POST['dir']) ? $_POST['dir'] : '';
 
 $fullpath1 	= realpath($BASEDIR);
 $fullpath2 	= realpath($BASEDIR . $currentdir);
@@ -123,8 +123,8 @@ $html .= '</p> </div> <!-- END left-col -->
 $dir 	= $fullpath;
 $file	= "";
 
-if(isset($_GET['file'])) {
-	$file = basename($_GET['file']);
+if(isset($_POST['file'])) {
+	$file = basename($_POST['file']);
 
 	$content = htmlspecialchars(file_get_contents($dir . $SEPARATOR . $file, 'FILE_TEXT'));
 
