@@ -191,26 +191,25 @@ $html = <<<EOD
         <h1>Kursmoment 06</h1> 
     <h2>Databaser, SQL och PHP</h2>
         <p>
-            Momentet gick bra känner att den här är ett område jag behärskar
+            Momentet gick bra. Jag känner att det här är ett område jag behärskar
             ganska bra. Det enda som var lite klurigt var att fixa vänsök så att den visade
             namnet och utrustning på de personer jag gjorde en sökning på.
-            Den blev bra tillslut och jag känner mig nöjd med uppgiften.
+            Den blev bra till slut och jag känner mig nöjd med uppgiften.
          </p>
          <p>
             En sak som tog lite tid att fixa var inloggning till skolans PHPMyAdmin, men som tur var hade
             jag gjort det en gång förut så det löste sig. Men det är en hel del fixande med lösen mm innan 
-            allt fungerar. Väl inloggad så är det inga problem med PHPMyAdmin.Jag har jobbat
-            i det tidigare så jag känner mig trygg i den miljön och tycker att det
-            fungerar bra och jag jobbar hellre i det än ute i konsol miljön. Databaskopplingen
-            med mysqli och samt att definera globala konstanter med hjälp av define() 
-            var bra att lära sig. 
+            allt fungerar. Väl inloggad så fungerar PHPMyAdmin bra. Jag har jobbat
+            i det tidigare så jag känner mig trygg i den miljön. Jag jobbar hellre i det gränssnittet än i konsolmiljön.            
         </p>   
         <p>
+            Nya kunskaper som att koppla databasen med mysqli och samt att definera globala konstanter med hjälp av define() 
+            var bra att lära sig. Att jobba mot vyer var också lärorikt.       
+        </p>        
+        <p>
             Jag har jobbat med databaser förut men mest med Access men på senare tid
-            har MySql tagit över och all utveckling jag gör nu sker i den miljön. 
-            Jag tycker att SQL språket är det enklaste dataspråket du kan jobba med. Enkelt
-            att komma igång och förstå. Det är däremot mer problematiskt att bygga
-            upp en databas med rätt relationer och data.
+            har MySql tagit över. Jag tycker att SQL-språket är det enklaste dataspråket du kan jobba med. 
+            Det är däremot mer problematiskt att bygga upp en databas med rätt relationer och data.
         </p>              
         
         <p>
