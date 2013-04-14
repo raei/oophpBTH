@@ -151,25 +151,21 @@ if(!empty($search)) {
 // **************************************************************************************** 
 if ($res->num_rows > 0) {
       
-        $i = 1;
+        
         $runda = true;
         $tempName = "";
-        while ($row = $res->fetch_object()) {             
-           
-            if($row->Namn != $tempName){
-                $html .= "<div id='pInfo'><p><h3>". $row->Namn . "</h3>Född: <h4>" . $row->Fodd . "</h4> Smeknamn: <h4>" . $row->Smeknamn . "</h4></p><p><h5>Utrustning</h5></p></div>"; 
-                // $runda=false;
-            }else if($row->Namn === $tempName ){                  
-                   $runda = false;
-            }
-            
-            if($runda === false ){                
-                 $html .= "<div id='pUtrustning'> <h6> - " . $row->Utrustning . "</h6></div>";    
-            }
-            
+        $row = $res->fetch_object();
+        
+        do {     
+            if($row->Namn != $tempName ){
+                $html .= "<div id='pInfo'><p><h3>". $row->Namn . "</h3>Född: <h4>" . $row->Fodd . "</h4> Smeknamn: <h4>" . $row->Smeknamn . "</h4></p><p><h5>Utrustning</h5></p></div><div id='pUtrustning'> <h6> - " . $row->Utrustning . "</h6></div>"; 
+            }else{                  
+                  $html .= "<div id='pUtrustning'> <h6> - " . $row->Utrustning . "</h6></div>";  
+            }         
             $tempName =  $row->Namn;
-            $i++; 
-        }//end while
+            
+        } while ($row = $res->fetch_object());    
+   
         
         $res->close();       
   }
