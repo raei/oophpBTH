@@ -28,8 +28,7 @@ $header = <<<EOD
                         <li><a href="../hand.php">Hand</a></li>
                         <li><a href="../deck.php">Kortlek</a></li>
                         <li><a href="../session.php">Sessioner</a></li>  
-                        <li><a href="highlow.php">High Low</a></li>  
-                        <li><a href="../search/friendSearchGoogle.php" target="_blank">Friend Search</a></li>
+                        <li><a href="highlow.php">High Low</a></li>        
 		</ul><!-- End Sub Level -->	</li>	
         <li><a href="source.php">KÄLLKOD</a></li>
 	<li><a href="http://validator.w3.org/check/referer">XHTML</a></li>

@@ -14,7 +14,7 @@
 //
 error_reporting(E_ALL | E_STRICT);
 $debug = "";
-$debugEnable = TRUE;  // TRUE to enable debugging, FALSE to not print out debug information
+$debugEnable = FALSE;  // TRUE to enable debugging, FALSE to not print out debug information
 
 
 // -------------------------------------------------------------------------------------------

@@ -14,7 +14,7 @@
 //
 error_reporting(E_ALL | E_STRICT);
 $debug = "";
-$debugEnable = TRUE;  // TRUE to enable debugging, FALSE to not print out debug information
+$debugEnable = FALSE;  // TRUE to enable debugging, FALSE to not print out debug information
 
 
 // -------------------------------------------------------------------------------------------
@@ -28,7 +28,6 @@ require_once('CHighCardLowCard.php');
 
 // Load class definitions before calling session_start
 session_start();
-
 
 // -------------------------------------------------------------------------------------------
 //
@@ -48,7 +47,7 @@ switch($doGame) {
  			                        // the session.
 		session_regenerate_id();  // To avoid problems
 
-		$_SESSION['game']   = new CHighCardLowCard();
+		$_SESSION['game'] = new CHighCardLowCard();
 		$_SESSION['game']->StartGame();
 
 		$debug .= 'Game initiated.';
@@ -81,42 +80,41 @@ switch($doGame) {
 // Test the CHighCardLowCard-class
 //
 //
+$html .= <<<EOD
+<p style="padding-top:20px;  ">
+<a style="padding-right:13px;color:black;padding-left:39px; " href='highlow.php?game=init'>START</a>&#124;<a style="padding-left:15px;color:black;" href='highlow.php?game=destroy'>STOP</a>
+</p>
+EOD;
 
-$html .= "<p>Gissa om nästa kort är högre eller lägre.</p>";
 
 if(isset($_SESSION['game'])) {
-
+        $html .= "<p>Gissa om nästa kort är högre eller lägre.</p>";
 	$html .= $_SESSION['game']->ShowGameStatus();
 	
 	if($gameOver) {
 		$points = $_SESSION['game']->GetPoints();
 		$_SESSION['game']->StartGame();
 		$html .= <<<EOD
-<p>
-Game over. Du lyckades med {$points} kort.
-</p>
+                        <p style="font-weight: bold; font-size: 18px;">
+                        Game over. Du klarade {$points} kort.
+                        </p>
 EOD;
 	} else {
 		$html .= <<<EOD
-<p>
-<table>    
-    <tr>
-        <td style="padding-right:5px; font-weight:bold;"><a style="color:black;" href='highlow.php?game=low'>LOW</a></td>
-        <td>||</td>
-        <td style="padding-left:5px;font-weight:bold;"><a style="color:black;" href='highlow.php?game=high'>HIGH</a></td>
-    </tr>
- </table>                   
-</p>
+                    <p>
+                    <table>    
+                        <tr>
+                            <td id="low"><a href='highlow.php?game=low'>LOW</a></td>
+                            <td id="streck">&#124;</td>
+                            <td id="high"><a href='highlow.php?game=high'>HIGH</a></td>
+                        </tr>
+                     </table>                   
+                    </p>
 EOD;
 	}
 }	
 
-$html .= <<<EOD
-<p>
-<a href='highlow.php?game=init'>Starta ett nytt spel</a><br/>
-<a href='highlow.php?game=destroy'>Avbryt spelet</a>
-</p>
-EOD;
+
 
 $debug .= 'Current session id is: ' . session_id() . '<br />';
 
@@ -144,7 +142,7 @@ $html = <<< EOD
             <div id="wrapper"> 
                 <div id="main-content">
                     {$header}
-                    <div id="left-colHangman">
+                    <div id="left-cardGame">
                            <h1>{$title}</h1>							
                             {$html}					
                     </div> <!-- END left-col -->

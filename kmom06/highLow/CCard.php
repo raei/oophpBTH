@@ -7,7 +7,7 @@
 // Description: A class for a gamecard
 //
 // Author: Ralf Eriksson
-// Card background pattern is from http://www.squidfingers.com/
+// Card background pattern is from http://www.squidfingers.com/patterns/17/
 //
 
 class CCard {
@@ -72,6 +72,7 @@ class CCard {
     // Use html special chars to make it look nicer.
     // Google for "html special chars"
     // Example on sprintf for formatting numbers in text  
+    // 
     //
     public function GetCardAsText() {
 
@@ -82,13 +83,59 @@ class CCard {
             'C' => '&clubs;',
             'X' => '&Theta;',
         );
-
+        
+           
+        
+        $cardText = "";
+        
+    
+        if($this->iCardPattern == 'X'){
+            $cardText.= 'JOKER';
+        }else{
+             if($this->iCardValue < 2 || $this->iCardValue > 10 )
+             {
+                $this->newValue =  $this->getPicturedCard($this->iCardValue);//ändrar kortet till ett klätt istället för siffra 
+                $cardText.= sprintf("%s",$this->newValue);                 
+            }else{
+                $cardText.= sprintf("%2d",$this->iCardValue);               
+            }
+            $cardText.= '<br />';
+            $cardText.= "&nbsp;";       
+            $cardText.= sprintf("%s",$token[$this->iCardPattern] );
+        }//end if else
+            
+        
         if ($this->iFaceUpOrDown == 1) {
-            return sprintf("%s%2d", $token[$this->iCardPattern], $this->iCardValue);
-        } else {
-            return "XXX";
-        }
+            return $cardText;
+        } 
     }//end function GetCardAsText
+    
+    /**----------------------------------------------------------------------------
+    * 
+    * Funktion för att byta ut siffran för klädda kort
+    * 
+    * 
+    */
+    private function getPicturedCard($value) {        
+        
+       switch($value)
+       {
+        case 1;
+         $cardType = 'A';
+         break;
+        case 13;
+         $cardType = 'K';
+         break;
+        case 12;
+         $cardType = 'D';
+         break;
+        case 11;
+         $cardType = 'J';
+         break;
+       }
+      return  $cardType;
+    }//end function getPicturedCard
+  
 
     // -------------------------------------------------------------------------------------------
     //
@@ -101,11 +148,14 @@ class CCard {
         $style = <<<EOD
             float: left; 
             margin: 5px 5px 5px 5px;
-            padding: 21px 0px 21px 0px; 
-            text-align: center;
+            padding: 1px 0px 21px 0px; 
+            text-align: justify;
+            text-indent:4px;
             background:	white;
-            width: 40px; 
+            width: 80px; 
+            height:100px;
             border: solid gray 1px;
+            font-size:18px;
 EOD;
 
         if ($this->iFaceUpOrDown == 0) {
@@ -128,20 +178,21 @@ EOD;
     // Showing off some CSS   
     //
     public function GetStartCardAsBox() {
-        //$text = $this->GetCardAsText();
+       
         $style = <<<EOD
             float: left; 
             margin: 5px 5px 5px 5px;
             padding: 21px 0px 21px 0px; 
             text-align: center;
             background:	white;
-            width: 40px; 
+            width: 80px; 
+            height:80px;    
             border: solid gray 1px;
+                
 EOD;
 
           $text = "&nbsp;";
-            $style .= "background: white url(images/pattern_057.gif) repeat;"; 
-
+          $style .= "background: white url(images/pattern_057.gif) repeat;"; 
         
 
         return "<div style='{$style}'>{$text}</div>";
@@ -150,9 +201,9 @@ EOD;
 
     // -------------------------------------------------------------------------------------------
     //
-	// Return the value of a card.
+    // Return the value of a card.
     //
-	public function GetValue() {
+    public function GetValue() {
 
         if ($this->iCardPattern == 'X')
             return 0;
@@ -163,7 +214,5 @@ EOD;
         return $this->iCardValue;
     }
 
-}
-
-// End of class
+}// End of class
 ?>

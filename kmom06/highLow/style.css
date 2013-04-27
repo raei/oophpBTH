@@ -133,45 +133,14 @@ div#main-content {
 	padding-bottom: 50px;
 }
 
-div#main-content div#left-col {
-	padding-left: 30px;
-	float: left;
-	width: 525px;
-}
 
-div#main-content div#left-colHangman {
+div#main-content div#left-cardGame {
         display: block;
-	padding-left: 30px;
+	padding-left: 40px;
 	float: left;
-	width: 420px;
+	width: 738px;
         min-height: 230px;
-}
-
-div#main-content div#left-col ol {
-	font-size: 1.3em;	
-	margin-left: 25px;
-	font-weight: bold;
-	list-style: circle;
-}	
-
-div#right-col {
-	display: block;
-	float: left;
-	margin-top: 50px;
-	margin-left: 30px;
-	background-image: url("images/ralfSpainStair.png");
-	border: 2px solid black;
-	width: 168px;
-	height: 111px;
-}	
-
-div#right-colHangman {
-	display: block;
-	float: left;
-	margin-top: 0;
-	padding-right: 1px;
-	min-width: 268px;       
-}	
+}		
 
 div#footer {
 	min-height: 35px;
@@ -218,7 +187,7 @@ ul#nav .current a, ul#nav li:hover > a  {
 ul#nav ul {
 	display: none;
 	margin: 0;
-	padding-left: 30px;	
+	padding-left: 124px;	
 }
 
 ul#nav li:hover > ul {
@@ -260,7 +229,7 @@ div#testerImg {
 }
 
 /* ------------------------------
-CUSTOM CLASSES
+CUSTOM CLASSES and ID TAGS
 ------------------------------ */
 
 .clear { clear: both; }
@@ -279,4 +248,28 @@ CUSTOM CLASSES
 
 .welcomeMessage {
     font-size: 12px;
+}
+
+#low a, #high a{
+    display: block;
+    color: red;
+    font-weight:bold;
+    font-size: 28px;
+}
+
+#streck{
+    margin-top: 0;
+    font-size: 24px;
+}
+
+
+#low{
+     padding-right:14px; 
+     padding-left:12px;
+     padding-top: 4px;       
+}
+
+#high{     
+    padding-left:11px;
+    padding-top: 4px;     
 }
