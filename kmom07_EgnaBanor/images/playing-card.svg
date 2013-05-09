@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://web.resource.org/cc/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xml:space="preserve" width="84.444mm" height="46.7429mm" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 24.025 13.2987">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#1F1A17;stroke-width:0.0569016}
+    .str2 {stroke:#DA251D;stroke-width:0.0569016}
+    .str1 {stroke:white;stroke-width:0.0569016}
+    .fil3 {fill:#1F1A17}
+    .fil0 {fill:#72706F}
+    .fil2 {fill:#DA251D}
+    .fil1 {fill:white}
+    .fil4 {fill:#1F1A17;fill-rule:nonzero}
+    .fil5 {fill:#DA251D;fill-rule:nonzero}
+   ]]>
+  </style>
+ </defs>
+ <g id="Ebene_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_161069728">
+   <g>
+    <rect id="_161069920" class="fil0 str0" x="15.0596" y="0.0284508" width="8.93691" height="12.4833" rx="0.880438" ry="0.880438"/>
+    <rect id="_161069848" class="fil1 str1" x="15.2767" y="0.331616" width="8.5028" height="11.8769" rx="0.804275" ry="0.804275"/>
+   </g>
+   <rect id="_161069752" class="fil2 str2" transform="matrix(0.707107 0.707107 -0.707107 0.707107 19.5281 3.71329)" width="3.61587" height="3.61587"/>
+  </g>
+  <g id="_161069368">
+   <g>
+    <rect id="_161069680" class="fil0 str0" x="9.7768" y="0.786977" width="8.93691" height="12.4833" rx="0.880438" ry="0.880438"/>
+    <rect id="_161069608" class="fil1 str1" x="9.99385" y="1.09014" width="8.5028" height="11.8769" rx="0.804275" ry="0.804275"/>
+   </g>
+   <circle id="_161069536" class="fil3 str0" cx="14.2892" cy="5.21754" r="1.3624"/>
+   <circle id="_161069488" class="fil3 str0" cx="13.1416" cy="7.4438" r="1.3624"/>
+   <circle id="_161069440" class="fil3 str0" cx="15.3489" cy="7.44375" r="1.3624"/>
+   <path id="_161069392" class="fil4 str0" d="M14.0779 8.12836l0.371425 0 0.185698 2.07372 -0.742822 0 0.185698 -2.07372zm0.185727 0m0.278562 1.03686m-0.278562 1.03686m-0.278562 -1.03686"/>
+  </g>
+  <g id="_161069128">
+   <g>
+    <rect id="_161069320" class="fil0 str0" x="5.74806" y="0.347413" width="8.93691" height="12.4833" rx="0.880438" ry="0.880438"/>
+    <rect id="_161069248" class="fil1 str1" x="5.96511" y="0.650577" width="8.5028" height="11.8769" rx="0.804275" ry="0.804275"/>
+   </g>
+   <path id="_161069152" class="fil5 str2" d="M10.2165 5.21483c0.283711,-0.549698 0.567423,-0.824532 1.13485,-0.824532 0.626458,0 1.13485,0.492512 1.13485,1.09937 0,1.0994 -1.13485,2.19879 -2.26969,3.29816 -1.13485,-1.09937 -2.26969,-2.19876 -2.26969,-3.29816 0,-0.606855 0.508387,-1.09937 1.13485,-1.09937 0.567423,0 0.851134,0.274835 1.13485,0.824532zm-0.202655 -0.352278m0.0752808 0.124131m-0.0140831 -0.0192896m-0.00270283 -0.00540565m0.00355635 0.0071696m-0.00165015 -0.00199156"/>
+  </g>
+  <g id="_161068816">
+   <g>
+    <rect id="_161069080" class="fil0 str0" x="0.0284508" y="0.305334" width="8.93691" height="12.4833" rx="0.880438" ry="0.880438"/>
+    <rect id="_161069008" class="fil1 str1" x="0.245502" y="0.608499" width="8.5028" height="11.8769" rx="0.804275" ry="0.804275"/>
+   </g>
+   <g>
+    <path id="_161068936" class="fil4 str0" d="M4.30657 7.34178l0.371425 0 0.185698 2.07372 -0.742822 0 0.185698 -2.07372zm0.185727 0m0.278562 1.03686m-0.278562 1.03686m-0.278562 -1.03686"/>
+    <path id="_161068864" class="fil4 str0" d="M4.4969 7.25142c-0.283711,0.549698 -0.567423,0.824532 -1.13485,0.824532 -0.626458,0 -1.13485,-0.492512 -1.13485,-1.09937 0,-1.0994 1.13485,-2.19879 2.26969,-3.29816 1.13485,1.09937 2.26969,2.19876 2.26969,3.29816 0,0.606855 -0.508387,1.09937 -1.13485,1.09937 -0.567423,0 -0.851134,-0.274835 -1.13485,-0.824532zm0.202655 0.352278m-0.0752808 -0.124131m0.0140831 0.0192896m0.00270283 0.00540565m-0.00355635 -0.0071696m0.00165015 0.00199156"/>
+   </g>
+  </g>
+ </g>
+<metadata><rdf:RDF><cc:Work><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/><dc:publisher><cc:Agent rdf:about="http://openclipart.org/"><dc:title>Open Clip Art Library</dc:title></cc:Agent></dc:publisher><dc:title>Playing Card</dc:title><dc:date>2012-02-20T07:49:44</dc:date><dc:description/><dc:source>http://openclipart.org/detail/168415/playing-card-by-zorro</dc:source><dc:creator><cc:Agent><dc:title>zorro</dc:title></cc:Agent></dc:creator><dc:subject><rdf:Bag><rdf:li>Spielkarte Ass Pik Karo Herz Kreuz Spade Hearts Diamonds Clubs</rdf:li><rdf:li>clip art</rdf:li><rdf:li>clipart</rdf:li></rdf:Bag></dc:subject></cc:Work><cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/"><cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/><cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/><cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/></cc:License></rdf:RDF></metadata></svg>

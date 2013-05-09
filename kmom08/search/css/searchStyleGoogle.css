@@ -1,0 +1,261 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*
+Style Ralf
+
+*/
+
+body{
+    background-color: #FA5200;
+}
+
+
+#container {
+     margin: 0 auto;
+     width: 600px;   
+}
+
+#pInfo{
+    padding-left: 50px;
+    font: normal 18px 'trebuchet MS', arial, helvetica; 
+    padding-bottom: 0px;
+     
+}
+#pInfo h3{
+   font: normal 20px 'trebuchet MS', arial, helvetica;  
+   font-weight: bold;
+   padding-top: 20px;
+}
+#pInfo h4{
+   display: inline;
+   color: white;
+   font: normal 16px 'trebuchet MS', arial, helvetica;  
+   font-weight: bold;
+}
+
+#pInfo h5{
+   display: inline;
+   color: black;
+   font: normal 16px 'trebuchet MS', arial, helvetica;  
+   font-weight: bold; 
+}
+
+#pUtrustning{
+    padding-left: 50px;
+    color: white;
+    margin-top: 0px;
+    padding-top: 0px;
+      
+    
+}
+#pUtrustning h6{    
+    padding-left: 50px;
+    font: normal 14px 'trebuchet MS', arial, helvetica;
+    color: white;
+}
+
+#header {
+    margin-left: 100px;
+    margin-bottom: 0px;
+    
+}
+
+#header h1{  
+    font: normal 54px 'trebuchet MS', arial, helvetica;    
+}
+
+#searchBar{
+    margin-top: 0px;
+    padding-bottom: 20px;
+}
+#header h1{ 
+    color:#82ca7b;   
+}
+
+#header h1:first-letter{ 
+    color:black;   
+}
+
+table, td, th
+{
+    border:1px solid #82ca7b;
+}
+
+table{
+    margin-left: 60px;
+    padding: 5px;
+}
+
+th{
+    padding: 5px 20px 5px 20px ;
+    background-color:#82ca7b;    
+    font: bold 13px Arial, Helvetica;
+    color: #23441e;
+}
+
+td{
+    padding: 5px 10px;
+}
+
+tr{
+    font: normal 13px 'trebuchet MS', arial, helvetica;
+    background: #f1f1f1;    
+}
+
+#searchbox
+{
+	background: #eaf8fc;
+	background-image: -moz-linear-gradient(#fff, #d4e8ec);
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #d4e8ec),color-stop(1, #fff));
+	
+	-moz-border-radius: 35px;
+	border-radius: 35px;
+	
+	border-width: 1px;
+	border-style: solid;
+	border-color: #c4d9df #a4c3ca #83afb7;            
+	width: 500px;
+	height: 35px;
+	padding: 10px;
+	margin: 10px auto 10px;
+	overflow: hidden; /* Clear floats */
+}
+
+#search, #submit
+{
+	float: left;
+}
+
+#search
+{
+	padding: 5px 9px;
+	height: 23px;
+	width: 380px;
+	border: 1px solid #a4c3ca;
+	font: normal 13px 'trebuchet MS', arial, helvetica;
+	background: #f1f1f1;
+	
+	-moz-border-radius: 50px 3px 3px 50px;
+	 border-radius: 50px 3px 3px 50px;
+	 -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+	 -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+	 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);            
+}
+
+/* ----------------------- */
+
+#submit
+{		
+	background: #6cbb6b;
+	background-image: -moz-linear-gradient(#95d788, #6cbb6b);
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #6cbb6b),color-stop(1, #95d788));
+	
+	-moz-border-radius: 3px 50px 50px 3px;
+	border-radius: 3px 50px 50px 3px;
+	
+	border-width: 1px;
+	border-style: solid;
+	border-color: #7eba7c #578e57 #447d43;
+	
+	 -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+	 -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+	 box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;   		
+
+	height: 35px;
+	margin: 0 0 0 10px;
+        padding: 0;
+	width: 90px;
+	cursor: pointer;
+	font: bold 14px Arial, Helvetica;
+	color: #23441e;
+	
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+
+#submit:hover
+{		
+	background: #95d788;
+	background-image: -moz-linear-gradient(#6cbb6b, #95d788);
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #95d788),color-stop(1, #6cbb6b));
+}	
+
+#submit:active
+{		
+	background: #95d788;
+	outline: none;
+   
+	 -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+	 -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+	 box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;		
+}
+
+#submit::-moz-focus-inner
+{
+       border: 0;  /* Small centering fix for Firefox */
+}	
+
+#search::-webkit-input-placeholder {
+   color: #9c9c9c;
+   font-style: italic;
+}
+
+#search:-moz-placeholder {
+   color: #9c9c9c;
+   font-style: italic;
+}  
+
+#search:-ms-placeholder {
+   color: #9c9c9c;
+   font-style: italic;
+}   
+
+#search.placeholder {
+   color: #9c9c9c !important;
+   font-style: italic;
+} 

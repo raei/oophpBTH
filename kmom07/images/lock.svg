@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="122.73871" height="195.8721" id="svg2" version="1.1" inkscape:version="0.48.1 r9760" sodipodi:docname="New document 1">
+  <defs id="defs4"/>
+  <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="0.35" inkscape:cx="-123.23543" inkscape:cy="-322.61989" inkscape:document-units="px" inkscape:current-layer="layer1" showgrid="false" fit-margin-top="0" fit-margin-left="0" fit-margin-right="0" fit-margin-bottom="0" inkscape:window-width="1230" inkscape:window-height="776" inkscape:window-x="50" inkscape:window-y="24" inkscape:window-maximized="1"/>
+  <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(-46.806856,-13.870194)">
+    <g id="g3772" transform="matrix(0.36730933,0,0,0.36730933,7.573628,6.6723233)">
+      <path sodipodi:nodetypes="ccccc" inkscape:connector-curvature="0" id="rect2985" d="m 117.14286,238.07646 317.14285,0 0,277.14285 c -85.09712,24.3526 -169.18678,49.8952 -317.14285,0 z" style="fill:#000000;fill-opacity:1;stroke:none"/>
+      <path sodipodi:nodetypes="csc" inkscape:connector-curvature="0" id="path2990" d="M 163.9723,235.89789 C 162.56528,69.488027 218.62751,34.447209 278.25279,32.386937 335.05011,30.424379 387.20432,78.089235 387.4822,235.89789" style="fill:none;stroke:#000000;stroke-width:25.5030365;stroke-miterlimit:4;stroke-opacity:1"/>
+      <path inkscape:connector-curvature="0" id="path3761" d="m 275.71429,363.77678 c -14.24676,0 -25.79606,11.54929 -25.79606,25.79606 0,8.67153 4.28101,16.34296 10.8424,21.01975 l -8.08141,51.77348 46.07014,0 -6.85208,-52.72068 c 5.85547,-4.72884 9.61306,-11.95991 9.61306,-20.07255 0,-14.24677 -11.54929,-25.79606 -25.79605,-25.79606 z" style="fill:#ffffff;fill-opacity:1;stroke:none"/>
+      <path style="fill:none;stroke:#000000;stroke-width:4.95452309;stroke-miterlimit:4;stroke-dasharray:none" d="m 109.28084,244.64789 329.21916,0 0,277.14285 c -88.33749,24.3526 -175.62915,49.8952 -329.21916,0 z" id="path3770" inkscape:connector-curvature="0" sodipodi:nodetypes="ccccc"/>
+    </g>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Open Clip Art Library</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Lock</dc:title>
+        <dc:date>2011-05-21T15:25:24</dc:date>
+        <dc:description>Lock</dc:description>
+        <dc:source>http://openclipart.org/detail/139783/lock-by-gsagri04</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>gsagri04</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>black</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>key</rdf:li>
+            <rdf:li>lock</rdf:li>
+            <rdf:li>png</rdf:li>
+            <rdf:li>svg</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

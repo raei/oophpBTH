@@ -462,9 +462,11 @@ html{
     display:block;     
 }
 
-.gamearea {           
+.gamearea {  
+    width: 707px;
     float: left;
-    border: solid white 2px;
+    border: solid white 6px;
+    background-color: white;
 }
 
 #right_col{

@@ -1,0 +1,43 @@
+/*
+ * Style: Stylesheet for adventure game.
+ * Author: Ralf Eriksson
+ *
+ */
+
+div.wrapper {
+    width: 720px;
+    background: #D6FFBF;
+    border: ridge 10px #AEFF7F;
+    font-family: "Lucida Concole", "Courier New", monospace;     
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+div.gamearea {
+    height: 480px;
+    background: #62A938;
+}
+
+div.description, div.action {
+    background: #D6FFBF;
+}
+
+h1, h2, h4, p.description, p.action {
+    margin: 0 0 0 0px;
+    padding: 0 0 0 0px;
+    color: #31541C
+}
+
+h1, h2, h4, p.action {
+    text-transform: uppercase;
+}
+
+/* Style for links */
+a, a:visited {
+    color: #31541C
+}
+
+a:hover {
+    color: #D6FFBF;
+    background: #31541C;
+}
