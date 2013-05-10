@@ -87,12 +87,27 @@ class CPlayer {
             }
             break;        
             case 'start': {                     
-                header('Location:http://www.student.bth.se/~raer12/oophp/kmom07/game/adventure.php');               
+                //header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/adventure.php');
+                header('Location:http://localhost/oophpBTH/kmom08/game/adventure.php');                
             }
             break;
             
             case 'playGameHighLow': {
-                header('Location:http://www.student.bth.se/~raer12/oophp/kmom07/game/highlow/highlow.php?game=init');
+                //header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/highlow/highlow.php?game=init');
+                 header('Location:http://localhost/oophpBTH/kmom08/game/highlow/highlow.php?game=init');                
+                
+            }
+            break;    
+         
+            case 'dice': {
+                //header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/pigGame/pig.php?game=init');
+                 header('Location:http://localhost/oophpBTH/kmom08/game/pigGame/pig.php?game=init');                
+            }
+            break;
+        
+           case 'hangman': {
+                //header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/pigGame/pig.php?game=init');
+                 header('Location:http://localhost/oophpBTH/kmom08/game/hangman/hangman.php');                
             }
             break;
 

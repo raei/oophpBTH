@@ -21,8 +21,8 @@ $header = <<<EOD
     <li><a href="../redovisning.php">REDOVISNING</a>   </li>       
     <li><a href="#">PROJEKT</a>
         <ul><!-- Begin Sub Level -->            
-            <li><a href="../hangman.php">Hangman</a></li>
-            <li><a href="dice.php">Dice</a></li>
+                        <li><a href="../hangman.php">Hangman</a></li>
+                        <li><a href="../dice.php">Dice</a></li>
                         <li><a href="../pigGame/pig.php" target="_blank">Pig</a></li>
                         <li><a href="../card.php">Kort</a></li>
                         <li><a href="../hand.php">Hand</a></li>

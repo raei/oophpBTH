@@ -471,6 +471,8 @@ html{
    
 }
 
+
+
 #right_col{
     width: 290px;
     float: left;
@@ -507,42 +509,10 @@ html{
     color: white;   
 }
 
-.start{
-    
-    width: 500px;
-    
+.start{    
+    width: 500px;    
 }
 
-/* HIGHLOW css*/
-
-.welcomeMessage {
-    font-size: 12px;
+.debug {
+    font-size: small;
 }
-
-#low a, #high a{
-    display: block;
-    color: white;
-    font-weight:bold;
-    font-size: 16px;
-}
-
-#streck{
-    margin-top: 0;
-    font-size: 24px;
-}
-
-
-#low{
-     padding-right:14px; 
-     padding-left:12px;
-     padding-top: 4px;       
-}
-
-#high{     
-    padding-left:11px;
-    padding-top: 4px;     
-}
-
-
-
-

@@ -176,6 +176,7 @@ $html = <<< EOD
 		<meta http-equiv="Content-Type" content="text/html; charset={$charset};" />
 		<title>{$title}</title>
 		<link href="../css/main.css" rel="stylesheet" type="text/css" />
+                <link href="styleHighLow.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>	
           {$html}

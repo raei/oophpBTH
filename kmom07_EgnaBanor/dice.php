@@ -140,8 +140,7 @@ $html = <<<EOD
     	<body>
     		<div id="wrapper"> 
     			{$header}	    		      
-	        	{$html}
-                        
+	        	{$html}                        
 	        </div><!-- END wrapper -->       
     			{$footer}
                 <div style='font-size: small;'>
@@ -150,7 +149,7 @@ $html = <<<EOD
     	</body>
 </html>
 EOD;
-header("Content-Type: application/xhtml+xml; charset={$charset}");
+
 echo $html;
 exit;
 ?>

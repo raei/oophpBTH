@@ -30,6 +30,7 @@ require_once('common.php');
 $title = "oophp Ralf Eriksson";
 $charset = "iso-8859-1";
 $language = "sv";
+$debug         = $debugEnable ? $debug : "";
 
 $html = <<<EOD
 <!DOCTYPE html 
@@ -52,4 +53,5 @@ $html = <<<EOD
 EOD;
 header("Content-Type: application/xhtml+xml; charset={$charset}");
 echo $html;
+exit;
 ?>
