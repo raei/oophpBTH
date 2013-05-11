@@ -26,8 +26,8 @@ $errorMsg = "";
 //
 // Take care of GET variables
 //
-$word 		= empty($_GET['word'])    ? rand(0, 9) : $_GET['word'];//fix a random number to get a word from the words array
-$guessed 	= empty($_GET['guessed']) ? "" : $_GET['guessed'];//fix so you can save the guessed char so you can save the in this var
+//$word 		= empty($_GET['word'])    ? rand(0, 9) : $_GET['word'];//fix a random number to get a word from the words array
+$guessed 	= empty($_GET['guessed']) ? "" : $_GET['guessed'];//fix so you can save the guessed chars in this var
 $char		= empty($_GET['char'])    ? "" : $_GET['char'];//get the guessed char from the form
 
 //check so that the input char is really a letter in the alphabet if not write a error message
@@ -43,7 +43,7 @@ if(preg_match('([a-öA-Ö])', $char) or $char === '' ){
     }
     
     $debug .= "char = {$char}<br />";
-    $debug .= "word = {$word}<br />";
+  //  $debug .= "word = {$word}<br />";
     $debug .= "guessed = {$guessed}<br />";
 }else{
     $errorMsg .= 'Please make sure you enter a character!';
@@ -53,7 +53,7 @@ if(preg_match('([a-öA-Ö])', $char) or $char === '' ){
 //
 // Create a wordlist and pich the word.
 //
-$words = Array(
+/*$words = Array(
 	'pellefant',
 	'moped',
 	'asket',
@@ -64,13 +64,14 @@ $words = Array(
 	'databaser',
 	'php',
 	'xhmtl',
-	);
+	);*/
 
-$theWord = $words[$word];//put the secretword from list to theWord var
+//$theWord = $words[$word];//put the secretword from list to theWord var
+$theWord = 'apa';
 
 $debug .= $theWord;//add the word to debug var
 
-$debug .= "Ordlista: " . implode(', ', $words) . "<br />";
+/*$debug .= "Ordlista: " . implode(', ', $words) . "<br />";
 $debug .= "Valt ord: '{$theWord}'<br />";
 
 $debug .= "Ordens respektive längd: ";
@@ -90,7 +91,7 @@ $debug .= "Skakad: " . implode(', ', $words) . "<br />";
 
 $slump = array_rand($words);
 $debug .= "Slumpord: {$words[$slump]} ({$slump})<br />";
-
+*/
 
 // -------------------------------------------------------------------------------------------
 //
@@ -134,7 +135,7 @@ $gameOverMessage	= "";
 //check if every dashes are removed from the currentword if so disable button and write a gratulation message
 if(strpos($currentWord, '-') === FALSE) {
 	$disableButton = "disabled='disabled'";
-	$gameOverMessage = "Tack för hjälpen!<br/>Hemliga ordet är cola";
+	$gameOverMessage = "Tack för hjälpen!<br/>Hemliga ordet är apa";
 	$debug .= "yes";
 }
 
@@ -162,7 +163,7 @@ $form = <<< EOD
 </p>
     
 <form action='hangman.php' method='get'>
-    <input type='hidden' name='word' value='{$word}' />
+    
     <input type='hidden' name='guessed' value='{$guessed}' />
     <p class="inputGuess">
         <input type='text' name='char' tabindex='1' size='1' maxlength='1' />
@@ -193,18 +194,10 @@ $hangman = new RalfHangmanSVG();//make an instance of the class
 
 $svgCode.= $hangman->DrawPartsOfPicture($failed);//call the draw method depending on how many missed chars you have
 
-/*
-$svgCode = $hangman->DrawPicture();
-$svgCode .= $hangman->DrawPartsOfPicture(9);
-$svgCode .= $hangman->DrawPartsOfPicture(5);
-$svgCode .= $hangman->DrawPartsOfPicture(2);
-
-$svgCode .= $hangman->GetSvgHeader();
-$svgCode .= $hangman->DrawHuvud();// a new method for showing head
-$svgCode .= "</svg>";
-*/
-
-
+$kidpic = <<<EOD
+        
+       <div id='kid'></div>
+EOD;
 //
 // The content of the page
 //
@@ -214,26 +207,29 @@ $html = <<<EOD
 <div class='wrapper'>
     <div class="header">
         <h1>Hänga gubbe</h1>
-        <h2>Spela och gissa rätt bokstäver</h2>
-       
+        <h2>Spela och gissa rätt bokstäver</h2>       
     </div>
 
     <div id="main">
         <div class='gameareaHangman'>
+             {$kidpic}
         <div id="formHangman">
             {$form}
         </div><!-- formHangman -->
         <div id="svgHangman">    
-            {$svgCode}               
-        </div><!-- svgHangman -->  
+            {$svgCode}       
+            
+        </div><!-- svgHangman -->
+        
           <div id="guessLetters"> 
-      
+     
              <h3>Gissade bokstäver: {$guessed} </h3> 
               
-              <h4>{$gameOverMessage}</h4>
+              <h4>{$gameOverMessage}</h4> 
+                  
               
-                 
-         </div><!-- end guessLetters -->       
+         </div><!-- end guessLetters -->  
+         
         
         </div> <!-- gameareaHangman -->
         <div id="right_col">
@@ -253,7 +249,7 @@ $html = <<<EOD
                 <div class='action'>
                     <h3>Vägval</h3>
                 <p class='action'>
-					<a href='../room.php?id=3'>Avsluta gå till grottöppningen</a>
+					<a href='../room.php?id=4'>Avsluta gå tillbaka</a>
 				</p>
                 </div> <!-- actions -->                       
                 <div class='actionEvents'>
@@ -291,7 +287,7 @@ $html = <<< EOD
 	</body>
 </html>
 EOD;
-//header("Content-Type: application/xhtml+xml; charset={$charset}");
+header("Content-Type: application/xhtml+xml; charset={$charset}");
 echo $html;
 exit;
 ?>

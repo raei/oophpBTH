@@ -28,7 +28,10 @@ require_once('CHighCardLowCard.php');
 
 // Calling session_start
 session_start();
-
+$points	= empty($_GET['points']) ? '0' : $_GET['points'];
+if($points != 0){
+    $_SESSION['data'] = $_SESSION['data'] + $points;
+}
 // -------------------------------------------------------------------------------------------
 //
 // Take care of GET variables
@@ -40,6 +43,8 @@ switch($doGame) {
 	case 'init': { 
 		$_SESSION['game'] = new CHighCardLowCard();
 		$_SESSION['game']->StartGame();
+                $_SESSION['data'] = 0;
+               
 
 		$debug .= 'Game initiated.';
 		$debug .= 'Current session id is: ' . session_id() . '<br />';
@@ -47,11 +52,18 @@ switch($doGame) {
 	break;
 	case 'high':
 	case 'low':   { // Guess next card is high/low card
+            
 		if($_SESSION['game']->GuessAndPickCard($doGame) == FALSE) {
 			$gameOver = TRUE;
-		}
+		}else{
+                    //kolla om du vunnit tre gånger
+                    if($_SESSION['data'] ===3){
+                        $gameOver = TRUE;
+                    }
+                }
 
 		$debug .= 'Made a guess. <br />';
+                $debug .= 'Number of wins: '. $_SESSION['data'] . '<br />';
 	}
 	break;	
 	
@@ -59,50 +71,47 @@ switch($doGame) {
 	break;
 }
 
-$htmlGame = "";
+$htmlGame = " <div id='kid'><img src='../image/kid2.png'></div>";
+$htmlGame .= <<<EOD
+                    <p>
+                    <table>    
+                        <tr>
+                            <td id="low"><a href='highlow.php?game=low&points=1'>LÄGRE</a></td>
+                            <td id="streck">&#124;</td>
+                            <td id="high"><a href='highlow.php?game=high&points=1'>HÖGRE</a></td>
+                        </tr>
+                     </table>                   
+                    </p>
+EOD;
 $event = "";
 
 if(isset($_SESSION['game'])) {
+        $htmlGame .= "<div id='cards'>";
       
 	$htmlGame .= $_SESSION['game']->ShowGameStatus();
+        
+        $htmlGame .= "</div><!-- end cards -->";
 	
 	if($gameOver) {
 		$points = $_SESSION['game']->GetPoints();
 		$_SESSION['game']->StartGame();
-		$htmlGame .= "<p style='font-size: 12px; padding-left: 5px;color:orange;'>Du klarade {$points} kort.</p>";
+		$htmlGame .= "<p style='font-size: 12px; width: 130px;float:left; padding-left: 5px;color:orange;'>Du klarade {$points} kort.</p>";
                 
                  if($points >= 3) {
-                    $htmlGame .= "<p style='color:white; font-size:15px;padding-left: 5px; color:orange;'>GRATTIS, du har nu fått nyckeln till båten. </p>";                   
+                    $htmlGame .= "<p style='color:white;width: 230px;clear:both; font-size:15px;padding-left: 5px; color:orange;'>GRATTIS, du har nu fått nyckeln till båten. </p>";                   
    
                     $event = " <p>
                                     <a href='../room.php?id=11'>
                                         Gå till hamnen och lås upp din båt<br> och segla hemmåt!
                                     </a>
                                 </p>";
-                }          
-
-
-                
-                
-                
-        } else {
-		$htmlGame .= <<<EOD
-                    <p>
-                    <table>    
-                        <tr>
-                            <td id="low"><a href='highlow.php?game=low'>LÄGRE</a></td>
-                            <td id="streck">&#124;</td>
-                            <td id="high"><a href='highlow.php?game=high'>HÖGRE</a></td>
-                        </tr>
-                     </table>                   
-                    </p>
-EOD;
-
+                }                
+        } 
 /*
                     $event = "<a href='highlow.php?game=init'>Spela igen</a><br/>"
 
 */
-	}
+	
 }	
 
 
@@ -121,9 +130,9 @@ $html = <<<EOD
     </div>
 
     <div id="main">
-        <div class='gamearea'>
+        <div class='gameareaHighLow'>
        {$htmlGame}
-        
+       
         </div> <!-- gamearea -->
         <div id="right_col">
             <div class='helthmeter'>

@@ -82,6 +82,11 @@ class CPlayer {
                 }
             }
             break;
+            case 'eatAppel': {
+                $this->iHealthMeter = 0;       
+                //header('Location:http://localhost/oophpBTH/kmom08/game/gameover.php');  
+            }
+            break;
             case 'increaseHealthFull': {
             $this->iHealthMeter = 10;
             }

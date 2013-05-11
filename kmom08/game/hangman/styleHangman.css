@@ -7,45 +7,9 @@ CUSTOM CLASSES and ID TAGS
 .clear { clear: both; }
 
 
-.gameOverFont, .welcomeMessage {
-    font-family: Arial,Helvetica,sans-serif;
-}
-.gameOverFont {   
-     font-size: 10px;
-}
-
 .debug {
     font-size: small;
 }
-
-.welcomeMessage {
-    font-size: 12px;
-}
-
-#low a, #high a{
-    display: block;
-    color: white;
-    font-weight:bold;
-    font-size: 18px;
-}
-
-#streck{
-    margin-top: 0;
-    font-size: 24px;
-}
-
-
-#low{
-     padding-right:14px; 
-     padding-left:12px;
-     padding-top: 4px;       
-}
-
-#high{     
-    padding-left:11px;
-    padding-top: 4px;     
-}
-
 
 
 .gameareaHangman {  
@@ -53,8 +17,8 @@ CUSTOM CLASSES and ID TAGS
     height: 450px;
     float: left;
     border: solid white 6px;
-    padding: 10px;
-   
+    padding: 10px;    
+
 }
 
 #formHangman{
@@ -82,18 +46,32 @@ input, textarea {
 	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
 	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
 	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
-	}
+}
 
 #svgHangman{
+  
      float: right;
      padding-right: 100px;
      padding-top: 30px;
-     padding-bottom: 20px;
+     padding-bottom: 20px;     
 }
 
 #guessLetters{
-    clear: both;    
+    clear: both;
+    display: block;
+    width: 700px;
+
 }
+
+
+#kid{
+    float: right; 
+    display: block;
+    height: 340px;
+    width: 95px;   
+    background: #000 url('../image/kid2.png') center no-repeat;
+} 
+
 
 #guessLetters h3, h4{
     margin-left: 40px;
@@ -118,4 +96,4 @@ input, textarea {
 	color: #FFFFFF;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	}
+}

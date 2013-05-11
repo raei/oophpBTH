@@ -2,7 +2,7 @@
     Document   : main
     Created on : 2013-apr-18, 23:37:41
     Author     : Ralf Eriksson
-    Description:
+    Description: Grundstylesheet för hela sidan
     Purpose of the stylesheet follows.
 */
 
@@ -460,17 +460,17 @@ html{
 
 #main{
     width:auto; 
-    display:block;     
+    display:block;
+  
 }
 
 .gamearea {  
     width: 707px;
-    height: auto;
-    float: left;
-    border: solid white 6px;
+     height: auto;
    
+    float: left;
+    border: solid white 6px;   
 }
-
 
 
 #right_col{

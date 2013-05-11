@@ -98,10 +98,10 @@ EOD;
         
         $html = $this->GetSvgHeader();
         switch ($aNumberOfParts) { 
-            case 0:
+            case 0:               
                 return;
                 break;
-            case 1:
+            case 1:                 
                 $html .= $this->GetKullen();
                 break;
             case 2:
@@ -175,6 +175,8 @@ EOD;
     //
     // Create a part of the picture and return as string
     //
+    
+
     public function GetKullen() {
 
         $html = <<<EOD
