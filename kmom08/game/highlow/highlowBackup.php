@@ -21,14 +21,8 @@ $debugEnable = FALSE;  // TRUE to enable debugging, FALSE to not print out debug
 //
 // Prepare the page content
 //
-$html = ""; // maincode
-$htmlGame = "";
-$kid = ""; // pic of kid
-$buttons = "";// high low buttons
-$restart = "";
-$action = "";
-
-
+$html = "";
+$kid = "";
 
 // Include class definitions
 require_once('CHighCardLowCard.php');
@@ -78,7 +72,7 @@ switch($doGame) {
 }
 
 $kid = " <div id='kid'><img src='../image/kid2.png'></div>";
-$buttons = <<<EOD
+$htmlGame .= <<<EOD
                     <div id='highLow'>
                     <table>    
                         <tr>
@@ -89,27 +83,28 @@ $buttons = <<<EOD
                      </table>                   
                     </div>
 EOD;
+$event = "";
 
 if(isset($_SESSION['game'])) {
-        $htmlGame .= "<div id='cards'>";      
-	$htmlGame .= $_SESSION['game']->ShowGameStatus();        
-        $htmlGame .= "</div><!-- end cards -->";        
+        $htmlGame .= "<div id='cards'>";
+      
+	$htmlGame .= $_SESSION['game']->ShowGameStatus();
+        
+        $htmlGame .= "</div><!-- end cards -->";
 	
 	if($gameOver) {
 		$points = $_SESSION['game']->GetPoints();
 		$_SESSION['game']->StartGame();
 		$htmlGame .= "<p style='font-size: 12px; width: 130px;float:left; padding-left: 5px;color:orange;'>Du klarade {$points} kort.</p>";
-                $restart .= "<a href= '{$_SERVER['PHP_SELF']}?game=init'>Starta om!</a>";
+                
                  if($points >= 3) {
-                    $htmlGame .= "<p style='color:white;width: 230px;clear:both; font-size:15px;padding-left: 5px; color:orange;'>GRATTIS!</p>";                   
+                    $htmlGame .= "<p style='color:white;width: 230px;clear:both; font-size:15px;padding-left: 5px; color:orange;'>GRATTIS, du har nu fått nyckeln till båten. </p>";                   
    
-                    $action = " <p>
-                                    <a href='../room.php?id=9'>
-                                       Gå tillbaka till spelstigen!
+                    $event = " <p>
+                                    <a href='../room.php?id=11'>
+                                        Gå till hamnen och lås upp din båt<br> och segla hemmåt!
                                     </a>
                                 </p>";
-                    $restart  = "";
-                    $buttons = "";
                 }               
         }	
 }//end if
@@ -122,21 +117,16 @@ $html = <<<EOD
 
 <div class='wrapper'>
     <div class="header">
-        <h1>Spela high low</h1>
-               
+        <h1>Äventyrsspel</h1>
+        <h2>Spela kort</h2>
+       
     </div>
 
     <div id="main">
         <div class='gameareaHighLow'>
-         <div class ='leftCol'>
-           {$htmlGame}
-           </div><!-- end leftCol -->
-           <div class ='rightCol'>
-           {$kid}
-           {$buttons}        
-           </div><!-- end rightCol -->
-       </div> <!-- gameareaHighLow -->
-        
+       {$htmlGame}
+       
+        </div> <!-- gamearea -->
         <div id="right_col">
             <div class='helthmeter'>
               <h3>Hälsa</h3>  
@@ -146,21 +136,22 @@ $html = <<<EOD
             </div>
             <div class='description'>
             <h3>Beskrivning</h3>
-                <p class='description'>
-                    Lyckas gissa rätt på 3 kort och du kan lämna spelet.                
-                </p>
+           <p class='description'>
+				Lyckas gissa rätt på 3 kort och du får nyckeln till båten.
+                Du får en chans att vinna.
+			</p>
             </div> <!-- description -->
                 <div class='action'>
                     <h3>Vägval</h3>
-                        <p class='action'>
-                            {$action}
-                        </p>
+                <p class='action'>
+					<a href='../room.php?id=9'>Avsluta gå till spelstigen</a>
+				</p>
                 </div> <!-- actions -->                       
                 <div class='actionEvents'>
                     <h3>Händelser</h3>    
-                        <p class='action'>
-                        {$restart}
-                        </p>                         
+                    <p class='action'>
+						{$event}
+					</p>                         
                 </div> <!-- actions --> 
         </div> <!-- end right_col-->
     </div> <!-- main -->    

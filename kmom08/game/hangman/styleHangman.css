@@ -38,14 +38,17 @@ input, textarea {
 	border: solid 1px #E5E5E5;
         color:black;
 	outline: 0;
-	font: normal 13px/100% Verdana, Tahoma, sans-serif;
-	width: 46px;
-	background: #FFFFFF url('../hangman/bg_form.png') left top repeat-x;
-	background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
-	background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
-	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
-	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
-	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	font-style: Verdana, Tahoma, sans-serif;
+        font-size: 16px;
+	width: 54px;	
+	text-align: center;
+        text-transform: uppercase;
+}
+
+input:focus
+{ 
+    border: solid 1px orange;
+   
 }
 
 #svgHangman{
@@ -78,22 +81,17 @@ input, textarea {
     color:orange;
     border-bottom: none;
     letter-spacing: 1px;   
-}
-
-
-
-.inputGuess{
-    
-    
+     text-transform: uppercase;
 }
 
 .submit input {
-	width: auto;
-	padding: 4px 8px;
-	background: orange;
-	border: 0;
-	font-size: 14px;
-	color: #FFFFFF;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
+    margin-top: 10px;
+    width: auto;
+    padding: 4px 8px;
+    background: orange;
+    border: 0;
+    font-size: 14px;
+    color: #FFFFFF;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
 }

@@ -442,14 +442,12 @@ a:hover{text-decoration:underline;}
 PAGE STRUCTURE
 ------------------------------ */
 html{
-    background-color: black;
-    
+    background-color: black;    
 }
 .wrapper {
     margin: 0 auto;
     width: 1024px; 
-    height: 520px;
-    
+    height: 520px;    
 }
 
 .header {
@@ -460,18 +458,15 @@ html{
 
 #main{
     width:auto; 
-    display:block;
-  
+    display:block;  
 }
 
 .gamearea {  
     width: 707px;
-     height: auto;
-   
+     height: auto;   
     float: left;
     border: solid white 6px;   
 }
-
 
 #right_col{
     width: 290px;
@@ -481,7 +476,7 @@ html{
 }
 .description {  
     width:auto; 
-    height: 200px;      
+    height: auto;      
     font-size: 14px;
     padding-left: 5px;    
 }
@@ -494,7 +489,8 @@ html{
 }
 
 .action{
-   width:auto;    
+   width:auto; 
+   margin-bottom:0px;
 }
 
 .action ul li{     

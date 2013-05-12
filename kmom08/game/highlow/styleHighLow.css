@@ -10,19 +10,26 @@ CUSTOM CLASSES and ID TAGS
      font-size: 10px;
 }
 
-
-
-
 /* HIGHLOW css*/
-
 
 .gameareaHighLow {  
     width: 690px;
     height: 450px;
     float: left;
     border: solid white 6px;
-    padding: 10px;    
+    padding: 10px;
+}
 
+.leftCol{
+    width: 200px;
+    height: 450px;
+    float: left;    
+}
+
+.rightCol{
+    width: 200px;
+    height: 450px;
+    float: right;    
 }
 
 .welcomeMessage {
@@ -41,7 +48,6 @@ CUSTOM CLASSES and ID TAGS
     font-size: 24px;
 }
 
-
 #low{
      padding-right:14px; 
      padding-left:12px;
@@ -53,18 +59,18 @@ CUSTOM CLASSES and ID TAGS
     padding-top: 4px;     
 }
 
+#highLow{
+    float: right; 
+     margin-right: 10px;
+}
+
 #kid{
     margin-right: 50px;
-    vertical-align: top;
+    margin-bottom: 20px;  
     float: right; 
     display: block;
     height: 159px;
     width: 95px;  
-
-}
-
-#kid img{
-    padding-top: 30px;
 }
 
 #cards{
