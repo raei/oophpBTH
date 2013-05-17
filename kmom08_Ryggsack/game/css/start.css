@@ -1,0 +1,41 @@
+/* css för start.php startsidan för spelet */
+
+body{
+    background-color: black;
+    color: white;
+}
+
+#wrapper{
+    margin: 0 auto;
+    width: 500px;
+    
+}
+
+h1{
+    font-family: verdana,sans-serif;
+    font-size: 40px;
+}
+
+p{
+    font-family: verdana,sans-serif;
+    font-size: 20px;
+    
+}
+
+ul{
+    
+}
+
+a{
+    font-family: verdana,sans-serif;
+    font-size: 15px;   
+    text-decoration: none;
+    color: white;
+    
+}
+
+
+a:hover{
+    text-decoration: underline;
+    
+}

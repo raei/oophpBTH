@@ -1,0 +1,97 @@
+
+
+/* ------------------------------
+CUSTOM CLASSES and ID TAGS
+------------------------------ */
+
+.clear { clear: both; }
+
+
+.debug {
+    font-size: small;
+}
+
+
+.gameareaHangman {  
+    width: 690px;
+    height: 450px;
+    float: left;
+    border: solid white 6px;
+    padding: 10px;    
+
+}
+
+#formHangman{
+    float: left;
+    padding-left: 40px;
+    padding-top: 200px;
+}
+
+
+
+form{
+    width: 150px; 
+}
+
+input, textarea { 
+	padding: 2px;
+	border: solid 1px #E5E5E5;
+        color:black;
+	outline: 0;
+	font-style: Verdana, Tahoma, sans-serif;
+        font-size: 16px;
+	width: 54px;	
+	text-align: center;
+        text-transform: uppercase;
+}
+
+input:focus
+{ 
+    border: solid 1px orange;
+   
+}
+
+#svgHangman{
+  
+     float: right;
+     padding-right: 100px;
+     padding-top: 30px;
+     padding-bottom: 20px;     
+}
+
+#guessLetters{
+    clear: both;
+    display: block;
+    width: 700px;
+
+}
+
+
+#kid{
+    float: right; 
+    display: block;
+    height: 340px;
+    width: 95px;   
+    background: #000 url('../image/kid2.png') center no-repeat;
+} 
+
+
+#guessLetters h3, h4{
+    margin-left: 40px;
+    color:orange;
+    border-bottom: none;
+    letter-spacing: 1px;   
+     text-transform: uppercase;
+}
+
+.submit input {
+    margin-top: 10px;
+    width: auto;
+    padding: 4px 8px;
+    background: orange;
+    border: 0;
+    font-size: 14px;
+    color: #FFFFFF;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}

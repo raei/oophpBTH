@@ -1,0 +1,78 @@
+
+/* ------------------------------
+CUSTOM CLASSES and ID TAGS
+------------------------------ */
+
+.gameOverFont, .welcomeMessage {
+    font-family: Arial,Helvetica,sans-serif;
+}
+.gameOverFont {   
+     font-size: 10px;
+}
+
+/* HIGHLOW css*/
+
+.gameareaHighLow {  
+    width: 690px;
+    height: 450px;
+    float: left;
+    border: solid white 6px;
+    padding: 10px;
+}
+
+.leftCol{
+    width: 200px;
+    height: 450px;
+    float: left;    
+}
+
+.rightCol{
+    width: 200px;
+    height: 450px;
+    float: right;    
+}
+
+.welcomeMessage {
+    font-size: 12px;
+}
+
+#low a, #high a{
+    display: block;
+    color: white;
+    font-weight:bold;
+    font-size: 16px;
+}
+
+#streck{
+    margin-top: 0;
+    font-size: 24px;
+}
+
+#low{
+     padding-right:14px; 
+     padding-left:12px;
+     padding-top: 4px;       
+}
+
+#high{     
+    padding-left:11px;
+    padding-top: 4px;     
+}
+
+#highLow{
+    float: right; 
+     margin-right: 10px;
+}
+
+#kid{
+    margin-right: 50px;
+    margin-bottom: 20px;  
+    float: right; 
+    display: block;
+    height: 159px;
+    width: 95px;  
+}
+
+#cards{
+    width: 500px;
+}
