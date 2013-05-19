@@ -42,6 +42,10 @@ switch($doGame) {
                                    // the session.
         session_regenerate_id();  // To avoid problems
         
+        require_once('CRoom.php');
+        $room = new CRoom();
+        $room->resetEventData();//återställ rumevent data i DB
+        
         $debug .= "Session destroyed and re-created.";
     }
     break;

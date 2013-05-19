@@ -458,10 +458,8 @@ html{
 }
 
 #items{
-    width:120;    
-   float:left;
-  
-   
+  width:290px;    
+  float:left;    
 }
 
 #main{
@@ -484,8 +482,8 @@ html{
 }
 .description {  
     width:auto; 
-    height: auto;      
-    font-size: 14px;
+    min-height: 150px;      
+    font-size: 13px;
     padding-left: 5px;    
 }
 
@@ -497,7 +495,7 @@ html{
 }
 
 .action{
-   width:auto; 
+   width:auto;    
    margin-bottom:0px;
 }
 

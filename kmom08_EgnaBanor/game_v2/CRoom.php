@@ -64,7 +64,8 @@ class CRoom {
     public function ReadFromDatabase($aIdRoom) {
 
         // Connect
-        $this->ConnectToDatabase();       
+        $this->ConnectToDatabase();     
+        
 
         // Sanitize
         $idRoom = $this->iMysqli->real_escape_string($aIdRoom);
@@ -80,7 +81,8 @@ WHERE
     RA.id_Action = A.id AND
     id_Rum = '{$idRoom}';
 EOD;
-
+    
+        
         // Perform query
         $res = $this->iMysqli->multi_query($query) 
             or die("Could not query database, query =<br/><pre>{$query}</pre><br/>{$this->iMysqli->error}");
@@ -104,7 +106,6 @@ EOD;
         $this->iDescription = $row->beskrivning;
         $this->iGraphics    = $row->grafik;
 
-
         // Use resultset 1
         $this->iConnections = "";
         while($row = $results[1]->fetch_object()) {  
@@ -117,7 +118,9 @@ EOD;
         $this->iActions = "";
         while(is_object($results[2]) && $row = $results[2]->fetch_object()) {  
             $this->iActions .= '<li>';
-            $this->iActions .= "<a href='{$_SERVER['PHP_SELF']}?id={$row->id_Rum}&amp;event={$row->event}'>{$row->namn}</a> ";
+            
+                $this->iActions .= "<a href='{$_SERVER['PHP_SELF']}?id={$row->id_Rum}&amp;event={$row->event}'>{$row->namn}</a> ";
+            
             $this->iActions .= '</li>';     
         }
 
@@ -138,9 +141,7 @@ EOD;
         // Connect
         $this->ConnectToDatabase();            
         // Prepare query
-        $query = <<<EOD
-        SELECT COUNT(*) FROM rum;
-EOD;
+        $query = "SELECT COUNT(*) FROM rum";
         // Perform query
         $res = $this->iMysqli->query($query) 
             or die("Could not query database, query =<br/><pre>{$query}</pre><br/>{$this->iMysqli->error}");
@@ -150,6 +151,39 @@ EOD;
         
         $this->iMysqli->close(); 
         
-    }//end countrooms    
+    }//end countrooms 
+    
+    public function readActionStatus(){
+        
+         // Connect
+        $this->ConnectToDatabase();            
+        // Prepare query
+        $query = "SELECT * FROM `action` WHERE `status` LIKE  1";
+        // Perform query
+        $res = $this->iMysqli->query($query) 
+            or die("Could not query database, query =<br/><pre>{$query}</pre><br/>{$this->iMysqli->error}");
+            
+        $row = $res->fetch_row();          
+        return $row[0];   
+        
+        $this->iMysqli->close();         
+        
+    }
 
+    public function SetStatus($idRoom) {
+        
+         // Connect
+        $this->ConnectToDatabase();            
+        // Prepare query
+        
+        $query = "UPDATE `rumaction` SET  `status` =  '1' WHERE  `rumaction`.`id_Rum` = {$idRoom}";
+    
+        // Perform query
+        $this->iMysqli->query($query) 
+            or die("Could not query database, query =<br/><pre>{$query}</pre><br/>{$this->iMysqli->error}");   
+        
+        
+        $this->iMysqli->close();       
+    }
+  
 } // End of class

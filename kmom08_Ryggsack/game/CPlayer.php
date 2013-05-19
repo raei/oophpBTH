@@ -18,7 +18,11 @@ class CPlayer {
     private $iHealthMeter;
     private $iLastRoomVisited;
     private $iItems;
-    
+    private $iDiceStatus;
+    private $iLetterStatus;
+    private $iCardStatus;
+
+
 
     // -------------------------------------------------------------------------------------------
     //
@@ -28,6 +32,9 @@ class CPlayer {
         $this->iHealthMeter = 10;
         $this->iLastRoomVisited = 1; // Always start in room 1
         $this->iItems = array();
+        $this->iCardStatus = FALSE;
+        $this->iDiceStatus = FALSE;
+        $this->iLetterStatus = FALSE;
     }
 
 
@@ -77,7 +84,9 @@ class CPlayer {
                 }
             }
             break;
-            case 'eatFruit': {
+            case 'eatPear':
+            case 'eatBanan':
+            case 'eatStrawberry': {
                 $this->iHealthMeter += 1;
                 if($this->iHealthMeter > 10) {
                     $this->iHealthMeter = 10;                    
@@ -95,26 +104,26 @@ class CPlayer {
             break;        
             case 'start': {                     
                 //header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/adventure.php');
-                header('Location:http://localhost/oophpBTH/kmom08/game/adventure.php');                
+                header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/adventure.php');                
             }
             break;
             
             case 'playGameHighLow': {
                 //header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/highlow/highlow.php?game=init');
-                 header('Location:http://localhost/oophpBTH/kmom08/game/highlow/highlow.php?game=init');                
+                 header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/highlow/highlow.php?game=init');                
                 
             }
             break;    
          
             case 'dice': {
                 //header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/pigGame/pig.php?game=init');
-                 header('Location:http://localhost/oophpBTH/kmom08/game/pigGame/pig.php?game=init');                
+                 header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/pigGame/pig.php?game=init');                
             }
             break;
         
            case 'hangman': {
                 //header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/pigGame/pig.php?game=init');
-                 header('Location:http://localhost/oophpBTH/kmom08/game/hangman/hangman.php');                
+                 header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/hangman/hangman.php');                
             }
             break;
         
@@ -123,11 +132,12 @@ class CPlayer {
                 foreach ($this->iItems as $value) {
                      if($value === "<img src ='img/dice.png'>"){
                          $test = FALSE;
+                         $this->setDiceStatus(TRUE);
                      }               
                 }  
                 
                 if($test === TRUE){
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=5&item=dice');  
+                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=5&item=pickDice');  
                 }  else {
                         header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=5'); 
                 } 
@@ -139,11 +149,12 @@ class CPlayer {
                 foreach ($this->iItems as $value) {
                      if($value === "<img src ='img/abc.png'>"){
                          $test = FALSE;
+                           $this->setLetterStatus(TRUE);
                      }               
                 }  
                 
                 if($test === TRUE){
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=6&item=letters');  
+                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=6&item=pickChar');  
                 }  else {
                         header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=6'); 
                 } 
@@ -155,11 +166,12 @@ class CPlayer {
                 foreach ($this->iItems as $value) {
                      if($value === "<img src ='img/cardBack.png'>"){
                          $test = FALSE;
+                           $this->setCardStatus(TRUE);
                      }               
                 }  
                 
                 if($test === TRUE){
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=7&item=cards');  
+                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=7&item=pickCards');  
                 }  else {
                         header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=7'); 
                 } 
@@ -178,20 +190,15 @@ class CPlayer {
     public function setHealthStatus(){
         $this->iHealthMeter = 'GREAT!';
     }  
-   /* 
-    public function AddItem($item) {
-        if($item != null)
-        $this->iItems[] = $item;
-    }*/
-    
+      
     public function AddItem($item) {
         if($item != null)
         { 
-            if($item === 'cards'){
+            if($item === 'pickCards'){
                 $this->iItems[] = "<img src ='img/cardBack.png'>";
-            }else if($item === 'letters') {
+            }else if($item === 'pickChar') {
                 $this->iItems[] = "<img src ='img/abc.png'>";
-            }else if($item === 'dice'){
+            }else if($item === 'pickDice'){
                 $this->iItems[] = "<img src ='img/dice.png'>";
             }        
         }
@@ -200,5 +207,31 @@ class CPlayer {
     public function getItems(){
         return $this->iItems;
     }
+    
+    public function getCardStatus(){
+        return $this->iCardStatus;
+    }
+    
+    public function setCardStatus($status){
+        $this->iCardStatus = $status;
+    }
+    
+     public function getLettertatus(){
+        return $this->iCardStatus;
+    }
+    
+    public function setLetterStatus($status){
+        $this->iCardStatus = $status;
+    }
+    
+     public function getDiceStatus(){
+        return $this->iCardStatus;
+    }
+    
+    public function setDiceStatus($status){
+        $this->iCardStatus = $status;
+    }
+    
+    
 
 } // End of class

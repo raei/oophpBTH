@@ -53,6 +53,12 @@ $_SESSION['player']->AddItem($actionItem);
 require_once('CRoom.php');
 $room = new CRoom();
 $room->ReadFromDatabase($idRoom);
+//Fixar en boolean i rumaction så att den sätts när du gjort en sak
+if($actionEvent != NULL){
+    $room->SetStatus($idRoom,$actionEvent );
+}else if($actionItem != NULL){
+     $room->SetStatus($idRoom,$actionItem );
+}
 
 // Perform the action-event, if any
 $_SESSION['player']->PerformActionEvent($actionEvent);
@@ -69,7 +75,7 @@ if($idRoom != 11){
 $debug .= 'Game initiated.';
 $debug .= 'Current session id is: ' . session_id() . '<br />';
 
-$itemList = $_SESSION['player']->getItems();
+$itemList = $_SESSION['player']->getItems();//getItems from players itemlist
 
 $htmlItems = "<table><tr>";
 

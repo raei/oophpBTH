@@ -150,6 +150,49 @@ EOD;
         
         $this->iMysqli->close(); 
         
-    }//end countrooms    
+    }//end countrooms  
+    
+    
+    // -------------------------------------------------------------------------------------------
+    //
+    // Read info from database, store in member variables.
+    //
+    //
+    public function SetStatus($aIdRoom, $aEvent) {
+
+        // Connect
+        $this->ConnectToDatabase(); 
+        // Sanitize
+        $idRoom = $this->iMysqli->real_escape_string($aIdRoom);
+        $Event = $this->iMysqli->real_escape_string($aEvent);
+        
+        $queryEventID = "SELECT `id` FROM `action` WHERE `event` = '{$Event}'";       
+        
+         // Perform query
+        $res2 = $this->iMysqli->query($queryEventID) 
+            or die("Could not query database, query =<br/><pre>{$queryEventID}</pre><br/>{$this->iMysqli->error}");
+         $row2 = $res2->fetch_row(); 
+        
+        $query = "UPDATE rumaction SET status = 1 WHERE id_Rum = {$idRoom} AND id_Action = {$row2[0]}";
+                
+        // Perform query
+        $res = $this->iMysqli->query($query) 
+            or die("Could not query database, query =<br/><pre>{$query}</pre><br/>{$this->iMysqli->error}");
+       
+        $this->iMysqli->close();        
+        
+    }
+    
+    public function resetEventData(){
+        // Connect
+        $this->ConnectToDatabase();         
+        $query = "UPDATE `rumaction` SET `status`= 0 ";
+        
+        // Perform query
+        $res = $this->iMysqli->query($query) 
+            or die("Could not query database, query =<br/><pre>{$query}</pre><br/>{$this->iMysqli->error}");
+            
+        $this->iMysqli->close();   
+    }
 
 } // End of class

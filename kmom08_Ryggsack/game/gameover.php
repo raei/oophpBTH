@@ -25,6 +25,7 @@ $debugEnable = FALSE;  // TRUE to enable debugging, FALSE to not print out debug
 $reason    = (empty($_GET['reason']) ? "Ingen anledning presenterad." : $_GET['reason']);
 
 
+$path = 'adventure.php';
 // -------------------------------------------------------------------------------------------
 //
 // The content of the page
@@ -38,7 +39,7 @@ $html = <<<EOD
 Anledning: {$reason}
 </p>
 <p>
-<a href="adventure.php">Gå till startsidan</a> 
+<a href="{$path}">Gå till startsidan</a> 
 </p>
 </div> <!-- wrapper -->
 
