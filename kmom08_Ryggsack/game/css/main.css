@@ -450,21 +450,25 @@ html{
     height: 520px;    
 }
 
+#main{
+    width:auto; 
+    display:block;  
+}
+
+#right_col{
+    width: 290px;
+    float: left;
+    padding-left: 9px;   
+}
+
+/* ------------------------------
+CUSTOM CLASSES
+------------------------------ */
 .header {
     width: 720px;
     display: block;
     height: 75px; 
     float: left;
-}
-
-#items{
-  width:290px;    
-  float:left;    
-}
-
-#main{
-    width:auto; 
-    display:block;  
 }
 
 .gamearea {  
@@ -474,41 +478,30 @@ html{
     border: solid white 6px;   
 }
 
-#right_col{
-    width: 290px;
-    float: left;
-    padding-left: 9px;
-   
-}
 .description {  
     width:auto; 
-    min-height: 150px;      
-    font-size: 13px;
-    padding-left: 5px;    
+    min-height: 170px;      
+    font-size: 13px;      
 }
 
-.helthmeter{
-    width:auto;       
-    font-size: 30px;     
-    font-weight: bold;   
-    text-align: center;
+.healthmeter{
+    width:auto; 
+    min-height: 70px; 
 }
 
-.action{
-   width:auto;    
-   margin-bottom:0px;
+.actionChoise{
+    width:auto; 
+    min-height: 90px;    
 }
 
-.action ul li{     
-   color: orange; 
+.actionEvents{
+    width:auto; 
+    min-height: 80px; 
 }
 
-.action ul li a{
-    font-family:Arial, Helvetica, sans-serif; 
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;  
-    color: white;   
+.items{
+  width:auto;
+  min-height: 60px;
 }
 
 .start{    

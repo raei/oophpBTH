@@ -44,8 +44,11 @@ $actionEvent = isset($_GET['event']) ? $_GET['event'] : "";
 
 // Get the action-item if any
 $actionItem = isset($_GET['item']) ? $_GET['item'] : "";
-//add item to player array
+
 $_SESSION['player']->AddItem($actionItem);
+
+$items = $_SESSION['player']->getItems();
+   
 // ----------------------------------------------------------------------------
 //
 // Load room info into room-object
@@ -53,15 +56,17 @@ $_SESSION['player']->AddItem($actionItem);
 require_once('CRoom.php');
 $room = new CRoom();
 $room->ReadFromDatabase($idRoom);
+
+
 //Fixar en boolean i rumaction så att den sätts när du gjort en sak
-if($actionEvent != NULL){
-    $room->SetStatus($idRoom,$actionEvent );
+if($actionEvent != NULL){    
+    $room->SetStatus($idRoom,$actionEvent );    
+    $_SESSION['player']->PerformActionEvent($actionEvent);
 }else if($actionItem != NULL){
      $room->SetStatus($idRoom,$actionItem );
+     $_SESSION['player']->PerformActionEvent($actionItem);  
 }
 
-// Perform the action-event, if any
-$_SESSION['player']->PerformActionEvent($actionEvent);
 
 // Keep track on current room and decrease health-meter when entering a new room
 //if you are winning game set helth till odödlig
@@ -86,6 +91,18 @@ foreach ($itemList as $value) {
 
 $htmlItems .= "  </tr></table>";
 
+$heartListImage = $_SESSION['player']->getHearts();//getHearts from players
+
+$htmlHearts = "<table><tr>";
+
+foreach ($heartListImage as $value) {
+     $htmlHearts .= "<td  style='padding-left: 5px;'>" . $value . '</td>';
+     $debug .= "Current items " . $htmlHearts ;
+}   
+
+$htmlHearts .= "  </tr></table>";
+
+$ralfAlert = '<script type="text/javascript"> alert("Text!") </script>';
 
 // -------------------------------------------------------------------------------------------
 //
@@ -100,38 +117,32 @@ $html = <<<EOD
     </div>
     <div id="main">
         <div class='gamearea'>
-        {$room->iGraphics}
-        
+            {$room->iGraphics}        
         </div> <!-- gamearea -->
         <div id="right_col">
-            <div class='helthmeter'>
-              <h3>Liv</h3>  
-             <p class='action'>
-               {$_SESSION['player']->getHealthStatus()}
-            </p>
-            </div>
-            <div class='description'>
+        <div class='healthmeter'>
+            <h3>Liv</h3>           
+            {$htmlHearts}            
+        </div>
+        <div class='description'>
             <h3>Beskrivning</h3>
-            <p class='action'>
-            {$room->iDescription}
-            </p>
-            </div> <!-- description -->
-                <div class='action'>
-                    <h3>Vägval</h3>
-                    <p class='action'>
-                        <ul>
-                       {$room->iConnections} 
-                        </ul>   
-                    </p>
-                </div> <!-- actions -->                       
-                <div class='actionEvents'>
-                    <h3>Händelser</h3>                   
-                       <p class='action'>{$room->iActions}</p>                  
-                </div> <!-- actions -->   
-                <div id="items">
-                   <h3>Ryggsäck</h3>       
-                   <p class='action'>{$htmlItems}</p>                    
-                </div>
+           {$room->iDescription}
+        </div> <!-- description -->
+        <div class='actionChoise'>
+            <h3>Vägval</h3>                    
+            <ul>
+           {$room->iConnections} 
+            </ul>                      
+        </div> <!-- actionChoise -->                       
+        <div class='actionEvents'>
+            <h3>Händelser</h3>                   
+           {$room->iActions}              
+        </div> <!-- actionEvents -->   
+        <div class="items">
+            <h3>Ryggsäck</h3>       
+            {$htmlItems}                    
+        </div>
+            
         </div> <!-- end right_col-->
     </div> <!-- main -->    
 </div> <!-- wrapper -->
@@ -157,11 +168,18 @@ $html = <<< EOD
         <meta http-equiv="Content-Type" content="text/html; charset={$charset};">
         <title>{$title}</title>
         <style type="text/css">{$stylesheet}</style>
-        <link rel='stylesheet' href='css/main.css' type='text/css' media='screen' />
+        <link rel='stylesheet' href='css/main.css' type='text/css' media='screen' /> 
+            <script type="text/javascript">
+function checkbox() {
+ alert("You must have the letters for playing hangman");
+  
+}
+</script>
+       
     </head>
     <body>      
         {$html}
-        {$debug}
+        {$debug}        
     </body>
 </html>
 EOD;

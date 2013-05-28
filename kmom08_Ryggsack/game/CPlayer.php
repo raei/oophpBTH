@@ -1,4 +1,5 @@
 <?php
+
 // ===========================================================================================
 //
 // CPlayer.php
@@ -9,20 +10,22 @@
 //
 
 
-class CPlayer {  
+class CPlayer {
 
     // -------------------------------------------------------------------------------------------
     //
     // Member variables
     //
-    private $iHealthMeter;
-    private $iLastRoomVisited;
-    private $iItems;
-    private $iDiceStatus;
-    private $iLetterStatus;
+    private $iHealthMeter;      //Take care of players health status(int)
+    private $iLastRoomVisited;  //Take care of players last room/nr status(int)
+    private $iItems;            //Take care of img for picked up items(array)
+    private $iHeartStatusList;  //Take care of heart/img health status(array)
+    private $iPlayDiceStatus;   //Check to see if player played dice(bool)
+    private $iPickDiceStatus;   //Check to see if player picked up dice(bool)
+    private $iPickLetterStatus;
+    private $iPlayHangManStatus;
+    private $iPlayHighLowStatus;
     private $iCardStatus;
-
-
 
     // -------------------------------------------------------------------------------------------
     //
@@ -32,11 +35,14 @@ class CPlayer {
         $this->iHealthMeter = 10;
         $this->iLastRoomVisited = 1; // Always start in room 1
         $this->iItems = array();
+        $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
         $this->iCardStatus = FALSE;
-        $this->iDiceStatus = FALSE;
-        $this->iLetterStatus = FALSE;
+        $this->iPlayDiceStatus = FALSE;
+        $this->iPickDiceStatus = FALSE;
+        $this->iPickLetterStatus = FALSE;
+        $this->iPlayHangManStatus = FALSE;
+        $this->iPlayHighLowStatus = FALSE;
     }
-
 
     // -------------------------------------------------------------------------------------------
     //
@@ -45,7 +51,6 @@ class CPlayer {
     function __destruct() {
         ;
     }
-
 
     // -------------------------------------------------------------------------------------------
     //
@@ -57,17 +62,24 @@ class CPlayer {
     //
     //
     public function SetCurrentRoomAndDecreaseHealtMeter($aId) {
-        
-        if($aId != $this->iLastRoomVisited) {
+
+        if ($aId != $this->iLastRoomVisited) {
             $this->iLastRoomVisited = $aId;
             $this->iHealthMeter--;
-            
-            if($this->iHealthMeter <= 0) {
-                header('Location: gameover.php?reason=Hälsomätaren nådde 0');
+            array_pop($this->iHeartStatusList); //delete one heart each time
+            //unset($iHeartStatusList["<img src ='img/heart.png'>"]);//fel här han tar inte bort bild
+
+            if ($this->iHealthMeter <= 0) {
+                header('Location: gameover.php?reason=Dina liv är förbrukade');
             }
+            /*
+              if(empty($this->iHeartStatusList)){
+              header('Location: gameover.php?reason=Du käkade ett ruttet äpple så alla dina liv försvann');
+              }
+             * 
+             */
         }
     }
-    
 
     // -------------------------------------------------------------------------------------------
     //
@@ -76,162 +88,223 @@ class CPlayer {
     //
     public function PerformActionEvent($aActionEvent) {
 
-        switch($aActionEvent) {
-            case 'increaseHealthBy5': {
-                $this->iHealthMeter += 5;
-                if($this->iHealthMeter > 10) {
-                    $this->iHealthMeter = 10;                    
+        switch ($aActionEvent) {
+            case 'drinkWater': {
+                    $this->iHealthMeter += 5;
+                    for ($i = 0; $i < 5; $i++) {
+                        array_push($this->iHeartStatusList, "<img src ='img/heart.png'>");
+                    }
+                    if ($this->iHealthMeter > 10) {
+                        $this->iHealthMeter = 10;
+                        $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
+                    }
+
+                    header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=10');
                 }
-            }
-            break;
-            case 'eatPear':
-            case 'eatBanan':
+                break;
+
+            case 'eatBanan': {
+                    $this->iHealthMeter += 1;
+                    array_push($this->iHeartStatusList, "<img src ='img/heart.png'>");
+                    if ($this->iHealthMeter > 10) {
+                        $this->iHealthMeter = 10;
+                        $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
+                    }
+                    header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=7'); //refresh site and events                 
+                }
+
+                break;
+
+            case 'eatPear': {
+                    $this->iHealthMeter += 1;
+                    array_push($this->iHeartStatusList, "<img src ='img/heart.png'>");
+                    if ($this->iHealthMeter > 10) {
+                        $this->iHealthMeter = 10;
+                        $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
+                    }
+                    header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=5');
+                }
+                break;
+
             case 'eatStrawberry': {
-                $this->iHealthMeter += 1;
-                if($this->iHealthMeter > 10) {
-                    $this->iHealthMeter = 10;                    
+                    $this->iHealthMeter += 1;
+                    array_push($this->iHeartStatusList, "<img src ='img/heart.png'>");
+                    if ($this->iHealthMeter > 10) {
+                        $this->iHealthMeter = 10;
+                        $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
+                    }
+                    header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=6');
                 }
-            }
-            break;
+                break;
             case 'eatAppel': {
-                $this->iHealthMeter = 0;       
-                //header('Location:http://localhost/oophpBTH/kmom08/game/gameover.php');  
-            }
-            break;
+                    $this->iHealthMeter -= 5;
+                    for ($i = 0; $i < 5; $i++) {
+                        array_pop($this->iHeartStatusList); //delete one heart each time
+                    }
+
+                    if ($this->iHealthMeter <= 0) {
+                        $this->iHealthMeter = 0;
+                        header("refresh:1; url=http://localhost/oophpBTH/kmom08_Ryggsack/game/gameover.php?reason=Passa dig för rutten frukt!");
+                    }
+                }
+                break;
             case 'increaseHealthFull': {
-            $this->iHealthMeter = 10;
-            }
-            break;        
-            case 'start': {                     
-                //header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/adventure.php');
-                header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/adventure.php');                
-            }
-            break;
-            
+                    $this->iHealthMeter = 10;
+                    $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
+                }
+                break;
+            case 'start': {
+                    //header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/adventure.php');
+                    header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/adventure.php');
+                }
+                break;
+
             case 'playGameHighLow': {
-                //header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/highlow/highlow.php?game=init');
-                 header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/highlow/highlow.php?game=init');                
-                
-            }
-            break;    
-         
-            case 'dice': {
-                //header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/pigGame/pig.php?game=init');
-                 header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/pigGame/pig.php?game=init');                
-            }
-            break;
-        
-           case 'hangman': {
-                //header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/pigGame/pig.php?game=init');
-                 header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/hangman/hangman.php');                
-            }
-            break;
-        
-            case 'pickDice': {                
-                $test = TRUE;
-                foreach ($this->iItems as $value) {
-                     if($value === "<img src ='img/dice.png'>"){
-                         $test = FALSE;
-                         $this->setDiceStatus(TRUE);
-                     }               
-                }  
-                
-                if($test === TRUE){
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=5&item=pickDice');  
-                }  else {
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=5'); 
-                } 
-            }
-            break;
-            
-            case 'pickChar': {                
-                $test = TRUE;
-                foreach ($this->iItems as $value) {
-                     if($value === "<img src ='img/abc.png'>"){
-                         $test = FALSE;
-                           $this->setLetterStatus(TRUE);
-                     }               
-                }  
-                
-                if($test === TRUE){
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=6&item=pickChar');  
-                }  else {
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=6'); 
-                } 
-            }
-            break;
-            
-              case 'pickCards': {                
-                $test = TRUE;
-                foreach ($this->iItems as $value) {
-                     if($value === "<img src ='img/cardBack.png'>"){
-                         $test = FALSE;
-                           $this->setCardStatus(TRUE);
-                     }               
-                }  
-                
-                if($test === TRUE){
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=7&item=pickCards');  
-                }  else {
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=7'); 
-                } 
-            }
-            break;
+                    if ($this->getPlayHighLowStatus() === TRUE) {
+                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/highlow/highlow.php?game=init');
+                        $this->setPlayHighLowStatus(FALSE);
+                    } else {
+                       // header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=9');
+                    }
+                }
+                break;
+
+            case 'playHangman': {
+                    if ($this->getPlayHangmanStatus() === TRUE) {
+                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/hangman/hangman.php');
+                        $this->setPlayHangmanStatus(FALSE);
+                    } else {
+                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=4');
+                    }
+                }
+                break;
+
+            case 'playDice': {
+                    if ($this->getPlayDiceStatus() === TRUE) {
+                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/pigGame/pig.php?game=init');
+                        $this->setPlayDiceStatus(FALSE);
+                    } else {
+                       // header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=8');
+                    }
+                }
+                break;          
+
+            case 'pickDice': {
+
+                    //Check if you have pick up dice if not p              
+                    if ($this->getPickDiceStatus() === FALSE) {
+                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=5&item=pickDice');
+                        $this->setPickDiceStatus(TRUE); //sign that you hav picked up dices
+                        $this->setPlayDiceStatus(TRUE); //allow you to play dice
+                    } else {
+                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=5');
+                    }
+                }
+                break;
+
+            case 'pickChar': {
+                    if ($this->getLettertatus() === FALSE) {
+                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=6&item=pickChar');
+                        $this->setLetterStatus(TRUE);
+                        $this->setPlayHangManStatus(TRUE); //allow you to play hangman
+                    } else {
+                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=6');
+                    }
+                }
+                break;
+
+            case 'pickCards': {
+                    if ($this->getCardStatus() === FALSE) {
+                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=7&item=pickCards');
+                        $this->setCardStatus(TRUE);
+                        $this->setPlayHighLowStatus(TRUE); //allow you to play highlow                        
+                    } else {
+                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=7');
+                    }
+                }
+                break;
 
             default:
-            break;
+                break;
         }
     }
-    
-    public function getHealthStatus(){
+
+    public function getHearts() {
+        return $this->iHeartStatusList;
+    }
+
+    public function getHealthStatus() {
         return $this->iHealthMeter;
     }
-    
-    public function setHealthStatus(){
+
+    public function setHealthStatus() {
         $this->iHealthMeter = 'GREAT!';
-    }  
-      
+    }
+
     public function AddItem($item) {
-        if($item != null)
-        { 
-            if($item === 'pickCards'){
+        if ($item != null) {
+            if ($item === 'pickCards') {
                 $this->iItems[] = "<img src ='img/cardBack.png'>";
-            }else if($item === 'pickChar') {
+            } else if ($item === 'pickChar') {
                 $this->iItems[] = "<img src ='img/abc.png'>";
-            }else if($item === 'pickDice'){
+            } else if ($item === 'pickDice') {
                 $this->iItems[] = "<img src ='img/dice.png'>";
-            }        
+            }
         }
     }
-    
-    public function getItems(){
+
+    public function getItems() {
         return $this->iItems;
     }
-    
-    public function getCardStatus(){
-        return $this->iCardStatus;
-    }
-    
-    public function setCardStatus($status){
-        $this->iCardStatus = $status;
-    }
-    
-     public function getLettertatus(){
-        return $this->iCardStatus;
-    }
-    
-    public function setLetterStatus($status){
-        $this->iCardStatus = $status;
-    }
-    
-     public function getDiceStatus(){
-        return $this->iCardStatus;
-    }
-    
-    public function setDiceStatus($status){
-        $this->iCardStatus = $status;
-    }
-    
-    
 
-} // End of class
+    public function getCardStatus() {
+        return $this->iCardStatus;
+    }
+
+    public function setCardStatus($status) {
+        $this->iCardStatus = $status;
+    }
+
+    public function getPlayHighLowStatus() {
+        return $this->iPlayHighLowStatus;
+    }
+
+    public function setPlayHighLowStatus($status) {
+        $this->iPlayHighLowStatus = $status;
+    }
+
+    public function setPlayHangmanStatus($status) {
+        $this->iPlayHangManStatus = $status;
+    }
+
+    public function getPlayHangmanStatus() {
+        return $this->iPlayHighLowStatus;
+    }
+
+    public function getLettertatus() {
+        return $this->iPickLetterStatus;
+    }
+
+    public function setLetterStatus($status) {
+        $this->iPickLetterStatus = $status;
+    }
+
+    public function getPlayDiceStatus() {
+        return $this->iPlayDiceStatus;
+    }
+
+    public function setPlayDiceStatus($status) {
+        $this->iPlayDiceStatus = $status;
+    }
+
+    public function getPickDiceStatus() {
+        return $this->iPickDiceStatus;
+    }
+
+    public function setPickDiceStatus($status) {
+        $this->iPickDiceStatus = $status;
+    }
+
+}
+
+// End of class

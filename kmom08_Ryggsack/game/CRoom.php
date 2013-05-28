@@ -78,7 +78,7 @@ SELECT id_Rum, namn, event
 FROM action AS A, rumaction AS RA 
 WHERE 
     RA.id_Action = A.id AND
-    id_Rum = '{$idRoom}';
+    id_Rum = '{$idRoom}' AND status = 0;
 EOD;
 
         // Perform query
@@ -117,7 +117,7 @@ EOD;
         $this->iActions = "";
         while(is_object($results[2]) && $row = $results[2]->fetch_object()) {  
             $this->iActions .= '<li>';
-            $this->iActions .= "<a href='{$_SERVER['PHP_SELF']}?id={$row->id_Rum}&amp;event={$row->event}'>{$row->namn}</a> ";
+            $this->iActions .= "<a href='{$_SERVER['PHP_SELF']}?id={$row->id_Rum}&amp;event={$row->event}' onClick=checkbox()>{$row->namn}</a> ";
             $this->iActions .= '</li>';     
         }
 
@@ -155,7 +155,7 @@ EOD;
     
     // -------------------------------------------------------------------------------------------
     //
-    // Read info from database, store in member variables.
+    // Set status on event if you have done some event or action in game.
     //
     //
     public function SetStatus($aIdRoom, $aEvent) {
@@ -172,14 +172,18 @@ EOD;
         $res2 = $this->iMysqli->query($queryEventID) 
             or die("Could not query database, query =<br/><pre>{$queryEventID}</pre><br/>{$this->iMysqli->error}");
          $row2 = $res2->fetch_row(); 
-        
-        $query = "UPDATE rumaction SET status = 1 WHERE id_Rum = {$idRoom} AND id_Action = {$row2[0]}";
-                
-        // Perform query
-        $res = $this->iMysqli->query($query) 
-            or die("Could not query database, query =<br/><pre>{$query}</pre><br/>{$this->iMysqli->error}");
        
-        $this->iMysqli->close();        
+         //if $check false then set status in tb rumaction to 1
+         //except gameplayes they should not be set cause they should always be visible
+         if($aEvent != "playDice" && $aEvent != "playHangman" && $aEvent != "playGameHighLow"){
+              $query = "UPDATE rumaction SET status = 1 WHERE id_Rum = {$idRoom} AND id_Action = {$row2[0]}";          
+                
+            // Perform query
+             $res = $this->iMysqli->query($query) 
+                or die("Could not query database, query =<br/><pre>{$query}</pre><br/>{$this->iMysqli->error}");            
+         } 
+        
+         $this->iMysqli->close();        
         
     }
     

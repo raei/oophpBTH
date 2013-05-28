@@ -51,7 +51,7 @@ if(preg_match('([a-öA-Ö])', $char) or $char === '' ){
 }//end if else
 
 // hemliga ordet
-$theWord = 'KAJSAVARG';
+$theWord = 'JAVA';
 
 $debug .= $theWord;//add the word to debug var
 
