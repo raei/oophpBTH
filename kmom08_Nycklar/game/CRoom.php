@@ -159,8 +159,9 @@ EOD;
     // Set status on event if you have done some event or action in game.
     //
     //
-    public function SetStatus($aIdRoom, $aEvent) {
+    public function SetStatus($aIdRoom, $aEvent  ) {
 
+    
         // Connect
         $this->ConnectToDatabase(); 
         // Sanitize
@@ -174,15 +175,12 @@ EOD;
             or die("Could not query database, query =<br/><pre>{$queryEventID}</pre><br/>{$this->iMysqli->error}");
          $row2 = $res2->fetch_row(); 
        
-         //if $check false then set status in tb rumaction to 1
-         //except gameplayes they should not be set cause they should always be visible
-         if($aEvent != "playDice" && $aEvent != "playHangman" && $aEvent != "playGameHighLow"){
-              $query = "UPDATE rumaction SET status = 1 WHERE id_Rum = {$idRoom} AND id_Action = {$row2[0]}";          
+         $query = "UPDATE rumaction SET status = 1 WHERE id_Rum = {$idRoom} AND id_Action = {$row2[0]}";          
                 
             // Perform query
              $res = $this->iMysqli->query($query) 
                 or die("Could not query database, query =<br/><pre>{$query}</pre><br/>{$this->iMysqli->error}");            
-         } 
+         
         
          $this->iMysqli->close();        
         

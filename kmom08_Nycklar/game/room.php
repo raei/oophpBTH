@@ -42,14 +42,11 @@ if($idRoom === FALSE || $idRoom === NULL || $idRoom < 0) die("Felaktig _GET värd
 // Get the action-event if any
 $actionEvent = isset($_GET['event']) ? $_GET['event'] : "";
 
-// Get the action-item if any
+// Get the action-item if any pickDice, pickChar and pickCards
 $actionItem = isset($_GET['item']) ? $_GET['item'] : "";
 
+// Add dice, letter and card image to item array 
 $_SESSION['player']->AddItem($actionItem);
-
-$items = $_SESSION['player']->getItems();
-
-
    
 // ----------------------------------------------------------------------------
 //
@@ -60,13 +57,12 @@ $room = new CRoom();
 
 //Fixar en boolean i rumaction så att den sätts när du gjort en sak
 if($actionEvent != NULL ){    
-    $room->SetStatus($idRoom,$actionEvent );    
-    $_SESSION['player']->PerformActionEvent($actionEvent);
+    //$room->SetStatus($idRoom,$actionEvent );    
+    $_SESSION['player']->PerformActionEvent($actionEvent,$room,$idRoom );
 }else if($actionItem != NULL ){
-     $room->SetStatus($idRoom,$actionItem );
-     $_SESSION['player']->PerformActionEvent($actionItem);  
+     //$room->SetStatus($idRoom,$actionItem );
+     $_SESSION['player']->PerformActionEvent($actionItem,$room,$idRoom );  
 }
-
 
 $eventData = "";
 $dataEvent = "";
@@ -104,7 +100,7 @@ $itemList = $_SESSION['player']->getItems();//getItems from players itemlist
 $htmlItems = "<table><tr>";
 
 foreach ($itemList as $value) {
-     $htmlItems .= "<td  style='padding-left: 40px;'>" . $value . '</td>';
+     $htmlItems .= "<td  style='padding-right: 40px;'>" . $value . '</td>';
      $debug .= "Current items " . $htmlItems ;
 }   
 
@@ -121,7 +117,16 @@ foreach ($heartListImage as $value) {
 
 $htmlHearts .= "  </tr></table>";
 
+$keyListImage = $_SESSION['player']->getKeys();//getKeys from players
 
+$htmlKeys = "<table><tr>";
+
+foreach ($keyListImage as $value) {
+     $htmlKeys .= "<td  style='padding-right: 30px;'>" . $value . '</td>';
+     $debug .= "Current items " . $htmlKeys ;
+}   
+
+$htmlKeys .= "  </tr></table>";
 
 // -------------------------------------------------------------------------------------------
 //
@@ -129,22 +134,30 @@ $htmlHearts .= "  </tr></table>";
 //
 $html = <<<EOD
 
-<div class='wrapper'>
-    <div class="header">
-        <h1>Äventyrsspel</h1>
-        <h2>{$room->iTitle}</h2>        
-    </div>
+<div class='wrapper'>        
+    <div class='header'>           
+        <div class='keys'>
+            <h2>Nycklar</h2> 
+             {$htmlKeys}
+        </div>
+        <div class="items">
+            <h2>Ryggsäck</h2>       
+            {$htmlItems}                    
+        </div>
+        <div class='healthmeter'>
+            <h2>Liv</h2>           
+            {$htmlHearts}            
+        </div>       
+    </div><!-- end header --> 
+        
     <div id="main">
         <div class='gamearea'>
             {$room->iGraphics}        
         </div> <!-- gamearea -->
-        <div id="right_col">
-        <div class='healthmeter'>
-            <h3>Liv</h3>           
-            {$htmlHearts}            
-        </div>
+            
+   <div id="right_col">                    
         <div class='description'>
-            <h3>Beskrivning</h3>
+            <h3>{$room->iTitle}</h3>
            {$room->iDescription}
         </div> <!-- description -->
         <div class='actionChoise'>
@@ -156,11 +169,7 @@ $html = <<<EOD
         <div class='actionEvents'>
             <h3>Händelser</h3>                   
            {$room->iActions}              
-        </div> <!-- actionEvents -->   
-        <div class="items">
-            <h3>Ryggsäck</h3>       
-            {$htmlItems}                    
-        </div>
+        </div> <!-- actionEvents -->           
             
         </div> <!-- end right_col-->
     </div> <!-- main -->    

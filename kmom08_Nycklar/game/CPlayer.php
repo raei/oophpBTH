@@ -26,7 +26,9 @@ class CPlayer {
     private $iPlayHangManStatus;    //Check to see if player played hangman(bool)
     private $iPlayHighLowStatus;    //Check to see if player played highlow(bool)
     private $iPlayDiceStatus;       //Check to see if player played dice(bool)
-   
+    private $iGoldenKeys;           //Take care of key image(array) 
+
+
 
     // -------------------------------------------------------------------------------------------
     //
@@ -36,6 +38,7 @@ class CPlayer {
         $this->iHealthMeter = 10;
         $this->iLastRoomVisited = 1; // Always start in room 1
         $this->iItems = array();
+        $this->iGoldenKeys = array();
         $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
         $this->iPickCardStatus = FALSE;       
         $this->iPickDiceStatus = FALSE;
@@ -87,7 +90,7 @@ class CPlayer {
     // Take care of the action-event.
     //
     //
-    public function PerformActionEvent($aActionEvent) {
+    public function PerformActionEvent($aActionEvent,$room, $idRoom) {
 
         switch ($aActionEvent) {
             case 'drinkWater': {
@@ -99,9 +102,11 @@ class CPlayer {
                         $this->iHealthMeter = 10;
                         $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
                     }
+                      
 
-                    header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=10');
+                    header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=10');
                 }
+                $room->SetStatus($idRoom, $aActionEvent );
                 break;
 
             case 'eatBanan': {
@@ -111,8 +116,9 @@ class CPlayer {
                         $this->iHealthMeter = 10;
                         $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
                     }
-                    header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=7'); //refresh site and events                 
+                    header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=7'); //refresh site and events                 
                 }
+                 $room->SetStatus($idRoom, $aActionEvent );
 
                 break;
 
@@ -123,8 +129,9 @@ class CPlayer {
                         $this->iHealthMeter = 10;
                         $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
                     }
-                    header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=5');
+                    header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=5');
                 }
+                 $room->SetStatus($idRoom, $aActionEvent );
                 break;
 
             case 'eatStrawberry': {
@@ -134,8 +141,9 @@ class CPlayer {
                         $this->iHealthMeter = 10;
                         $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
                     }
-                    header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=6');
+                    header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=6');
                 }
+                 $room->SetStatus($idRoom, $aActionEvent );
                 break;
             case 'eatAppel': {
                     $this->iHealthMeter -= 5;
@@ -145,9 +153,10 @@ class CPlayer {
 
                     if ($this->iHealthMeter <= 0) {
                         $this->iHealthMeter = 0;
-                        header("refresh:1; url=http://localhost/oophpBTH/kmom08_Ryggsack/game/gameover.php?reason=Passa dig för rutten frukt!");
+                        header("refresh:1; url=http://localhost/oophpBTH/kmom08_Nycklar/game/gameover.php?reason=Passa dig för rutten frukt!");
                     }
                 }
+                 $room->SetStatus($idRoom, $aActionEvent );
                 break;
             case 'increaseHealthFull': {
                  if ($this->iHealthMeter < 10) {
@@ -155,73 +164,87 @@ class CPlayer {
                     $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
                  }
                 }
+                 $room->SetStatus($idRoom, $aActionEvent );
                 break;
             case 'start': {
                     //header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/adventure.php');
-                    header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/adventure.php');
+                    header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/adventure.php');
                 }
                 break;
 
             case 'playGameHighLow': {
                     if ($this->getPlayHighLowStatus() === TRUE) {
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/highlow/highlow.php?game=init');
+                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/highlow/highlow.php?game=init');
                         $this->setPlayHighLowStatus(FALSE);
+                        $this->iGoldenKeys[] = "<img src ='image/golden_key.png'>";
+                        $room->SetStatus($idRoom, $aActionEvent );
                     } else {
-                       // header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=9');
+                       // header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=9');
                     }
                 }
+                 
                 break;
 
             case 'playHangman': {
                     if ($this->getPlayHangmanStatus() === TRUE) {
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/hangman/hangman.php');
+                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/hangman/hangman.php');
                         $this->setPlayHangmanStatus(FALSE);
+                        $this->iGoldenKeys[] = "<img src ='image/golden_key.png'>";
+                        $room->SetStatus($idRoom, $aActionEvent );                        
                     } else {
-                        //header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=4');
+                       // header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=4');
                     }
                 }
+                 
                 break;
 
             case 'playDice': {
                     if ($this->getPlayDiceStatus() === TRUE) {
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/pigGame/pig.php?game=init');
+                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/pigGame/pig.php?game=init');
                         $this->setPlayDiceStatus(FALSE);
+                        $this->iGoldenKeys[] = "<img src ='image/golden_key.png'>";
+                        $room->SetStatus($idRoom, $aActionEvent );
+                        //Här tar du bort länken till spelet
                     } else {
-                       // header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=8');
+                       // header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=8');
                     }
                 }
+                 
                 break;          
 
             case 'pickDice': {
                     //Check if you have pick up dice if not p              
                     if ($this->getPickDiceStatus() === FALSE) {
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=5&item=pickDice');
+                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=5&item=pickDice');
                         $this->setPickDiceStatus(TRUE); //sign that you hav picked up dices
                         $this->setPlayDiceStatus(TRUE); //allow you to play dice
                     } else {
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=5');
+                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=5');
                     }
                 }
+                 $room->SetStatus($idRoom, $aActionEvent );
                 break;
             case 'pickChar': {
                     if ($this->getPickLetterStatus() === FALSE) {
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=6&item=pickChar');
+                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=6&item=pickChar');
                         $this->setPickLetterStatus(TRUE);
                         $this->setPlayHangManStatus(TRUE); //allow you to play hangman
                     } else {
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=6');
+                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=6');
                     }
                 }
+                 $room->SetStatus($idRoom, $aActionEvent );
                 break;
             case 'pickCards': {
                     if ($this->getPickCardStatus() === FALSE) {
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=7&item=pickCards');
+                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=7&item=pickCards');
                         $this->setPickCardStatus(TRUE);
                         $this->setPlayHighLowStatus(TRUE); //allow you to play highlow                        
                     } else {
-                        header('Location:http://localhost/oophpBTH/kmom08_Ryggsack/game/room.php?id=7');
+                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=7');
                     }
                 }
+                 $room->SetStatus($idRoom, $aActionEvent );
                 break;
 
             default:
@@ -232,6 +255,10 @@ class CPlayer {
     public function getHearts() {
         return $this->iHeartStatusList;
     }
+    
+    public function getKeys() {
+        return $this->iGoldenKeys;
+    }   
 
     public function getHealthStatus() {
         return $this->iHealthMeter;

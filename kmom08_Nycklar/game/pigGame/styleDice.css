@@ -1,0 +1,68 @@
+.clear { clear: both; }
+
+.dice {   
+    margin-top: 100px;
+    padding-left:7px;                
+}
+
+#diceScore{ 
+    float: left;
+    width: 140px;
+    height: 100px;
+    padding-left:20px;
+    padding-top: 80px;
+}
+
+
+
+#diceScore h3{
+    font-size:94px;
+    color:white;
+    border-bottom: none;
+    letter-spacing: 1px;     
+}
+
+
+
+.gameareaDice {  
+    width: 690px;
+    height: 450px;
+    float: left;
+    border: solid white 6px;
+    padding: 10px;   
+}
+
+.restart a{
+    text-decoration:none;
+    margin-left:7px;
+    font-size:14px;          
+    color:white;           
+}
+
+#playerOne {    
+    width:300px; 
+    margin-left:30px; 
+    float:left;
+}
+
+#kid{
+    padding-top: 30px;
+    margin-right: 20px;
+    float: right; 
+    display: block;
+    height: 340px;
+    width: 150px;   
+    background: #000 url('../image/kid2.png') center no-repeat;
+} 
+
+.submit input {
+        margin-top: 58px;
+	width: 180px;
+        height: 50px; 	
+	background: orange;
+	border: 0;
+	font-size: 24px;
+	color: #FFFFFF;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}

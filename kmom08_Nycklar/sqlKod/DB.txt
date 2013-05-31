@@ -1,0 +1,67 @@
+//Skapa tabellerna
+
+CREATE TABLE `raer12`.`Rum` (
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`namn` VARCHAR( 100 ) NOT NULL ,
+`beskrivning` TEXT NOT NULL ,
+`grafik` TEXT NULL
+) ENGINE = MYISAM;
+ 
+CREATE TABLE `raer12`.`Rumkoppling` 
+( `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY , 
+`id_Rum1` INT NOT NULL , `id_Rum2` INT NOT NULL , 
+`namn` VARCHAR( 100 ) NOT NULL ) 
+ENGINE = MYISAM;
+
+
+
+//Insert data till Rum tabellen
+
+INSERT INTO `raer12`.`Rum` (
+`id` ,
+`namn` ,
+`beskrivning` ,
+`grafik`
+)
+VALUES (
+NULL , 'Skogsgläntan', 'Du står i en skogsglänta, till vänster om dig leder en bred stig in i skogen. Det ser ut som den är väl använd. Till höger om dig rinner sakta en porlande bäck med sitt lite mörkt dunkla vatten. Bäcken ser levande ut. Det går en liten stig utmed bäcken.
+
+Skogen ser mörkt grön ut, den är tät så det går inte se så långt in. Den känns lite kuslig men samtidigt spännande och lockande.', NULL
+), (
+NULL , 'Stig i skogen', 'Ska fixa beskrivning senare', NULL
+), (
+NULL , 'Grottöppning', 'Ska fixa beskrivning senare', NULL
+), (
+NULL , 'Grotta', 'Ska fixa beskrivning senare', NULL
+), (
+NULL , 'Skogen 1', 'Ska fixa beskrivning senare', NULL
+), (
+NULL , 'Skogen 2', 'Ska fixa beskrivning senare', NULL
+), (
+NULL , 'Stig utmed bäck', 'Ska fixa beskrivning senare', NULL
+), (
+NULL , 'Bro över bäcken', 'Ska fixa beskrivning senare', NULL
+), (
+NULL , 'Brygga vid bäcken', 'Ska fixa beskrivning senare', NULL
+), (
+NULL , 'Skogen offerplats', 'Ska fixa beskrivning senare', NULL
+);
+
+
+//Rumskopplingar
+
+INSERT INTO `raer12`.`Rumkoppling` (
+`id` ,
+`id_Rum1` ,
+`id_Rum2` ,
+`namn`
+)
+VALUES (
+NULL , '1', '2', 'Följ stigen in i skogen'
+), (
+NULL , '2', '1', 'Gå ut i gläntan'
+), (
+NULL , '2', '3', 'Fortsätt stigen fram'
+), (
+NULL , '3', '4', 'Gå in i grottan'
+);
