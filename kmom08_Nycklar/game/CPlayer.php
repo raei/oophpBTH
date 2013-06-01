@@ -146,8 +146,8 @@ class CPlayer {
                  $room->SetStatus($idRoom, $aActionEvent );
                 break;
             case 'eatAppel': {
-                    $this->iHealthMeter -= 5;
-                    for ($i = 0; $i < 5; $i++) {
+                    $this->iHealthMeter -= 1;
+                    for ($i = 0; $i < 1; $i++) {
                         array_pop($this->iHeartStatusList); //delete one heart each time
                     }
 
@@ -178,9 +178,11 @@ class CPlayer {
                         $this->setPlayHighLowStatus(FALSE);
                         $this->iGoldenKeys[] = "<img src ='image/golden_key.png'>";
                         $room->SetStatus($idRoom, $aActionEvent );
-                    } else {
-                       // header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=9');
-                    }
+                    } 
+                   /* if(sizeof($this->iGoldenKeys)=== 3){
+                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=11');
+                        //header("refresh:1; url=http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=11");
+                    }*/
                 }
                  
                 break;
@@ -189,11 +191,13 @@ class CPlayer {
                     if ($this->getPlayHangmanStatus() === TRUE) {
                         header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/hangman/hangman.php');
                         $this->setPlayHangmanStatus(FALSE);
-                        $this->iGoldenKeys[] = "<img src ='image/golden_key.png'>";
+                        $this->iGoldenKeys[] = "<img src ='image/golden_key.png'>";//when playing hangman you get a key
                         $room->SetStatus($idRoom, $aActionEvent );                        
-                    } else {
-                       // header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=4');
-                    }
+                    } 
+                    /*if(sizeof($this->iGoldenKeys) === 3){
+                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=11');
+                       //header("refresh:1; url=http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=11");
+                    }*/
                 }
                  
                 break;
@@ -205,9 +209,11 @@ class CPlayer {
                         $this->iGoldenKeys[] = "<img src ='image/golden_key.png'>";
                         $room->SetStatus($idRoom, $aActionEvent );
                         //Här tar du bort länken till spelet
-                    } else {
-                       // header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=8');
-                    }
+                    } 
+                    /*if(sizeof($this->iGoldenKeys) === 3){
+                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=11');
+                        //header("refresh:1; url=http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=11");
+                    }*/
                 }
                  
                 break;          
@@ -259,6 +265,11 @@ class CPlayer {
     public function getKeys() {
         return $this->iGoldenKeys;
     }   
+    
+    public function getSizeOfKeys() {
+        return sizeof($this->iGoldenKeys);
+    }
+            
 
     public function getHealthStatus() {
         return $this->iHealthMeter;
@@ -338,6 +349,4 @@ class CPlayer {
         $this->iPickDiceStatus = $status;
     }
 
-}
-
-// End of class
+}// End of class

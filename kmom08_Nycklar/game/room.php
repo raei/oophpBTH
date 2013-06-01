@@ -21,7 +21,7 @@ session_start();
 //
 error_reporting(E_ALL | E_STRICT);
 $debug = "";
-$debugEnable = FALSE;  // TRUE to enable debugging, FALSE to not print out debug information
+$debugEnable = TRUE;  // TRUE to enable debugging, FALSE to not print out debug information
 
 // -------------------------------------------------------------------------------------------
 //
@@ -91,6 +91,20 @@ if($idRoom != 11){
 }else{
      $_SESSION['player']->setHealthStatus();
 }
+
+//fungerar inte måste fixa så att du byter bild vid hamnen så du måste ta dig dit när 
+// du fått tre nycklar
+if( $_SESSION['player']->getSizeOfKeys() === 3){
+    $query =$room->changePicture();
+    $debug = $query;
+    //header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=11');
+    //header("refresh:1; url=http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=11");
+}
+
+ $query =$room->changePicture();
+    $debug = $query;
+
+
 
 $debug .= 'Game initiated.';
 $debug .= 'Current session id is: ' . session_id() . '<br />';

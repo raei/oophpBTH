@@ -186,7 +186,7 @@ EOD;
         
     }
     
-    public function resetEventData(){
+    public function resetEventData() {
         // Connect
         $this->ConnectToDatabase();         
         $query = "UPDATE `rumaction` SET `status`= 0 ";
@@ -197,5 +197,34 @@ EOD;
             
         $this->iMysqli->close();   
     }
+    
+    public function changePicture() {
+         // Connect
+        $this->ConnectToDatabase();
+        $imgString = "<embed type='image/svg+xml' src='img/slut.svg' width='707' height='480' />";
+        $query = sprintf("UPDATE `rum` SET `grafik` = {$imgString} WHERE `id`= 1;") ;        
+        // Perform query
+        
+        $res = $this->iMysqli->query($query) 
+            or die("Could not query database, query =<br/><pre>{$query}</pre><br/>{$this->iMysqli->error}");
+            
+        $this->iMysqli->close();   
+        return $query;
+    }
 
 } // End of class
+/*
+<embed type="image/svg+xml" src="img/stranden.svg" width="707" height="480" />
+        
+<embed type="image/svg+xml" src="img/slut.svg" width="707" height="480" />  
+
+UPDATE `rum` 
+SET `grafik` = "<embed type='image/svg+xml' src='img/slut.svg' width='707' height='480' /> "  
+WHERE `id`= '1';
+ * 
+ * UPDATE `rum` 
+SET `grafik` = "<embed type='image/svg+xml' src='img/stranden.svg' width='707' height='480' /> "  
+WHERE `id`= '1';
+ * 
+ * *
+ */
