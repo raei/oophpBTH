@@ -56,6 +56,13 @@ switch($doGame) {
             $_SESSION['player'] = new CPlayer();    // if not already done before.
         }
         
+        require_once('CRoom.php');
+        $room = new CRoom();
+        $room->changePicture("<embed type='image/svg+xml' src='img/stranden.svg' width='707' height='480' /> "," Du är strandsatt på en öde ö. Båten som kan ta dig hem är låst med ett stort hänglås. En säker död väntar dig om du inte lyckas hitta nyckeln. Lycka till!" ,'1' );
+        $room->changePicture("<embed type='image/svg+xml' src='img/havet.svg' width='707' height='480' /> "," Du har hittat stranden se dig om kring och jobba lite nu." ,'7' );
+        $room->changePicture("<embed type='image/svg+xml' src='img/eldplatsen.svg' width='707' height='480' /> "," Du har hittat en eldstad vila en stund och kolla lite." ,'5' );
+        $room->changePicture("<embed type='image/svg+xml' src='img/djupa_skogen.svg' width='707' height='480' /> "," Du är mitt i skogen och ser lite vilsen ut. Det ser nästan ut som om det börjar mörkna, men kanske är det bara ett moln... Du ser dig om och funderar åt vilket håll som du bör fortsätta... Nu gäller det..." ,'6' );
+        $room->changePicture("<embed type='image/svg+xml' src='img/borgen.svg' width='707' height='480' /> "," Fin borg du känner dig törstig.",'10' );
         //
         // Make a redirect to the first room
         //

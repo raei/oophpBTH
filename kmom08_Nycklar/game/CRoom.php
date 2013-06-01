@@ -198,13 +198,25 @@ EOD;
         $this->iMysqli->close();   
     }
     
-    public function changePicture() {
+    public function changePicture($imgUrl ,$text, $id) {
          // Connect
         $this->ConnectToDatabase();
-        $imgString = "<embed type='image/svg+xml' src='img/slut.svg' width='707' height='480' />";
-        $query = sprintf("UPDATE `rum` SET `grafik` = {$imgString} WHERE `id`= 1;") ;        
-        // Perform query
+        if($imgUrl != null){
+            $imgString = $imgUrl;
+        }else{
+             
+               $imgString = "<embed type='image/svg+xml' src='img/slut.svg' width='707' height='480' \/> " ;
+        }
         
+        $roomId = $this->iMysqli->real_escape_string($id);
+        $descriptenText = $this->iMysqli->real_escape_string($text);
+        // Sanitize
+        $imgString = $this->iMysqli->real_escape_string($imgString);
+        
+        $query = <<<EOD
+            UPDATE rum SET grafik = '{$imgString}', beskrivning = '{$descriptenText}' WHERE id= {$roomId};
+EOD;
+       
         $res = $this->iMysqli->query($query) 
             or die("Could not query database, query =<br/><pre>{$query}</pre><br/>{$this->iMysqli->error}");
             
@@ -214,6 +226,11 @@ EOD;
 
 } // End of class
 /*
+ * 
+ * 
+ * UPDATE `rum` 
+SET `grafik` = "<embed type='image/svg+xml' src='img/stranden.svg' width='707' height='480' /> " , `beskrivning`  = "Hejsan" WHERE `id`= '1';
+ * 
 <embed type="image/svg+xml" src="img/stranden.svg" width="707" height="480" />
         
 <embed type="image/svg+xml" src="img/slut.svg" width="707" height="480" />  
@@ -226,5 +243,8 @@ WHERE `id`= '1';
 SET `grafik` = "<embed type='image/svg+xml' src='img/stranden.svg' width='707' height='480' /> "  
 WHERE `id`= '1';
  * 
- * *
+ * 
+ * UPDATE `rum` SET `beskrivning`= 'Du är strandsatt på en öde ö. Båten som kan ta dig hem är låst med ett stort hänglås. 
+ En säker död väntar dig om du inte lyckas hitta nyckeln. Lycka till!' 
+WHERE  `id` = 1
  */

@@ -23,6 +23,13 @@ class CPlayer {
     private $iPickDiceStatus;       //Check to see if player picked up dice(bool)
     private $iPickLetterStatus;     //Check to see if player picked up letter(bool)
     private $iPickCardStatus;       //Check to see if player picked up card(bool)
+    private $iPickBananStatus;      //Check to see if player picked up banan(bool)
+    private $iPickPearStatus;
+    private $iPickStrawberryStatus;
+
+
+
+
     private $iPlayHangManStatus;    //Check to see if player played hangman(bool)
     private $iPlayHighLowStatus;    //Check to see if player played highlow(bool)
     private $iPlayDiceStatus;       //Check to see if player played dice(bool)
@@ -43,9 +50,13 @@ class CPlayer {
         $this->iPickCardStatus = FALSE;       
         $this->iPickDiceStatus = FALSE;
         $this->iPickLetterStatus = FALSE;
+        $this->iPickBananStatus = FALSE;
         $this->iPlayHangManStatus = FALSE;
         $this->iPlayHighLowStatus = FALSE;
         $this->iPlayDiceStatus = FALSE;
+        $this->iPickPearStatus = FALSE;
+        $this->iPickStrawberryStatus = FALSE;
+        
     }
 
     // -------------------------------------------------------------------------------------------
@@ -102,6 +113,9 @@ class CPlayer {
                         $this->iHealthMeter = 10;
                         $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
                     }
+                    
+                    $room->changePicture("<embed type='image/svg+xml' src='img/borgenTomFlaska.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 5, fina drycker!",'10' );
+                      
                       
 
                     header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=10');
@@ -110,12 +124,19 @@ class CPlayer {
                 break;
 
             case 'eatBanan': {
+                    $this->setPickBananStatus(TRUE);
                     $this->iHealthMeter += 1;
                     array_push($this->iHeartStatusList, "<img src ='img/heart.png'>");
                     if ($this->iHealthMeter > 10) {
                         $this->iHealthMeter = 10;
                         $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
                     }
+                    if($this->getPickCardStatus() === TRUE){
+                        $room->changePicture("<embed type='image/svg+xml' src='img/havetTom.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'7' );
+                    }else{
+                           $room->changePicture("<embed type='image/svg+xml' src='img/havetBanan.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'7' );
+                    }    
+                    
                     header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=7'); //refresh site and events                 
                 }
                  $room->SetStatus($idRoom, $aActionEvent );
@@ -123,24 +144,36 @@ class CPlayer {
                 break;
 
             case 'eatPear': {
+                    $this->setPickPearStatus(TRUE);
                     $this->iHealthMeter += 1;
                     array_push($this->iHeartStatusList, "<img src ='img/heart.png'>");
                     if ($this->iHealthMeter > 10) {
                         $this->iHealthMeter = 10;
                         $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
                     }
+                    if($this->getPickDiceStatus() === TRUE){
+                        $room->changePicture("<embed type='image/svg+xml' src='img/eldplatsenTom.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'5' );
+                    }else{
+                           $room->changePicture("<embed type='image/svg+xml' src='img/eldplatsenParon.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'5' );
+                    }  
                     header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=5');
                 }
                  $room->SetStatus($idRoom, $aActionEvent );
                 break;
 
             case 'eatStrawberry': {
+                    $this->setPickStrawberryStatus(TRUE);
                     $this->iHealthMeter += 1;
                     array_push($this->iHeartStatusList, "<img src ='img/heart.png'>");
                     if ($this->iHealthMeter > 10) {
                         $this->iHealthMeter = 10;
                         $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
                     }
+                    if($this->getPickLetterStatus() === TRUE){
+                        $room->changePicture("<embed type='image/svg+xml' src='img/djupa_skogenTom.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'6' );
+                    }else{
+                         $room->changePicture("<embed type='image/svg+xml' src='img/djupa_skogenJordgubbe.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'6' );
+                    }  
                     header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=6');
                 }
                  $room->SetStatus($idRoom, $aActionEvent );
@@ -224,6 +257,11 @@ class CPlayer {
                         header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=5&item=pickDice');
                         $this->setPickDiceStatus(TRUE); //sign that you hav picked up dices
                         $this->setPlayDiceStatus(TRUE); //allow you to play dice
+                        if($this->getPickPearStatus() === TRUE){
+                            $room->changePicture("<embed type='image/svg+xml' src='img/eldplatsenTom.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'5' );
+                        }else{
+                           $room->changePicture("<embed type='image/svg+xml' src='img/eldplatsenDice.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'5' );
+                        }  
                     } else {
                         header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=5');
                     }
@@ -235,6 +273,11 @@ class CPlayer {
                         header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=6&item=pickChar');
                         $this->setPickLetterStatus(TRUE);
                         $this->setPlayHangManStatus(TRUE); //allow you to play hangman
+                        if($this->getPickStrawberryStatus() === TRUE){
+                            $room->changePicture("<embed type='image/svg+xml' src='img/djupa_skogenTom.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'6' );
+                        }else{
+                           $room->changePicture("<embed type='image/svg+xml' src='img/djupa_skogenLetters.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'6' );
+                        }  
                     } else {
                         header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=6');
                     }
@@ -245,7 +288,13 @@ class CPlayer {
                     if ($this->getPickCardStatus() === FALSE) {
                         header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=7&item=pickCards');
                         $this->setPickCardStatus(TRUE);
-                        $this->setPlayHighLowStatus(TRUE); //allow you to play highlow                        
+                        $this->setPlayHighLowStatus(TRUE); //allow you to play highlow 
+                        if($this->getPickBananStatus() === TRUE){
+                            $room->changePicture("<embed type='image/svg+xml' src='img/havetTom.svg' width='707' height='480' /> "," Du har nu lagt kortleken i din ryggsäck!",'7' );
+                        }else{
+                               $room->changePicture("<embed type='image/svg+xml' src='img/havetCard.svg' width='707' height='480' /> "," Du har nu lagt kortleken i din ryggsäck!",'7' );
+                        }
+                        
                     } else {
                         header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=7');
                     }
@@ -325,6 +374,32 @@ class CPlayer {
     /*-------------------------------------------------------------------------
      * Keep track of things you pick up in the game     * 
      -------------------------------------------------------------------------*/
+    
+    public function getPickBananStatus() {
+        return $this->iPickBananStatus;
+    }
+
+    public function setPickBananStatus($status) {
+        $this->iPickBananStatus = $status;
+    }
+    
+    public function getPickPearStatus() {
+        return $this->iPickPearStatus;
+    }
+
+    public function setPickPearStatus($status) {
+        $this->iPickPearStatus = $status;
+    }
+    
+     public function getPickStrawberryStatus() {
+        return $this->iPickStrawberryStatus;
+    }
+
+    public function setPickStrawberryStatus($status) {
+        $this->iPickStrawberryStatus = $status;
+    }
+    
+    
     public function getPickLetterStatus() {
         return $this->iPickLetterStatus;
     }
