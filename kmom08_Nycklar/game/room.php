@@ -45,6 +45,10 @@ $actionEvent = isset($_GET['event']) ? $_GET['event'] : "";
 // Get the action-item if any pickDice, pickChar and pickCards
 $actionItem = isset($_GET['item']) ? $_GET['item'] : "";
 
+
+
+
+
 // Add dice, letter and card image to item array 
 $_SESSION['player']->AddItem($actionItem);
    
@@ -55,6 +59,9 @@ $_SESSION['player']->AddItem($actionItem);
 require_once('CRoom.php');
 $room = new CRoom();
 
+ 
+
+
 //Fixar en boolean i rumaction så att den sätts när du gjort en sak
 if($actionEvent != NULL ){    
     //$room->SetStatus($idRoom,$actionEvent );    
@@ -64,6 +71,7 @@ if($actionEvent != NULL ){
      $_SESSION['player']->PerformActionEvent($actionItem,$room,$idRoom );  
 }
 
+//visar en alert om du inte har saken i ryggsäcken när du ska spela
 $eventData = "";
 $dataEvent = "";
 if($_SESSION['player']->getPlayHangmanStatus() === FALSE and $actionEvent  === 'playHangman'){
@@ -92,14 +100,24 @@ if($idRoom != 11){
      $_SESSION['player']->setHealthStatus();
 }
 
-//fungerar inte måste fixa så att du byter bild vid hamnen så du måste ta dig dit när 
-// du fått tre nycklar
-if( $_SESSION['player']->getSizeOfKeys() === 3){   
-    $query =$room->changePicture("<embed type='image/svg+xml' src='img/slut.svg' width='707' height='480' />" ,"Tack för hjälpen nu seglar jag hem!",'1');
-}
 
+
+// När du fått tre nycklar visas slutbilden samt att inga händelser och länkar visas.
+$action =null;
+$conection = null;
+if( $_SESSION['player']->getSizeOfKeys() === 3){   
+    $room->changePicture("<embed type='image/svg+xml' src='img/slut.svg' width='707' height='480' />" ,"Tack för hjälpen nu seglar jag hem!",'1');   
+    if($idRoom === 1){  //kollar så att denna länk visas endast när du är i rum 1      
+        $conection = "<li><a href='index.php'>Till startsidan</a></li> ";
+    }else{
+        $action =  $room->iActions;
+        $conection = $room->iConnections;        
+    }
+}else{
  
-    //$debug = $query;
+    $action =  $room->iActions;
+    $conection = $room->iConnections;
+}
 
 
 
@@ -139,6 +157,7 @@ foreach ($keyListImage as $value) {
 
 $htmlKeys .= "  </tr></table>";
 
+
 // -------------------------------------------------------------------------------------------
 //
 // The content of the page
@@ -173,13 +192,13 @@ $html = <<<EOD
         </div> <!-- description -->
         <div class='actionChoise'>
             <h3>Vägval</h3>                    
-            <ul>
-           {$room->iConnections} 
+            <ul>           
+           {$conection} 
             </ul>                      
         </div> <!-- actionChoise -->                       
         <div class='actionEvents'>
-            <h3>Händelser</h3>                   
-           {$room->iActions}              
+            <h3>Händelser</h3>         
+            {$action}           
         </div> <!-- actionEvents -->           
             
         </div> <!-- end right_col-->
