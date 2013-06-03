@@ -10,7 +10,8 @@
 //
     
 // Include class definitions
-require_once('CPlayer.php'); 
+require_once('CPlayer.php');
+
  
  // Calling session_start
 session_start();
@@ -30,6 +31,7 @@ $debugEnable = FALSE;  // TRUE to enable debugging, FALSE to not print out debug
 $html = "";
 
 
+
 // -------------------------------------------------------------------------------------------
 //
 // Take care of GET variables, and validate them
@@ -37,17 +39,35 @@ $html = "";
 
 // Get the id of the room
 $idRoom = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-if($idRoom === FALSE || $idRoom === NULL || $idRoom < 0) die("Felaktig _GET värde."); 
+if($idRoom === FALSE || $idRoom === NULL || $idRoom < 0) die("Felaktig _GET värde.");
+
+
+
+if($idRoom === 5)  //om vi är vid eldplatsen
+{  
+  $_SESSION["lastTime"] =  time();  //we need to know when we entered   
+  $debug .= "lastTime: " . time() . "<br />";
+}else {      
+  $lastTime = empty($_SESSION["lastTime"]) ? time() : $_SESSION["lastTime"]; 
+  $currentTime = time();                          
+  
+  $debug .= "lastTime: " . $lastTime . "<br />";
+  $debug .= "currentTime: " . $currentTime . "<br />";
+  $debug .= "difference: " . ($currentTime - $lastTime) . "<br />";
+  
+  if($currentTime - $lastTime >= 10)    //if it have taken more than 10 seconds, refill health completely
+  {
+    $_SESSION["player"]->setHealthStatus();
+  }
+  
+  $_SESSION["lastTime"] = 0;    //reset
+} 
 
 // Get the action-event if any
 $actionEvent = isset($_GET['event']) ? $_GET['event'] : "";
 
 // Get the action-item if any pickDice, pickChar and pickCards
 $actionItem = isset($_GET['item']) ? $_GET['item'] : "";
-
-
-
-
 
 // Add dice, letter and card image to item array 
 $_SESSION['player']->AddItem($actionItem);
@@ -58,9 +78,6 @@ $_SESSION['player']->AddItem($actionItem);
 //
 require_once('CRoom.php');
 $room = new CRoom();
-
- 
-
 
 //Fixar en boolean i rumaction så att den sätts när du gjort en sak
 if($actionEvent != NULL ){    
@@ -89,26 +106,16 @@ if($_SESSION['player']->getPlayHangmanStatus() === FALSE and $actionEvent  === '
 
 $room->ReadFromDatabase($idRoom,$dataEvent);
 
-
-
 // Keep track on current room and decrease health-meter when entering a new room
-//if you are winning game set helth till odödlig
-
-if($idRoom != 11){
-    $_SESSION['player']->SetCurrentRoomAndDecreaseHealtMeter($idRoom);
-}else{
-     $_SESSION['player']->setHealthStatus();
-}
-
-
+$_SESSION['player']->SetCurrentRoomAndDecreaseHealtMeter($idRoom);
 
 // När du fått tre nycklar visas slutbilden samt att inga händelser och länkar visas.
 $action =null;
 $conection = null;
 if( $_SESSION['player']->getSizeOfKeys() === 3){   
-    $room->changePicture("<embed type='image/svg+xml' src='img/slut.svg' width='707' height='480' />" ,"Tack för hjälpen nu seglar jag hem!",'1');   
+    $room->changePicture("<embed type='image/svg+xml' src='img/slut.svg' width='707' height='480' />" ,"Bra jobbat! Nu seglar jag hem! Tack för hjälpen",'1');   
     if($idRoom === 1){  //kollar så att denna länk visas endast när du är i rum 1      
-        $conection = "<li><a href='index.php'>Till startsidan</a></li> ";
+        $conection = "<li><a href='adventure.php'>Till startsidan</a></li> ";
     }else{
         $action =  $room->iActions;
         $conection = $room->iConnections;        

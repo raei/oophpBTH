@@ -24,8 +24,8 @@ class CPlayer {
     private $iPickLetterStatus;     //Check to see if player picked up letter(bool)
     private $iPickCardStatus;       //Check to see if player picked up card(bool)
     private $iPickBananStatus;      //Check to see if player picked up banan(bool)
-    private $iPickPearStatus;
-    private $iPickStrawberryStatus;
+    private $iPickPearStatus;       //Check to see if player picked up pear(bool)
+    private $iPickStrawberryStatus; //Check to see if player picked up strawberry(bool)
 
 
 
@@ -86,13 +86,7 @@ class CPlayer {
 
             if ($this->iHealthMeter <= 0) {
                 header('Location: gameover.php?reason=Dina liv är förbrukade');
-            }
-            /*
-              if(empty($this->iHeartStatusList)){
-              header('Location: gameover.php?reason=Du käkade ett ruttet äpple så alla dina liv försvann');
-              }
-             * 
-             */
+            }           
         }
     }
 
@@ -104,6 +98,59 @@ class CPlayer {
     public function PerformActionEvent($aActionEvent,$room, $idRoom) {
 
         switch ($aActionEvent) {
+            case 'transfer': {
+                $slump = rand(2, 11);
+                
+                    switch ($slump){                        
+                         case 2: {
+                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=1');
+                             break;
+                         }
+                         case 3: {
+                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=3');
+                             break;
+                         }
+                         case 4: {
+                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=4');
+                             break;
+                         }
+                         case 5: {
+                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=5');
+                             break;
+                         }
+                         case 6: {
+                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=6');
+                             break;
+                         }
+                         case 7: {
+                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=7');
+                             break;
+                         }
+                         case 8: {
+                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=8');
+                             break;
+                         }
+                         case 9: {
+                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=9');
+                             break;
+                         }
+                         case 10: {
+                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=10');
+                             break;
+                         }
+                         case 11: {
+                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=11');
+                             break;
+                         }
+                            default:
+                            break;
+                    }
+                   
+                    //header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=2');
+                }
+               // $room->SetStatus($idRoom, $aActionEvent );
+                break;
+            
             case 'drinkWater': {
                     $this->iHealthMeter += 5;
                     for ($i = 0; $i < 5; $i++) {
@@ -115,9 +162,7 @@ class CPlayer {
                     }
                     
                     $room->changePicture("<embed type='image/svg+xml' src='img/borgenTomFlaska.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 5, fina drycker!",'10' );
-                      
-                      
-
+                   
                     header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=10');
                 }
                 $room->SetStatus($idRoom, $aActionEvent );
@@ -317,15 +362,16 @@ class CPlayer {
     
     public function getSizeOfKeys() {
         return sizeof($this->iGoldenKeys);
-    }
-            
+    }          
 
     public function getHealthStatus() {
         return $this->iHealthMeter;
     }
 
     public function setHealthStatus() {
-        $this->iHealthMeter = 'GREAT!';
+       // $this->iHealthMeter = 'GREAT!';
+         $this->iHeartStatusList = array_fill(1, 11, "<img src ='img/heart.png'>");
+          $this->iHealthMeter = 11;
     }
 
     public function AddItem($item) {

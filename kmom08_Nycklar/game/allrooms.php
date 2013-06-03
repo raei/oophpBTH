@@ -23,25 +23,22 @@ session_start();
 $html = "";
 
 $htmlTemplate = <<<EOD
-<div class='wrapper'>
-      
-            <h2>{\$room->iTitle}</h2>
-        
+<div class='wrapper'>      
+            <h2>{\$room->iTitle}</h2>   
 
 <div class='gamearea'>
 {\$room->iGraphics}
 </div> <!-- gamearea -->
 
-   <div id='right_col'>
-        
+   <div id='right_col'>        
                 <div class='description'>
                 <h4>Beskrivning:</h4>
                 <p class='description'>{\$room->iDescription}</p>
                 </div> <!-- description -->
 
-                <div class='action'>
+                <div class='actionChoise'>
                 <h4>Riktningar:</h4>
-                <p class='action'>{\$room->iConnections}</p>
+                <p class='actionEvents'>{\$room->iConnections}</p>
                 </div> <!-- actions -->
         
   </div> <!-- end right_col-->
@@ -62,9 +59,9 @@ $room = new CRoom();
 
 
 for($i=1; $i<=$room->CountRooms(); $i++) {    
-    $room->ReadFromDatabase($i); 
+    $room->ReadFromDatabase($i,NULL); 
     $html .= <<<EOD
-<p style="margin-left:145px; font-weight:bold;">
+<p style="margin-left:220px; font-weight:bold;">
 <a href='room.php?id={$room->iId}'>Gå till rummet '{$room->iTitle}'</a>
 </p>
 EOD;
@@ -80,7 +77,8 @@ EOD;
 $title         = "Visa alla rum";
 $charset     = "iso-8859-1";
 $language    = "sv";
-$stylesheet = "";
+$stylesheet = "#right_col{margin-left:5px;} .actionEvents{margin-left:15px;}";
+
 
 $html = <<< EOD
 <?xml version="1.0" encoding="{$charset}" ?> 
@@ -90,9 +88,9 @@ $html = <<< EOD
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{$language}" lang="{$language}">  
     <head>
         <meta http-equiv="Content-Type" content="text/html; {$charset};" />
-        <title>{$title}</title>
-        <style type="text/css">{$stylesheet}</style>    
-        <link rel='stylesheet' href='css/main.css' type='text/css' media='screen' />
+        <title>{$title}</title>   
+        <style type="text/css">{$stylesheet}</style>
+       <link rel='stylesheet' href='css/main.css' type='text/css' media='screen' /> 
     </head>
     <body>       
         {$html}        

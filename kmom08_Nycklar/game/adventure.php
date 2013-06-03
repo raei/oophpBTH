@@ -77,8 +77,6 @@ switch($doGame) {
         if(!isset($_SESSION['player'])) {            // Init the session with a new player
             $_SESSION['player'] = new CPlayer();    // if not already done before.
         }
-        
-
         //
         // Make a redirect to the first room
         //
