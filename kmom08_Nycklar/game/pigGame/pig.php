@@ -25,7 +25,7 @@ $actionP1 = (empty($_POST['actionP1']) ? "pause" : $_POST['actionP1']); //innehå
 
 $diceSum = (empty($_POST['diceSum']) ? "pause" : $_POST['diceSum']);
 
-
+$description = "Se till att kast mer än 10 poäng och du får en nyckel. Se upp för att kasta en etta den den nollställer dina poäng.";
 
 //Variabeldeklarering
 $dice_html_P1 = ""; //html-kod för att visa den senast slagna tärningen för spelare ett
@@ -62,7 +62,8 @@ if ($actionP1 == 'Kasta') {
     }
 
     //om spelare 1 uppnår gränsen för vinst avslutas spelet och info skrivs ut
-    if ($player_P1->getTotalScore() >= $winPoints) {             
+    if ($player_P1->getTotalScore() >= $winPoints) {
+        $description = "Du klarade 10p. Vilket gör att du får en nyckel.";	
         $winnerAnnouncment = "GRATTIS DU KLARADE UTMANINGEN";
         $button_visibility_P1 = TRUE;//Disable submit button
         $goback = " <a href='../room.php?id=8'>Avsluta gå till hemliga staden</a>";
@@ -123,7 +124,7 @@ $html = <<<EOD
            <div class='description'>
             <h3>Beskrivning</h3>
            <p class='description'>
-		Kasta 10 poäng annars är du fast här.
+                {$description}
             </p>
             </div> <!-- description -->
                 <div class='action'>

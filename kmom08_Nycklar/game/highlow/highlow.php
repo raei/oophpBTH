@@ -27,6 +27,7 @@ $kid = ""; // pic of kid
 $buttons = "";// high low buttons
 $restart = "";
 $action = "";
+$description = " Lyckas gissa rätt på 3 kort och du får en nyckel till båten. ";
 
 
 
@@ -98,11 +99,10 @@ if(isset($_SESSION['game'])) {
 	if($gameOver) {
 		$points = $_SESSION['game']->GetPoints();
 		$_SESSION['game']->StartGame();
-		$htmlGame .= "<p style='font-size: 12px; width: 130px;float:left; padding-left: 5px;color:orange;'>Du klarade {$points} kort.</p>";
+                $description = "Du klarade {$points} kort. Nu har du fått en nyckel.";		
                 $restart .= "<a href= '{$_SERVER['PHP_SELF']}?game=init'>Starta om!</a>";
                  if($points >= 3) {
-                    $htmlGame .= "<p style='color:white;width: 230px;clear:both; font-size:15px;padding-left: 5px; color:orange;'>GRATTIS!</p>";                   
-   
+                    $description .= " GRATTIS!";
                     $action = " <p>
                                     <a href='../room.php?id=9'>
                                        Gå tillbaka till spelstigen!
@@ -146,10 +146,8 @@ $html = <<<EOD
             </p>
             </div>
             <div class='description'>
-            <h3>Beskrivning</h3>
-                <p class='description'>
-                    Lyckas gissa rätt på 3 kort och du kan lämna spelet.                
-                </p>
+            <h3>Beskrivning</h3>                
+                   {$description}                
             </div> <!-- description -->
                 <div class='action'>
                     <h3>Vägval</h3>

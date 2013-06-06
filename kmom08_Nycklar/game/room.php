@@ -30,6 +30,12 @@ $debugEnable = FALSE;  // TRUE to enable debugging, FALSE to not print out debug
 //
 $html = "";
 
+// ----------------------------------------------------------------------------
+//
+// Load room info into room-object
+//
+require_once('CRoom.php');
+$room = new CRoom();
 
 
 // -------------------------------------------------------------------------------------------
@@ -41,25 +47,39 @@ $html = "";
 $idRoom = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 if($idRoom === FALSE || $idRoom === NULL || $idRoom < 0) die("Felaktig _GET värde.");
 
+$test = empty($_GET['test']) ? 0 : $_GET['test'];
+$debug.= "Ralf1 test: " . $test;
+
+if($idRoom === 10 or $idRoom === 2 and  $_SESSION["player"]->getPickStrawberryStatus() === TRUE and $_SESSION["player"]->getPickLetterStatus() === TRUE ){
+    
+    $room->changeText("Här har du varit redan " , '6');
+}
+if($idRoom === 8 or $idRoom === 1 and  $_SESSION["player"]->getPickCardStatus() === TRUE and $_SESSION["player"]->getPickBananStatus() === TRUE ){
+    
+    $room->changeText("Här har du varit redan " , '7');
+}
+if($idRoom === 9 or $idRoom === 2 and  $_SESSION["player"]->getPickDiceStatus() === TRUE and $_SESSION["player"]->getPickPearStatus() === TRUE ){
+    
+    $room->changeText("Här har du varit redan " , '5');
+}
 
 
-if($idRoom === 5)  //om vi är vid eldplatsen
-{  
-  $_SESSION["lastTime"] =  time();  //we need to know when we entered   
+//Fixar så att du får fullt med liv om du stannar vid eldplatsen mer än 10sek
+if($idRoom === 5 and $test === 0)  //om vi är vid eldplatsen
+{        
+  $_SESSION["lastTime"] =  time();  //kollar när vi kom dit   
   $debug .= "lastTime: " . time() . "<br />";
-}else {      
+  header("refresh:10; url=http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=5&test=1");
+    
+}else if($idRoom === 5 and $test === '1') {      
   $lastTime = empty($_SESSION["lastTime"]) ? time() : $_SESSION["lastTime"]; 
-  $currentTime = time();                          
+  $currentTime = time();  
   
-  $debug .= "lastTime: " . $lastTime . "<br />";
-  $debug .= "currentTime: " . $currentTime . "<br />";
-  $debug .= "difference: " . ($currentTime - $lastTime) . "<br />";
-  
-  if($currentTime - $lastTime >= 10)    //if it have taken more than 10 seconds, refill health completely
+  if($currentTime - $lastTime >= 9)    //if it have taken more than 10 seconds, refill health completely
   {
-    $_SESSION["player"]->setHealthStatus();
-  }
-  
+    $_SESSION["player"]->setHealthStatus();    
+    $room->changeText("Du vilade en stund vilket gjorde att du fyllde på fullt med energi", 5);
+  }  
   $_SESSION["lastTime"] = 0;    //reset
 } 
 
@@ -72,19 +92,11 @@ $actionItem = isset($_GET['item']) ? $_GET['item'] : "";
 // Add dice, letter and card image to item array 
 $_SESSION['player']->AddItem($actionItem);
    
-// ----------------------------------------------------------------------------
-//
-// Load room info into room-object
-//
-require_once('CRoom.php');
-$room = new CRoom();
 
 //Fixar en boolean i rumaction så att den sätts när du gjort en sak
-if($actionEvent != NULL ){    
-    //$room->SetStatus($idRoom,$actionEvent );    
+if($actionEvent != NULL ){         
     $_SESSION['player']->PerformActionEvent($actionEvent,$room,$idRoom );
-}else if($actionItem != NULL ){
-     //$room->SetStatus($idRoom,$actionItem );
+}else if($actionItem != NULL ){     
      $_SESSION['player']->PerformActionEvent($actionItem,$room,$idRoom );  
 }
 
@@ -92,13 +104,13 @@ if($actionEvent != NULL ){
 $eventData = "";
 $dataEvent = "";
 if($_SESSION['player']->getPlayHangmanStatus() === FALSE and $actionEvent  === 'playHangman'){
-    $eventData = "Du måste ha bokstäver med dig för att spela hangman.";
+    $eventData = "Det saknas bokstäver i din ryggsäcken för att spela hangman.";
     $dataEvent = 'onClick=checkbox()';    
 }else if($_SESSION['player']->getPlayDiceStatus() === FALSE and $actionEvent  === 'playDice') {
-    $eventData = "Du måste ha tärningar med dig för att spela tärning.";
+    $eventData = "Det saknas tärningarna i din ryggsäcken för att spela.";
     $dataEvent = 'onClick=checkbox()';
 }else if($_SESSION['player']->getPlayHighLowStatus()=== FALSE and $actionEvent  === 'playGameHighLow') {
-    $eventData = "Du måste ha kortlek med dig för att spela kort.";
+    $eventData = "Du saknar en kortlek i din ryggsäck för att spela kort.";
     $dataEvent = 'onClick=checkbox()';
 }else{
     $dataEvent = '';
@@ -118,51 +130,44 @@ if( $_SESSION['player']->getSizeOfKeys() === 3){
         $conection = "<li><a href='adventure.php'>Till startsidan</a></li> ";
     }else{
         $action =  $room->iActions;
-        $conection = $room->iConnections;        
+        $conection = $room->iConnections;  
+        //$room->changeText("" , $idRoom);//Tar bort ruminformationen efter att du varit i ett rum
     }
-}else{
- 
+}else{ 
     $action =  $room->iActions;
     $conection = $room->iConnections;
+   // $room->changeText("" , $idRoom);//Tar bort ruminformationen efter att du varit i ett rum
 }
 
+//$debug .= 'Game initiated.';
+//$debug .= 'Current session id is: ' . session_id() . '<br />';
 
-
-$debug .= 'Game initiated.';
-$debug .= 'Current session id is: ' . session_id() . '<br />';
-
-$itemList = $_SESSION['player']->getItems();//getItems from players itemlist
-
-$htmlItems = "<table><tr>";
-
-foreach ($itemList as $value) {
-     $htmlItems .= "<td  style='padding-right: 40px;'>" . $value . '</td>';
-     $debug .= "Current items " . $htmlItems ;
-}   
-
-$htmlItems .= "  </tr></table>";
-
-$heartListImage = $_SESSION['player']->getHearts();//getHearts from players
-
-$htmlHearts = "<table><tr>";
-
-foreach ($heartListImage as $value) {
-     $htmlHearts .= "<td  style='padding-left: 5px;'>" . $value . '</td>';
-     $debug .= "Current items " . $htmlHearts ;
-}   
-
-$htmlHearts .= "  </tr></table>";
-
+//hämta nycklar
 $keyListImage = $_SESSION['player']->getKeys();//getKeys from players
-
+//visa nycklar
 $htmlKeys = "<table><tr>";
-
 foreach ($keyListImage as $value) {
      $htmlKeys .= "<td  style='padding-right: 30px;'>" . $value . '</td>';
-     $debug .= "Current items " . $htmlKeys ;
+     //$debug .= "Current items " . $htmlKeys ;
 }   
-
 $htmlKeys .= "  </tr></table>";
+//hämta ryggsäckens saker
+$itemList = $_SESSION['player']->getItems();//getItems from players itemlist
+$htmlItems = "<table><tr>";
+foreach ($itemList as $value) {
+     $htmlItems .= "<td  style='padding-right: 40px;'>" . $value . '</td>';
+    // $debug .= "Current items " . $htmlItems ;
+}   
+$htmlItems .= "  </tr></table>";
+//hämta energi
+$heartListImage = $_SESSION['player']->getHearts();//getHearts from players
+$htmlHearts = "<table><tr>";
+foreach ($heartListImage as $value) {
+     $htmlHearts .= "<td  style='padding-left: 5px;'>" . $value . '</td>';
+    // $debug .= "Current items " . $htmlHearts ;
+}
+$htmlHearts .= "  </tr></table>";
+
 
 
 // -------------------------------------------------------------------------------------------
@@ -174,15 +179,15 @@ $html = <<<EOD
 <div class='wrapper'>        
     <div class='header'>           
         <div class='keys'>
-            <h2>Nycklar</h2> 
+            <h2>NYCKLAR</h2> 
              {$htmlKeys}
         </div>
         <div class="items">
-            <h2>Ryggsäck</h2>       
+            <h2>RYGGSÄCK</h2>       
             {$htmlItems}                    
         </div>
         <div class='healthmeter'>
-            <h2>Liv</h2>           
+            <h2>ENERGI</h2>           
             {$htmlHearts}            
         </div>       
     </div><!-- end header --> 
@@ -200,12 +205,14 @@ $html = <<<EOD
         <div class='actionChoise'>
             <h3>Vägval</h3>                    
             <ul>           
-           {$conection} 
+                {$conection} 
             </ul>                      
         </div> <!-- actionChoise -->                       
         <div class='actionEvents'>
-            <h3>Händelser</h3>         
-            {$action}           
+            <h3>Händelser</h3> 
+                <ul>
+                    {$action}
+                 </ul> 
         </div> <!-- actionEvents -->           
             
         </div> <!-- end right_col-->

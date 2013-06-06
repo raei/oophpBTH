@@ -82,10 +82,9 @@ class CPlayer {
             $this->iLastRoomVisited = $aId;
             $this->iHealthMeter--;
             array_pop($this->iHeartStatusList); //delete one heart each time
-            //unset($iHeartStatusList["<img src ='img/heart.png'>"]);//fel här han tar inte bort bild
-
+           
             if ($this->iHealthMeter <= 0) {
-                header('Location: gameover.php?reason=Dina liv är förbrukade');
+                header('Location: gameover.php?reason=Din energi tog slut! Träna mer.');
             }           
         }
     }
@@ -103,50 +102,62 @@ class CPlayer {
                 
                     switch ($slump){                        
                          case 2: {
-                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=1');
+                             //$room->changeText("Du har slumpats hit.",'1' );
+                             header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=1');
+                            
                              break;
                          }
                          case 3: {
-                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=3');
+                             //$room->changeText("Du har slumpats hit.",'3');
+                             header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=3');
+                           
                              break;
                          }
                          case 4: {
-                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=4');
+                             //$room->changeText("Du har slumpats hit.",'4');
+                             header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=4');
+                              
                              break;
                          }
                          case 5: {
-                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=5');
+                             header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=5');
+                             //$room->changeText("Du har slumpats hit.",'5');
                              break;
                          }
                          case 6: {
-                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=6');
+                            // $room->changeText("Du har slumpats hit.",'6');
+                             header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=6');                             
                              break;
                          }
                          case 7: {
-                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=7');
+                            // $room->changeText("Du har slumpats hit.",'7');
+                             header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=7');                             
                              break;
                          }
                          case 8: {
-                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=8');
+                            // $room->changeText("Du har slumpats hit.",'8');
+                             header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=8');                             
                              break;
                          }
                          case 9: {
-                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=9');
+                             header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=9');
                              break;
                          }
                          case 10: {
-                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=10');
+                            // $room->changeText("Du har slumpats hit.",'10');
+                             header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=10');                            
                              break;
                          }
                          case 11: {
-                             header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=11');
+                            // $room->changeText("Du har slumpats hit.",'11');
+                             header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=11');                             
                              break;
                          }
                             default:
                             break;
                     }
                    
-                    //header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=2');
+                    //header('Location:http://localhost/oophpBTH/kmom08/game/room.php?id=2');
                 }
                // $room->SetStatus($idRoom, $aActionEvent );
                 break;
@@ -161,9 +172,9 @@ class CPlayer {
                         $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
                     }
                     
-                    $room->changePicture("<embed type='image/svg+xml' src='img/borgenTomFlaska.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 5, fina drycker!",'10' );
+                    $room->changePicture("<embed type='image/svg+xml' src='img/borgenTomFlaska.svg' width='707' height='480' /> "," Du har nu fyllt på energi vilket är bra om du ska klara uppdraget.",'10' );
                    
-                    header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=10');
+                    header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=10');
                 }
                 $room->SetStatus($idRoom, $aActionEvent );
                 break;
@@ -182,7 +193,7 @@ class CPlayer {
                            $room->changePicture("<embed type='image/svg+xml' src='img/havetBanan.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'7' );
                     }    
                     
-                    header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=7'); //refresh site and events                 
+                    header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=7'); //refresh site and events                 
                 }
                  $room->SetStatus($idRoom, $aActionEvent );
 
@@ -197,11 +208,11 @@ class CPlayer {
                         $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
                     }
                     if($this->getPickDiceStatus() === TRUE){
-                        $room->changePicture("<embed type='image/svg+xml' src='img/eldplatsenTom.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'5' );
+                        $room->changePicture("<embed type='image/svg+xml' src='img/eldplatsenTom.svg' width='707' height='480' /> ","Päronet gav dig energi!",'5' );
                     }else{
-                           $room->changePicture("<embed type='image/svg+xml' src='img/eldplatsenParon.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'5' );
+                           $room->changePicture("<embed type='image/svg+xml' src='img/eldplatsenParon.svg' width='707' height='480' /> ","Päronet gav dig energi!",'5' );
                     }  
-                    header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=5');
+                    header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=5');
                 }
                  $room->SetStatus($idRoom, $aActionEvent );
                 break;
@@ -215,51 +226,54 @@ class CPlayer {
                         $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
                     }
                     if($this->getPickLetterStatus() === TRUE){
-                        $room->changePicture("<embed type='image/svg+xml' src='img/djupa_skogenTom.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'6' );
+                        $room->changePicture("<embed type='image/svg+xml' src='img/djupa_skogenTom.svg' width='707' height='480' /> ","Du har nu fyllt på din energi med 1.",'6' );
                     }else{
-                         $room->changePicture("<embed type='image/svg+xml' src='img/djupa_skogenJordgubbe.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'6' );
+                         $room->changePicture("<embed type='image/svg+xml' src='img/djupa_skogenJordgubbe.svg' width='707' height='480' /> ","Du har nu fyllt på din energi med 1.",'6' );
                     }  
-                    header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=6');
-                }
-                 $room->SetStatus($idRoom, $aActionEvent );
+                    header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=6');
+                     $room->SetStatus($idRoom, $aActionEvent );
+                }                
                 break;
             case 'eatAppel': {
-                    $this->iHealthMeter -= 1;
-                    for ($i = 0; $i < 1; $i++) {
+                    $this->iHealthMeter -= 3;
+                    for ($i = 0; $i < 3; $i++) {
                         array_pop($this->iHeartStatusList); //delete one heart each time
                     }
 
                     if ($this->iHealthMeter <= 0) {
                         $this->iHealthMeter = 0;
-                        header("refresh:1; url=http://localhost/oophpBTH/kmom08_Nycklar/game/gameover.php?reason=Passa dig för rutten frukt!");
+                        header("refresh:1; url=http://www.student.bth.se/~raer12/oophp/kmom08/game/gameover.php?reason=Passa dig för rutten frukt!");
                     }
-                }
-                 $room->SetStatus($idRoom, $aActionEvent );
+                    $room->SetStatus($idRoom, $aActionEvent );
+                    $room->changePicture("<embed type='image/svg+xml' src='img/utgrottaTom.svg' width='707' height='480' />"," Du har ätit ett ruttet äpple vilket gör att du förlorat energi. Se upp!",'3' );
+                    
+                }                 
                 break;
             case 'increaseHealthFull': {
                  if ($this->iHealthMeter < 10) {
                     $this->iHealthMeter = 10;
                     $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
                  }
-                }
-                 $room->SetStatus($idRoom, $aActionEvent );
+                  $room->SetStatus($idRoom, $aActionEvent );
+                  $room->changeText("Du har fyllt på fullt med energi.",'1' );
+                }                
                 break;
             case 'start': {
-                    //header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/adventure.php');
-                    header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/adventure.php');
+                   header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/adventure.php');
+                   // header('Location:http://localhost/oophpBTH/kmom08/game/adventure.php');
                 }
                 break;
 
             case 'playGameHighLow': {
-                    if ($this->getPlayHighLowStatus() === TRUE) {
-                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/highlow/highlow.php?game=init');
+                    if ($this->getPlayHighLowStatus() === TRUE) {//if you have access game
+                        header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/highlow/highlow.php?game=init');
                         $this->setPlayHighLowStatus(FALSE);
-                        $this->iGoldenKeys[] = "<img src ='image/golden_key.png'>";
-                        $room->SetStatus($idRoom, $aActionEvent );
+                        $this->iGoldenKeys[] = "<img src ='image/golden_key.png'>";//add picture to array of keys
+                        $room->SetStatus($idRoom, $aActionEvent );//set status in DB table action so you know you have done this game
                     } 
                    /* if(sizeof($this->iGoldenKeys)=== 3){
-                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=11');
-                        //header("refresh:1; url=http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=11");
+                        header('Location:http://localhost/oophpBTH/kmom08/game/room.php?id=11');
+                        //header("refresh:1; url=http://localhost/oophpBTH/kmom08/game/room.php?id=11");
                     }*/
                 }
                  
@@ -267,14 +281,14 @@ class CPlayer {
 
             case 'playHangman': {
                     if ($this->getPlayHangmanStatus() === TRUE) {
-                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/hangman/hangman.php');
+                        header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/hangman/hangman.php');
                         $this->setPlayHangmanStatus(FALSE);
                         $this->iGoldenKeys[] = "<img src ='image/golden_key.png'>";//when playing hangman you get a key
                         $room->SetStatus($idRoom, $aActionEvent );                        
                     } 
                     /*if(sizeof($this->iGoldenKeys) === 3){
-                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=11');
-                       //header("refresh:1; url=http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=11");
+                        header('Location:http://localhost/oophpBTH/kmom08/game/room.php?id=11');
+                       //header("refresh:1; url=http://localhost/oophpBTH/kmom08/game/room.php?id=11");
                     }*/
                 }
                  
@@ -282,15 +296,15 @@ class CPlayer {
 
             case 'playDice': {
                     if ($this->getPlayDiceStatus() === TRUE) {
-                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/pigGame/pig.php?game=init');
+                        header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/pigGame/pig.php?game=init');
                         $this->setPlayDiceStatus(FALSE);
                         $this->iGoldenKeys[] = "<img src ='image/golden_key.png'>";
                         $room->SetStatus($idRoom, $aActionEvent );
                         //Här tar du bort länken till spelet
                     } 
                     /*if(sizeof($this->iGoldenKeys) === 3){
-                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=11');
-                        //header("refresh:1; url=http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=11");
+                        header('Location:http://localhost/oophpBTH/kmom08/game/room.php?id=11');
+                        //header("refresh:1; url=http://localhost/oophpBTH/kmom08/game/room.php?id=11");
                     }*/
                 }
                  
@@ -299,39 +313,39 @@ class CPlayer {
             case 'pickDice': {
                     //Check if you have pick up dice if not p              
                     if ($this->getPickDiceStatus() === FALSE) {
-                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=5&item=pickDice');
+                        header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=5&item=pickDice');
                         $this->setPickDiceStatus(TRUE); //sign that you hav picked up dices
                         $this->setPlayDiceStatus(TRUE); //allow you to play dice
                         if($this->getPickPearStatus() === TRUE){
-                            $room->changePicture("<embed type='image/svg+xml' src='img/eldplatsenTom.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'5' );
+                            $room->changePicture("<embed type='image/svg+xml' src='img/eldplatsenTom.svg' width='707' height='480' /> "," Du har nu tärningar i din ryggsäck!",'5' );
                         }else{
                            $room->changePicture("<embed type='image/svg+xml' src='img/eldplatsenDice.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'5' );
                         }  
                     } else {
-                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=5');
+                        header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=5');                        
                     }
                 }
                  $room->SetStatus($idRoom, $aActionEvent );
                 break;
             case 'pickChar': {
                     if ($this->getPickLetterStatus() === FALSE) {
-                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=6&item=pickChar');
+                        header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=6&item=pickChar');
                         $this->setPickLetterStatus(TRUE);
                         $this->setPlayHangManStatus(TRUE); //allow you to play hangman
                         if($this->getPickStrawberryStatus() === TRUE){
-                            $room->changePicture("<embed type='image/svg+xml' src='img/djupa_skogenTom.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'6' );
+                            $room->changePicture("<embed type='image/svg+xml' src='img/djupa_skogenTom.svg' width='707' height='480' /> ","Du har nu bokstäver i din ryggsäck!",'6' );
                         }else{
-                           $room->changePicture("<embed type='image/svg+xml' src='img/djupa_skogenLetters.svg' width='707' height='480' /> "," Du har nu fyllt på ditt liv med 1!",'6' );
+                           $room->changePicture("<embed type='image/svg+xml' src='img/djupa_skogenLetters.svg' width='707' height='480' /> ","Du har nu bokstäver i din ryggsäck!",'6' );
                         }  
                     } else {
-                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=6');
+                        header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=6');
                     }
                 }
                  $room->SetStatus($idRoom, $aActionEvent );
                 break;
             case 'pickCards': {
                     if ($this->getPickCardStatus() === FALSE) {
-                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=7&item=pickCards');
+                        header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=7&item=pickCards');
                         $this->setPickCardStatus(TRUE);
                         $this->setPlayHighLowStatus(TRUE); //allow you to play highlow 
                         if($this->getPickBananStatus() === TRUE){
@@ -341,7 +355,7 @@ class CPlayer {
                         }
                         
                     } else {
-                        header('Location:http://localhost/oophpBTH/kmom08_Nycklar/game/room.php?id=7');
+                        header('Location:http://www.student.bth.se/~raer12/oophp/kmom08/game/room.php?id=7');
                     }
                 }
                  $room->SetStatus($idRoom, $aActionEvent );
@@ -370,7 +384,7 @@ class CPlayer {
 
     public function setHealthStatus() {
        // $this->iHealthMeter = 'GREAT!';
-         $this->iHeartStatusList = array_fill(1, 11, "<img src ='img/heart.png'>");
+         $this->iHeartStatusList = array_fill(1, 10, "<img src ='img/heart.png'>");
           $this->iHealthMeter = 11;
     }
 

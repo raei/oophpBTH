@@ -36,7 +36,7 @@ $html = <<<EOD
 <h1>Äventyrsspel</h1>
 <h2>GAME OVER</h2>
 <p>
-Anledning: {$reason}
+{$reason}
 </p>
 <p>
 <a href="{$path}">Gå till startsidan</a> 

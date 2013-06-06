@@ -8,8 +8,6 @@
 //
 // Author: Ralf Eriksson
 //
-
 /*
-
 
 

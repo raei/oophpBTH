@@ -24,6 +24,8 @@ $action = "";
 $ralf = "";
 
 $errorMsg = "";
+$description = " Lyckas gissa rätt ord och du får en nyckel till båten. ";
+
 // -------------------------------------------------------------------------------------------
 //
 // Take care of GET variables
@@ -51,7 +53,7 @@ if(preg_match('([a-öA-Ö])', $char) or $char === '' ){
 }//end if else
 
 // hemliga ordet
-$theWord = 'JAVA';
+$theWord = 'OSCAR';
 
 $debug .= $theWord;//add the word to debug var
 
@@ -96,7 +98,7 @@ $gameOverMessage	= "";
 //check if every dashes are removed from the currentword if so disable button and write a gratulation message
 if(strpos($currentWord, '-') === FALSE) {
 	$disableButton = "disabled='disabled'";
-	$gameOverMessage = "Game over! you made it.";
+	$description = "Du klarade ordet som var Oscar. Nu har du fått en nyckel.";		
 	$debug .= "yes";
         $action = " <a href='../room.php?id=4'>Gå tillbaka till grottan!</a>";
 }
@@ -193,7 +195,7 @@ $html = <<<EOD
             <div class='description'>
             <h3>Beskrivning</h3>
                 <p class='description'>
-                    Gissa rätt ord nu så du kan du fortsätta spelet
+                    {$description}
                 </p>
             </div> <!-- description -->
                 <div class='action'>

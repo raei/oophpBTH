@@ -160,7 +160,6 @@ EOD;
     //
     //
     public function SetStatus($aIdRoom, $aEvent  ) {
-
     
         // Connect
         $this->ConnectToDatabase(); 
@@ -215,6 +214,23 @@ EOD;
         
         $query = <<<EOD
             UPDATE rum SET grafik = '{$imgString}', beskrivning = '{$descriptenText}' WHERE id= {$roomId};
+EOD;
+       
+        $res = $this->iMysqli->query($query) 
+            or die("Could not query database, query =<br/><pre>{$query}</pre><br/>{$this->iMysqli->error}");
+            
+        $this->iMysqli->close();   
+        return $query;
+    }
+    
+    public function changeText($text, $id) {
+         // Connect
+        $this->ConnectToDatabase();        
+        $roomId = $this->iMysqli->real_escape_string($id);
+        $descriptenText = $this->iMysqli->real_escape_string($text);
+                
+        $query = <<<EOD
+            UPDATE rum SET beskrivning = '{$descriptenText}' WHERE id= {$roomId};
 EOD;
        
         $res = $this->iMysqli->query($query) 
